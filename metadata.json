@@ -1,0 +1,6 @@
+{
+  "name": "Portfolio Futureproof met AI",
+  "description": "Portfolio website voor de minor Futureproof met AI! met sprintoverzichten, stories, bewijsstukken en leeruitkomsten.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
