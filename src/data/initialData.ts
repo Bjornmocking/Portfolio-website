@@ -1,3 +1,4 @@
+import profilePhoto from '../assets/linkedin-profielfoto.jpg';
 import { LearningOutcome, PortfolioData } from '../types';
 
 export const LEARNING_OUTCOMES: LearningOutcome[] = [
@@ -49,15 +50,15 @@ export const INITIAL_PORTFOLIO_DATA: PortfolioData = {
   introText:
     'Welkom op mijn persoonlijke portfolio voor de minor "Futureproof met AI!". In deze online leeromgeving documenteer ik chronologisch mijn ontwikkeling, verkenningen, gebouwde AI-oplossingen en reflecties verdeeld over 8 intensieve sprints van elk twee weken.',
   aboutMe: {
-    name: '[Voornaam Achternaam]',
-    role: 'Student Minor Futureproof met AI!',
-    subheading: 'Nieuwsgierige maker met interesse in mensgerichte AI en innovatieve technologie.',
-    photoUrl: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?q=80&w=600&auto=format&fit=crop',
-    bio: '[Placeholder tekst: Hier komt mijn persoonlijke introductie. Ik vertel hier over mijn achtergrond, mijn motivatie om deel te nemen aan de minor Futureproof met AI!, en hoe ik technologie inzet om waarde te creëren in de maatschappij.]',
+    name: 'Bjorn Mocking',
+    role: 'Commerciële economie, Justlease',
+    subheading: 'Commercieel denken, AI-gedreven bouwen.',
+    photoUrl: profilePhoto,
+    bio: 'Ik ben Bjorn, vierdejaars student Commerciële Economie aan de Hogeschool Utrecht. Naast mijn studie werk ik in sales bij Justlease, waar ik dagelijks met klanten in gesprek ben over hun auto en hun keuzes rondom leasen.\n\nMijn interesse ligt bij sales, geld en alles wat daaromheen efficiënter kan. Ik kan niet programmeren en heb geen data-achtergrond, maar dat is precies waarom deze minor mij aanspreekt: ik wil ontdekken wat AI voor mijn vakgebied kan betekenen, zonder dat ik daarvoor eerst software engineer hoef te worden.\n\nMijn motivatie is praktisch. Ik zie in mijn werk dagelijks waar tijd verloren gaat aan dingen die met de juiste tool sneller of slimmer kunnen — van het inwerken van nieuwe collegas tot het bijhouden van klantcontact. Deze minor geeft me de ruimte om daar zelf iets aan te bouwen, te leren wat er wel en niet werkt, en te ontdekken hoe ver ik kan komen zonder technische achtergrond.',
     talents: [
-      '[Talent 1: bijv. Analytisch denkvermogen en snel doorgronden van nieuwe AI-tools]',
-      '[Talent 2: bijv. Complexe materie vertalen naar begrijpelijke user flows]',
-      '[Talent 3: bijv. Pragmatisch bouwen en snelle prototypes opzetten]',
+      'Commercieel inzicht en klantgerichte communicatie',
+      'Structuur geven aan processen en kansen herkennen',
+      'Pragmatisch denken en snel handelen in een drukke werkomgeving',
     ],
     passions: [
       '[Passie 1: bijv. De wisselwerking tussen menselijke creativiteit en generatieve AI]',

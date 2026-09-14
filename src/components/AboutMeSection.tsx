@@ -29,15 +29,6 @@ export const AboutMeSection: React.FC<AboutMeSectionProps> = ({ data, onEdit }) 
             </p>
           </div>
 
-          <button
-            id="edit-about-me-btn"
-            type="button"
-            onClick={onEdit}
-            className="inline-flex items-center gap-2 self-start sm:self-auto rounded-xl border border-neutral-800 bg-neutral-900 px-4 py-2.5 text-xs font-bold uppercase tracking-wider text-neutral-300 hover:text-white hover:border-blue-500/50 hover:bg-neutral-850 transition-colors cursor-pointer shadow-sm"
-          >
-            <Edit3 className="h-3.5 w-3.5 text-blue-400" />
-            <span>Over mij bewerken</span>
-          </button>
         </div>
 
         {/* Main Content Grid */}
@@ -68,15 +59,6 @@ export const AboutMeSection: React.FC<AboutMeSectionProps> = ({ data, onEdit }) 
                     'https://images.unsplash.com/photo-1534528741775-53994a69daeb?q=80&w=600&auto=format&fit=crop';
                 }}
               />
-              <button
-                type="button"
-                onClick={onEdit}
-                title="Wijzig foto"
-                className="absolute inset-0 flex items-center justify-center bg-neutral-950/75 opacity-0 group-hover:opacity-100 transition-opacity text-white text-xs font-bold uppercase tracking-wider cursor-pointer"
-              >
-                <Camera className="h-4 w-4 mr-1.5" />
-                Wijzig foto
-              </button>
             </div>
 
             {/* Name & Role */}
@@ -91,12 +73,6 @@ export const AboutMeSection: React.FC<AboutMeSectionProps> = ({ data, onEdit }) 
               "{data.subheading}"
             </p>
 
-            {/* Instruction callout */}
-            <div className="mt-6 w-full rounded-xl bg-neutral-950 border border-neutral-800/80 p-3.5 text-left">
-              <div className="text-[11px] font-medium text-neutral-400 leading-snug">
-                <strong className="text-neutral-200 font-bold uppercase tracking-wider text-[10px] block mb-0.5">Tip:</strong> Klik op "Over mij bewerken" om je eigen naam, foto-URL, achtergrond en motivatie in te vullen.
-              </div>
-            </div>
           </div>
 
           {/* Bio Column (lg: 8 cols) */}
@@ -123,13 +99,6 @@ export const AboutMeSection: React.FC<AboutMeSectionProps> = ({ data, onEdit }) 
 
               <div className="mt-8 pt-6 border-t border-neutral-800/80 flex items-center justify-between text-xs text-neutral-500">
                 <span>Minor Futureproof met AI! • Portfolio</span>
-                <button
-                  type="button"
-                  onClick={onEdit}
-                  className="text-blue-400 hover:text-blue-300 transition-colors font-medium cursor-pointer"
-                >
-                  Tekst bewerken →
-                </button>
               </div>
             </div>
           </div>

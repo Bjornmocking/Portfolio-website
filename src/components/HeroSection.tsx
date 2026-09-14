@@ -3,7 +3,6 @@ import { ArrowDown, Cpu, Sparkles, Layers, BookOpen } from 'lucide-react';
 
 interface HeroSectionProps {
   portfolioTitle: string;
-  minorTitle: string;
   introText: string;
   onExploreSprints: () => void;
   onExploreAbout: () => void;
@@ -11,7 +10,6 @@ interface HeroSectionProps {
 
 export const HeroSection: React.FC<HeroSectionProps> = ({
   portfolioTitle,
-  minorTitle,
   introText,
   onExploreSprints,
   onExploreAbout,
@@ -26,15 +24,6 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
       <div className="pointer-events-none absolute top-1/3 right-10 h-64 w-64 rounded-full bg-blue-500/5 blur-[100px]" />
 
       <div className="relative mx-auto max-w-5xl px-4 sm:px-6 lg:px-8 text-center">
-        {/* Minor Badge */}
-        <div
-          id="hero-minor-pill"
-          className="inline-flex items-center gap-2 rounded-full border border-blue-500/30 bg-blue-500/10 px-3.5 py-1.5 text-xs font-bold tracking-wider text-blue-400 uppercase mb-6 shadow-sm"
-        >
-          <Cpu className="h-4 w-4 text-blue-400 shrink-0" />
-          <span className="truncate">{minorTitle}</span>
-        </div>
-
         {/* Portfolio Title */}
         <h1
           id="hero-portfolio-title"

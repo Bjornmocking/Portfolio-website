@@ -130,7 +130,6 @@ export default function App() {
       <main id="portfolio-main-content">
         <HeroSection
           portfolioTitle={portfolioData.portfolioTitle}
-          minorTitle={portfolioData.minorTitle}
           introText={portfolioData.introText}
           onExploreSprints={() => scrollToSection('sprints')}
           onExploreAbout={() => scrollToSection('about-me')}
