@@ -15,8 +15,17 @@ import { Footer } from './components/Footer';
 import { SprintEditModal } from './components/SprintEditModal';
 import { AboutMeEditModal } from './components/AboutMeEditModal';
 import { QuickAddLinkModal } from './components/QuickAddLinkModal';
+import { GeminiChatbot } from './components/GeminiChatbot';
+import { createClient } from '@supabase/supabase-js';
 
 const STORAGE_KEY = 'futureproof_ai_portfolio_data_v1';
+const supabaseUrl = import.meta.env.VITE_SUPABASE_URL as string | undefined;
+const supabaseAnonKey = import.meta.env.VITE_SUPABASE_ANON_KEY as string | undefined;
+
+export const supabase =
+  supabaseUrl && supabaseAnonKey
+    ? createClient(supabaseUrl, supabaseAnonKey)
+    : null;
 
 export default function App() {
   const [portfolioData, setPortfolioData] = useState<PortfolioData>(() => {
@@ -39,6 +48,25 @@ export default function App() {
       console.error('Failed to persist portfolio data:', e);
     }
   }, [portfolioData]);
+
+  useEffect(() => {
+    if (!supabase) return;
+
+    supabase
+      .from('profiles')
+      .select('id')
+      .limit(1)
+      .then(({ error }) => {
+        if (error) {
+          console.warn('Supabase connection check failed:', error.message);
+        } else {
+          console.log('Supabase connected successfully.');
+        }
+      })
+      .catch((err) => {
+        console.warn('Supabase connection check threw an error:', err);
+      });
+  }, []);
 
   // UI state
   const [selectedOutcome, setSelectedOutcome] = useState<LearningOutcomeId | 'ALL'>('ALL');
@@ -140,6 +168,8 @@ export default function App() {
           data={portfolioData.aboutMe}
           onEdit={() => setIsAboutMeModalOpen(true)}
         />
+
+        <GeminiChatbot />
 
         {/* Learning Outcomes Interactive Bar (LU1 - LU5) */}
         <LearningOutcomesBar
