@@ -1,6 +1,6 @@
 import React from 'react';
 import { AboutMeData } from '../types';
-import { Edit3, Camera, UserCheck } from 'lucide-react';
+import { Edit3, UserCheck } from 'lucide-react';
 
 interface AboutMeSectionProps {
   data: AboutMeData;
@@ -29,6 +29,14 @@ export const AboutMeSection: React.FC<AboutMeSectionProps> = ({ data, onEdit }) 
             </p>
           </div>
 
+          <button
+            type="button"
+            onClick={onEdit}
+            className="inline-flex items-center gap-1.5 self-start rounded-xl border border-blue-500/30 bg-blue-600/10 px-3.5 py-2 text-xs font-bold uppercase tracking-wider text-blue-400 hover:bg-blue-600/20 hover:border-blue-500/50 transition-colors cursor-pointer"
+          >
+            <Edit3 className="h-3.5 w-3.5" />
+            <span>Bewerken</span>
+          </button>
         </div>
 
         {/* Main Content Grid */}
@@ -38,15 +46,6 @@ export const AboutMeSection: React.FC<AboutMeSectionProps> = ({ data, onEdit }) 
             id="about-me-photo-card"
             className="lg:col-span-4 rounded-3xl border border-neutral-800 bg-neutral-900 p-8 flex flex-col items-center text-center shadow-xl relative overflow-hidden"
           >
-            {/* Placeholder Indicator Badge */}
-            <div
-              id="about-photo-placeholder-tag"
-              className="absolute top-4 right-4 inline-flex items-center gap-1 rounded-full bg-blue-500/10 border border-blue-500/30 px-2.5 py-0.5 text-[10px] font-bold uppercase tracking-wider text-blue-400"
-            >
-              <Camera className="h-3 w-3" />
-              <span>Placeholder Foto</span>
-            </div>
-
             {/* Avatar Frame */}
             <div className="relative mt-3 mb-6 h-36 w-36 sm:h-40 sm:w-40 rounded-2xl border border-neutral-700 bg-gradient-to-br from-neutral-800 to-neutral-950 p-1.5 shadow-inner group overflow-hidden">
               <img

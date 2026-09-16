@@ -184,7 +184,7 @@ export const SprintCard: React.FC<SprintCardProps> = ({
                   className={`flex items-center gap-2 px-3 py-1.5 rounded-lg transition-all ${
                     isDemonstrated
                       ? 'bg-neutral-950 border border-blue-500/40 text-white shadow-sm'
-                      : 'bg-neutral-900/30 border border-neutral-800 text-neutral-500 opacity-40 line-through'
+                      : 'bg-neutral-900/30 border border-neutral-800 text-neutral-400 line-through decoration-neutral-600'
                   }`}
                 >
                   <div

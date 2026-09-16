@@ -52,20 +52,20 @@ export default function App() {
   useEffect(() => {
     if (!supabase) return;
 
-    supabase
-      .from('profiles')
-      .select('id')
-      .limit(1)
-      .then(({ error }) => {
+    const checkConnection = async () => {
+      try {
+        const { error } = await supabase.from('profiles').select('id').limit(1);
         if (error) {
           console.warn('Supabase connection check failed:', error.message);
         } else {
           console.log('Supabase connected successfully.');
         }
-      })
-      .catch((err) => {
+      } catch (err) {
         console.warn('Supabase connection check threw an error:', err);
-      });
+      }
+    };
+
+    checkConnection();
   }, []);
 
   // UI state
