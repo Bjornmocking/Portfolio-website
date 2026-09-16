@@ -75,62 +75,71 @@ export const INITIAL_PORTFOLIO_DATA: PortfolioData = {
     {
       id: 1,
       number: 1,
-      title: 'Sprint 1: Oriëntatie & Eerste AI Proof of Concept',
+      title: 'Sprint 1: Oriëntatie & Tools Verkennen',
       period: 'Week 1 – Week 2',
-      theme: 'Kick-off, verkenning van het AI-landschap en opzetten van de experimentele werkomgeving',
+      theme: 'Kick-off van de minor: nieuwe AI-tools en vibe-coding ontdekken, in plaats van direct een praktijkoplossing bouwen',
       summary:
-        'Tijdens deze kick-off sprint heb ik het huidige generatieve AI-landschap in kaart gebracht, ethische kaders bestudeerd en een eerste functionele proof-of-concept gebouwd. Hiermee legde ik de basis voor mijn onderzoek en sprintritme in de minor.',
+        'Deze eerste sprint verliep anders dan gepland: in plaats van meteen aan de onboarding-assistent te werken, ging vrijwel alle tijd op aan het ontdekken en leren gebruiken van nieuwe tools — van Perplexity tot vibe-coding met Google AI Studio, GitHub en Vercel. Dat leverde twee werkende, live gepubliceerde applicaties op en een stevige LU4/LU5-basis, maar LU2 en LU3 zijn eerlijk doorgeschoven naar sprint 2.',
       stories: [
         {
           id: 's1-story-1',
           type: 'research',
-          title: 'Research Story: Vergelijkend onderzoek naar State-of-the-Art LLM-modellen en API-kosten',
+          title: 'AI-impact op een B2C-salesrol onderzoeken',
           summary:
-            'Onderzoek gedaan naar de prestaties, contextlengte, latency en pricing van verschillende multimodale modellen (o.a. Gemini 2.5/Flash, GPT-4o en open source alternatieven) voor interactieve applicaties.',
+            'Als commercieel medewerker in B2C-sales, wil ik onderzoeken hoe AI het werk van salesmedewerkers verandert, zodat ik weet welke AI- en digitale vaardigheden ik nodig heb voor mijn toekomstig beroep. Onderzoek gedaan met Perplexity naar AI-impact op klantcontact en leadopvolging, en vertaald naar mijn eigen rol bij Justlease (klanten zonder rijdende auto of met een aflopend contract).',
         },
         {
           id: 's1-story-2',
-          type: 'user',
-          title: 'User Story: Als gebruiker wil ik direct prompts kunnen testen met gestructureerde output',
+          type: 'learning',
+          title: 'Vibe-coden leren met Google AI Studio, GitHub en Vercel',
           summary:
-            'Een functioneel frontend-prototype opgezet waarin gebruikers prompts kunnen invoeren en direct gevalideerde JSON-responses terugkrijgen met foutafhandeling en statusindicatoren.',
+            'Als beginnende AI-bouwer, wil ik leren vibe-coden, zodat ik zelf kleine AI-applicaties kan bouwen en live kan publiceren zonder te kunnen programmeren. Een werkend digitaal dagboekje gebouwd (met dagvragen, lokale opslag, een AI-spreuk via Gemini en Excel-export), gepubliceerd via GitHub naar Vercel en getest op desktop en mobiel.',
         },
         {
           id: 's1-story-3',
           type: 'learning',
-          title: 'Learning Story: Reflectie op prompt-engineering technieken en hallucinatierisico\'s',
+          title: 'Lokale ontwikkelomgeving opzetten',
           summary:
-            'Geleerd hoe few-shot prompting en schema-constraints helpen bij het voorkomen van hallucinaties. Reflectie geschreven over de balans tussen creativiteit en betrouwbaarheid in AI-systemen.',
+            'Als beginnende AI-bouwer, wil ik een lokale ontwikkelomgeving opzetten, zodat ik ook buiten de browser-tools kan bouwen en met een AI-agent lokaal kan werken. Node.js, Git, VS Code en GitHub Copilot geïnstalleerd, het portfolio-project via Git naar VS Code gehaald en lokaal draaiend gekregen.',
+        },
+        {
+          id: 's1-story-4',
+          type: 'user',
+          title: 'Portfolio-website bouwen en publiceren',
+          summary:
+            'Als student wil ik een portfolio-website bouwen die mijn minor-voortgang per sprint laat zien, zodat ik mijn resultaten overzichtelijk kan presenteren aan mijn coach en toekomstige werkgevers. Eerste werkende versie gebouwd met homepage, over-mij sectie, sprintoverzicht per leeruitkomst, en gepubliceerd via GitHub en Vercel.',
         },
       ],
       evidenceLinks: [
         {
           id: 's1-ev-1',
-          title: 'Gepubliceerde Applicatie: Prototype v1 (Live Demo)',
-          url: 'https://example.com/demo-sprint-1',
+          title: 'Portfolio-website (live)',
+          url: 'https://portfolio-website-azure-psi-52.vercel.app/',
           type: 'app',
-          description: 'Eerste werkende proof-of-concept webapplicatie met directe modelinteractie.',
+          description: 'De live versie van deze portfoliowebsite zelf, gepubliceerd via Vercel.',
         },
         {
           id: 's1-ev-2',
-          title: 'Onderzoeksdocument: LLM Benchmark & Architectuurkeuze',
-          url: 'https://example.com/onderzoek-sprint-1.pdf',
-          type: 'document',
-          description: 'Document met vergelijkingstabellen, criteria en conclusies voor de minor.',
-        },
-        {
-          id: 's1-ev-3',
-          title: 'Video Pitch & Walkthrough (3 minuten)',
-          url: 'https://example.com/video-walkthrough-sprint-1',
-          type: 'video',
-          description: 'Korte schermopname waarin de werking en het achterliggende idee worden toegelicht.',
+          title: 'Portfolio-website (broncode)',
+          url: 'https://github.com/Bjornmocking/Portfolio-website',
+          type: 'code',
+          description: 'GitHub-repository met de broncode, opgehaald en verder ontwikkeld in VS Code.',
         },
       ],
       demonstratedOutcomes: ['LU1', 'LU4', 'LU5'],
       outcomeNotes: {
-        LU1: 'AI-impact: Verkenning van de invloed van multimodale modellen op softwareontwikkeling en productiviteit beschreven in het onderzoeksverslag.',
-        LU4: 'AI Tools en technieken: Direct geëxperimenteerd met prompt engineering, token limits en model-API parameters.',
-        LU5: 'Zelfstandig werken: Zelfstandig een backlog opgesteld, sprintplanning gemaakt en retrospective uitgevoerd.',
+        LU1: 'Onderzoek gedaan naar AI-impact op B2C-sales (klantcontact en leadopvolging) via Perplexity, vertaald naar mijn eigen rol bij Justlease.',
+        LU2: 'Nog niet aan toegekomen deze sprint. De praktijkoplossing (onboarding-assistent) staat gepland voor sprint 2.',
+        LU3: 'Nog niet aan toegekomen deze sprint.',
+        LU4: 'Meerdere AI-tools en platforms leren gebruiken: Perplexity, Google AI Studio, GitHub, Vercel, Node.js, VS Code, GitHub Copilot. Twee werkende applicaties gebouwd en live gepubliceerd, inclusief het oplossen van een productiefout (API-structuur) en een verkeerd ingestelde API-key. Op 16-09 ook de live chatbot-integratie gedebugd: ontdekt dat een losse Express-server niet draait op Vercel (moest een serverless function worden onder /api), de Gemini API-key correct ingesteld via environment variables in plaats van de gedeelde demo-key uit de collegeslides, en met de browser Network-tab een prestatieprobleem opgespoord waarbij de chatbot 30+ seconden nodig had door een te trage retry-strategie — opgelost door een harde timeout en minder pogingen toe te voegen.',
+        LU5: 'Eigen leerroute bijgesteld toen bleek dat sprint 1 vooral tijd vroeg voor tool-verkenning. Zelfstandig technische problemen doorgrond en opgelost (lokale opslag vs. database, preview vs. productieomgeving, environment variables). Logboek en planning zelf bijgehouden.',
+      },
+      reflection: {
+        learned:
+          'Dat vibe-coden niet in één rechte lijn verloopt: een AI-tool kan zeggen dat iets gelukt is terwijl het niet zichtbaar of werkend is, en wat lokaal werkt hoeft niet zonder aanpassing te werken in een live omgeving (Vercel vraagt een andere bestandsstructuur voor API\'s dan een lokale server). Ook geleerd dat environment variables pas actief worden na een nieuwe deploy, en dat een verkeerd ingestelde key niet altijd een zichtbare foutmelding geeft maar stil kan terugvallen op een fallback.',
+        keep: 'De gewoonte om bij een probleem eerst de browserconsole en Network-tab te checken voordat ik opnieuw ga prompten. Ook het testen op mobiel naast desktop, en eerlijk in het logboek zetten wat ik écht heb gedaan in plaats van wat ik gepland had.',
+        change:
+          'Volgende sprint bewuster plannen: deze sprint ging alle tijd naar het verkennen van tools, waardoor de onboarding-assistent nog niet is gestart. Ik wil sprint 2 gerichter beginnen, met Gert overleggen voordat ik ga bouwen, en de kennisvragen bij collega\'s daadwerkelijk gaan bijhouden.',
       },
     },
     {

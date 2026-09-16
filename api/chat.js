@@ -1,14 +1,18 @@
 // Vercel serverless function: POST /api/chat
 // Vervangt server.js in productie (Vercel host geen losse Express-server).
 // Zet GEMINI_API_KEY (en optioneel GEMINI_MODEL) in: Vercel project > Settings > Environment Variables.
+//
+// Snelheid: elke Gemini-aanroep krijgt een harde tijdslimiet (FETCH_TIMEOUT_MS).
+// Er wordt hooguit op één extra model geprobeerd bij een fout (geen oplopende
+// wachttijden) zodat de gebruiker nooit tientallen seconden op
+// "Ik denk na..." blijft staren.
 
-const delay = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
+const FETCH_TIMEOUT_MS = 8000;
 
 const getModelCandidates = () => {
   const preferred = process.env.GEMINI_MODEL || 'gemini-flash-latest';
-  return Array.from(
-    new Set([preferred, 'gemini-flash-latest', 'gemini-2.5-flash', 'gemini-2.5-flash-lite'])
-  );
+  // Maximaal 2 modellen proberen: het voorkeursmodel + één snel fallback-model.
+  return Array.from(new Set([preferred, 'gemini-2.5-flash-lite']));
 };
 
 const extractErrorMessage = async (response) => {
@@ -21,28 +25,10 @@ const extractErrorMessage = async (response) => {
   }
 };
 
-const isTransientGeminiError = (status, message) => {
-  const normalized = (message || '').toLowerCase();
-  return (
-    status === 429 ||
-    status === 500 ||
-    status === 503 ||
-    normalized.includes('high demand') ||
-    normalized.includes('temporarily unavailable') ||
-    normalized.includes('overloaded') ||
-    normalized.includes('too many requests') ||
-    normalized.includes('rate limit')
-  );
-};
-
-const shouldTryNextModel = (status, message) => {
-  const normalized = (message || '').toLowerCase();
-  return (
-    status === 404 ||
-    normalized.includes('not found') ||
-    normalized.includes('is not supported') ||
-    normalized.includes('is no longer available')
-  );
+const fetchWithTimeout = (url, options, timeoutMs) => {
+  const controller = new AbortController();
+  const timer = setTimeout(() => controller.abort(), timeoutMs);
+  return fetch(url, { ...options, signal: controller.signal }).finally(() => clearTimeout(timer));
 };
 
 export default async function handler(req, res) {
@@ -66,63 +52,43 @@ export default async function handler(req, res) {
   const modelCandidates = getModelCandidates();
   let lastError = 'De Gemini API gaf een fout terug.';
 
-  for (let modelIndex = 0; modelIndex < modelCandidates.length; modelIndex += 1) {
-    const model = modelCandidates[modelIndex];
+  for (let i = 0; i < modelCandidates.length; i += 1) {
+    const model = modelCandidates[i];
 
-    for (let attempt = 0; attempt < 3; attempt += 1) {
-      try {
-        const response = await fetch(
-          `https://generativelanguage.googleapis.com/v1beta/models/${model}:generateContent?key=${apiKey}`,
-          {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({
-              contents: [{ parts: [{ text: prompt.trim() }] }],
-            }),
-          }
-        );
+    try {
+      const response = await fetchWithTimeout(
+        `https://generativelanguage.googleapis.com/v1beta/models/${model}:generateContent?key=${apiKey}`,
+        {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            contents: [{ parts: [{ text: prompt.trim() }] }],
+          }),
+        },
+        FETCH_TIMEOUT_MS
+      );
 
-        const message = await extractErrorMessage(response.clone());
-
-        if (response.ok) {
-          const data = await response.json();
-          const answer =
-            data?.candidates?.[0]?.content?.parts?.map((part) => part.text || '').join('') ||
-            'Ik kon geen antwoord genereren.';
-          return res.status(200).json({ answer });
-        }
-
-        lastError = message;
-
-        if (shouldTryNextModel(response.status, message) && modelIndex < modelCandidates.length - 1) {
-          continue;
-        }
-
-        if (isTransientGeminiError(response.status, message)) {
-          if (attempt < 2) {
-            await delay(1000 * (attempt + 1));
-            continue;
-          }
-          if (modelIndex < modelCandidates.length - 1) {
-            continue;
-          }
-        }
-
-        return res.status(response.status || 500).json({ error: message });
-      } catch (error) {
-        lastError = error instanceof Error ? error.message : 'Er ging iets mis met de backend.';
-        if (attempt < 2) {
-          await delay(1000 * (attempt + 1));
-          continue;
-        }
+      if (response.ok) {
+        const data = await response.json();
+        const answer =
+          data?.candidates?.[0]?.content?.parts?.map((part) => part.text || '').join('') ||
+          'Ik kon geen antwoord genereren.';
+        return res.status(200).json({ answer });
       }
+
+      lastError = await extractErrorMessage(response);
+      // Bij een fout gewoon direct het volgende model proberen (geen wachttijd, geen extra herhaling).
+    } catch (error) {
+      lastError =
+        error?.name === 'AbortError'
+          ? 'Het Gemini-model reageerde niet op tijd.'
+          : error instanceof Error
+          ? error.message
+          : 'Er ging iets mis met de backend.';
     }
   }
 
   return res.status(503).json({
-    error:
-      lastError.includes('high demand') || lastError.includes('temporarily unavailable')
-        ? 'Het gekozen Gemini-model is momenteel druk bezet. Probeer het opnieuw over een paar seconden.'
-        : lastError,
+    error: `Kon geen antwoord ophalen bij Gemini. Laatste foutmelding: ${lastError}`,
   });
 }

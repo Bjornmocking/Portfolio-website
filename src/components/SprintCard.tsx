@@ -18,6 +18,7 @@ import {
   ChevronUp,
   CheckCircle2,
   Info,
+  Lightbulb,
 } from 'lucide-react';
 
 interface SprintCardProps {
@@ -97,11 +98,7 @@ export const SprintCard: React.FC<SprintCardProps> = ({
                   <Calendar className="h-3 w-3 text-neutral-500" />
                   {sprint.period}
                 </span>
-                {sprint.number === 1 && (
-                  <span className="inline-flex items-center text-[10px] font-bold uppercase tracking-wider text-blue-400 bg-blue-500/20 border border-blue-500/30 px-2.5 py-0.5 rounded-full">
-                    Voorbeeldinhoud ingevuld
-                  </span>
-                )}
+
               </div>
               <h3 className="text-xl sm:text-2xl font-black text-white mt-1 tracking-tight">
                 {sprint.title}
@@ -403,6 +400,47 @@ export const SprintCard: React.FC<SprintCardProps> = ({
             </div>
           )}
         </div>
+
+        {/* 4. Reflectie */}
+        {sprint.reflection && (
+          <div id={`sprint-${sprint.number}-reflection`} className="space-y-4 pt-2">
+            <div className="flex items-center gap-2 border-b border-neutral-800 pb-3">
+              <h4 className="text-white text-xs font-bold uppercase tracking-widest flex items-center gap-2">
+                <span className="w-1.5 h-1.5 bg-blue-500 rounded-full" />
+                <span>Reflectie</span>
+              </h4>
+            </div>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+              <div className="rounded-2xl border border-neutral-800 bg-neutral-950/70 p-5">
+                <div className="flex items-center gap-1.5 mb-2 text-blue-400">
+                  <Lightbulb className="h-3.5 w-3.5" />
+                  <span className="text-[10px] font-bold uppercase tracking-wider">Wat heb je geleerd?</span>
+                </div>
+                <p className="text-xs text-neutral-400 leading-relaxed font-light">
+                  {sprint.reflection.learned}
+                </p>
+              </div>
+              <div className="rounded-2xl border border-neutral-800 bg-neutral-950/70 p-5">
+                <div className="flex items-center gap-1.5 mb-2 text-blue-400">
+                  <CheckCircle2 className="h-3.5 w-3.5" />
+                  <span className="text-[10px] font-bold uppercase tracking-wider">Wat behoud je?</span>
+                </div>
+                <p className="text-xs text-neutral-400 leading-relaxed font-light">
+                  {sprint.reflection.keep}
+                </p>
+              </div>
+              <div className="rounded-2xl border border-neutral-800 bg-neutral-950/70 p-5">
+                <div className="flex items-center gap-1.5 mb-2 text-blue-400">
+                  <ChevronUp className="h-3.5 w-3.5 rotate-45" />
+                  <span className="text-[10px] font-bold uppercase tracking-wider">Wat ga je anders doen?</span>
+                </div>
+                <p className="text-xs text-neutral-400 leading-relaxed font-light">
+                  {sprint.reflection.change}
+                </p>
+              </div>
+            </div>
+          </div>
+        )}
       </div>
     </article>
   );
