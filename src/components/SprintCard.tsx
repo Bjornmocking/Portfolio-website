@@ -19,6 +19,7 @@ import {
   CheckCircle2,
   Info,
   Lightbulb,
+  MessageSquare,
 } from 'lucide-react';
 
 interface SprintCardProps {
@@ -212,7 +213,7 @@ export const SprintCard: React.FC<SprintCardProps> = ({
                       {key}:
                     </span>
                     <div className="leading-relaxed">
-                      <span className="font-semibold text-white">{lo?.title}</span> — <span className="text-neutral-300 font-light">{note}</span>
+                      <span className="font-semibold text-white">{lo?.title}:</span> <span className="text-neutral-300 font-light">{note}</span>
                     </div>
                   </div>
                 );
@@ -401,7 +402,41 @@ export const SprintCard: React.FC<SprintCardProps> = ({
           )}
         </div>
 
-        {/* 4. Reflectie */}
+        {/* 4. Feedback ontvangen */}
+        {sprint.feedback && sprint.feedback.length > 0 && (
+          <div id={`sprint-${sprint.number}-feedback`} className="space-y-4 pt-2">
+            <div className="flex items-center gap-2 border-b border-neutral-800 pb-3">
+              <h4 className="text-white text-xs font-bold uppercase tracking-widest flex items-center gap-2">
+                <span className="w-1.5 h-1.5 bg-blue-500 rounded-full" />
+                <span>Feedback ontvangen</span>
+              </h4>
+            </div>
+            <div className="space-y-3">
+              {sprint.feedback.map((item, idx) => (
+                <div
+                  key={`${sprint.number}-feedback-${idx}`}
+                  className="rounded-2xl border border-neutral-800 bg-neutral-950/70 p-5"
+                >
+                  <div className="flex items-center gap-2 mb-2 text-neutral-500 text-[10px] font-bold uppercase tracking-wider">
+                    <MessageSquare className="h-3.5 w-3.5 text-blue-400" />
+                    <span>{item.from}</span>
+                    <span className="text-neutral-700">•</span>
+                    <span>{item.date}</span>
+                  </div>
+                  <p className="text-xs text-neutral-300 leading-relaxed font-light mb-3">{item.comment}</p>
+                  <div className="pl-3 border-l-2 border-blue-500/40">
+                    <span className="text-[10px] font-bold uppercase tracking-wider text-blue-400">
+                      Mijn actie
+                    </span>
+                    <p className="text-xs text-neutral-400 leading-relaxed font-light mt-1">{item.action}</p>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        )}
+
+        {/* 5. Reflectie */}
         {sprint.reflection && (
           <div id={`sprint-${sprint.number}-reflection`} className="space-y-4 pt-2">
             <div className="flex items-center gap-2 border-b border-neutral-800 pb-3">

@@ -28,6 +28,13 @@ export interface EvidenceLink {
   description?: string;
 }
 
+export interface SprintFeedback {
+  date: string;
+  from: string;
+  comment: string;
+  action: string;
+}
+
 export interface SprintReflection {
   learned: string;
   keep: string;
@@ -45,6 +52,7 @@ export interface Sprint {
   evidenceLinks: EvidenceLink[];
   demonstratedOutcomes: LearningOutcomeId[];
   outcomeNotes?: Partial<Record<LearningOutcomeId, string>>;
+  feedback?: SprintFeedback[];
   reflection?: SprintReflection;
 }
 
@@ -54,9 +62,6 @@ export interface AboutMeData {
   subheading: string;
   photoUrl: string;
   bio: string;
-  talents: string[];
-  passions: string[];
-  dreams: string[];
 }
 
 export interface PortfolioData {

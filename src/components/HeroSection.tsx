@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { ArrowDown, Cpu, Sparkles, Layers, BookOpen } from 'lucide-react';
 
 interface HeroSectionProps {
@@ -14,9 +14,50 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
   onExploreSprints,
   onExploreAbout,
 }) => {
+  const sectionRef = useRef<HTMLElement | null>(null);
+  const hasTypedRef = useRef(false);
+  const [displayedText, setDisplayedText] = useState('');
+
+  // Typewriter-effect: de introtekst typt zichzelf uit zodra deze sectie in
+  // beeld komt (één keer), tenzij de gebruiker "verminderde beweging" heeft
+  // ingesteld - dan meteen de volledige tekst tonen.
+  useEffect(() => {
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (prefersReducedMotion) {
+      setDisplayedText(introText);
+      return;
+    }
+
+    const el = sectionRef.current;
+    if (!el) return;
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        if (entries[0].isIntersecting && !hasTypedRef.current) {
+          hasTypedRef.current = true;
+          let i = 0;
+          const interval = setInterval(() => {
+            i += 1;
+            setDisplayedText(introText.slice(0, i));
+            if (i >= introText.length) {
+              clearInterval(interval);
+            }
+          }, 22);
+          observer.disconnect();
+        }
+      },
+      { threshold: 0.1 }
+    );
+    observer.observe(el);
+    return () => observer.disconnect();
+  }, [introText]);
+
+  const isTyping = displayedText.length < introText.length;
+
   return (
     <section
       id="hero-section"
+      ref={sectionRef}
       className="relative overflow-hidden border-b border-neutral-800 bg-gradient-to-b from-neutral-900/60 via-neutral-950 to-neutral-950 pt-12 pb-16 sm:pt-16 sm:pb-20"
     >
       {/* Subtle background ambient lighting */}
@@ -35,9 +76,10 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
         {/* Introduction Text */}
         <p
           id="hero-intro-text"
-          className="mx-auto mt-5 max-w-3xl text-base sm:text-lg leading-relaxed text-neutral-400 font-light"
+          className="mx-auto mt-5 max-w-3xl text-base sm:text-lg leading-relaxed text-neutral-400 font-light min-h-[3.5rem] sm:min-h-[3rem]"
         >
-          {introText}
+          {displayedText}
+          {isTyping && <span className="ml-0.5 inline-block w-[2px] h-[1em] bg-blue-400 align-middle animate-pulse" />}
         </p>
 
         {/* Quick Highlights / Stats strip */}

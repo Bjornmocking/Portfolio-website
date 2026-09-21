@@ -6,22 +6,49 @@ type ChatMessage = {
   text: string;
 };
 
+interface GeminiChatbotProps {
+  onNavigate?: (target: string) => void;
+}
+
 const model = (import.meta.env.VITE_GEMINI_MODEL as string | undefined) || 'gemini-flash-latest';
 
-export const GeminiChatbot: React.FC = () => {
+// Vriendelijke labels voor de navigate_to_section functie, gebruikt in het
+// bevestigingsbericht dat de chatbot toont zodra hij de pagina laat scrollen.
+const NAVIGATION_LABELS: Record<string, string> = {
+  hero: 'de homepage',
+  'about-me': '"Over mij"',
+  sprints: 'het sprintoverzicht',
+  'learning-outcomes': 'de leeruitkomsten',
+  'sprint-card-1': 'Sprint 1',
+  'sprint-card-2': 'Sprint 2',
+  'sprint-card-3': 'Sprint 3',
+  'sprint-card-4': 'Sprint 4',
+  'sprint-card-5': 'Sprint 5',
+  'sprint-card-6': 'Sprint 6',
+  'sprint-card-7': 'Sprint 7',
+  'sprint-card-8': 'Sprint 8',
+};
+
+export const GeminiChatbot: React.FC<GeminiChatbotProps> = ({ onNavigate }) => {
   const [prompt, setPrompt] = useState('');
   const [messages, setMessages] = useState<ChatMessage[]>([
     {
       role: 'assistant',
-      text: 'Hoi! Ik ben je kleine Gemini-chatbot. Ik gebruik automatisch de API-key uit je .env-bestand.',
+      text: 'Hoi! Ik ben de portfolio-assistent van Bjorn. Vraag me iets over zijn minor, of zeg bijvoorbeeld "laat sprint 1 zien" en ik navigeer er direct naartoe.',
     },
   ]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
-  const messagesEndRef = useRef<HTMLDivElement | null>(null);
+  const messagesContainerRef = useRef<HTMLDivElement | null>(null);
 
   useEffect(() => {
-    messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
+    // Scrol alleen binnen het chatvenster zelf naar het nieuwste bericht,
+    // in plaats van scrollIntoView te gebruiken - dat sleept namelijk ook de
+    // hele pagina mee, wat botst met een eventuele paginanavigatie hieronder.
+    const container = messagesContainerRef.current;
+    if (container) {
+      container.scrollTop = container.scrollHeight;
+    }
   }, [messages, loading]);
 
   const handleSubmit = async (e: FormEvent) => {
@@ -62,6 +89,25 @@ export const GeminiChatbot: React.FC = () => {
       if (!response.ok) {
         const message = data?.error || 'Er ging iets mis bij het ophalen van het antwoord.';
         throw new Error(message);
+      }
+
+      if (data?.functionCall?.name === 'navigate_to_section') {
+        const target = data.functionCall.args?.target as string | undefined;
+        const label = (target && NAVIGATION_LABELS[target]) || 'dat onderdeel';
+
+        if (target) {
+          onNavigate?.(target);
+        }
+
+        setMessages((prev) => {
+          const updated = [...prev];
+          updated[updated.length - 1] = {
+            role: 'assistant',
+            text: `Ik breng je naar ${label} 👇`,
+          };
+          return updated;
+        });
+        return;
       }
 
       const answer = data?.answer || 'Ik kon geen antwoord genereren.';
@@ -121,7 +167,10 @@ export const GeminiChatbot: React.FC = () => {
             </div>
           )}
 
-          <div className="mb-4 max-h-80 space-y-3 overflow-y-auto rounded-2xl border border-neutral-800 bg-neutral-950/60 p-4">
+          <div
+            ref={messagesContainerRef}
+            className="mb-4 max-h-80 space-y-3 overflow-y-auto rounded-2xl border border-neutral-800 bg-neutral-950/60 p-4"
+          >
             {messages.map((message, index) => (
               <div
                 key={`${message.role}-${index}`}
@@ -138,7 +187,6 @@ export const GeminiChatbot: React.FC = () => {
                 </div>
               </div>
             ))}
-            <div ref={messagesEndRef} />
           </div>
 
           <form onSubmit={handleSubmit} className="flex flex-col gap-3 sm:flex-row">
@@ -146,7 +194,7 @@ export const GeminiChatbot: React.FC = () => {
               type="text"
               value={prompt}
               onChange={(e) => setPrompt(e.target.value)}
-              placeholder="Typ je vraag voor Gemini..."
+              placeholder="Vraag iets over Bjorns portfolio..."
               className="flex-1 rounded-xl border border-neutral-800 bg-neutral-950 px-3.5 py-2.5 text-sm text-neutral-100 placeholder-neutral-600 focus:border-blue-500 focus:outline-none"
             />
             <button

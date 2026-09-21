@@ -2,6 +2,15 @@ import React from 'react';
 import { LearningOutcome, LearningOutcomeId, Sprint } from '../types';
 import { LEARNING_OUTCOMES } from '../data/initialData';
 import { Award, Filter, CheckCircle2 } from 'lucide-react';
+import {
+  Radar,
+  RadarChart,
+  PolarGrid,
+  PolarAngleAxis,
+  PolarRadiusAxis,
+  ResponsiveContainer,
+  Tooltip,
+} from 'recharts';
 
 interface LearningOutcomesBarProps {
   sprints: Sprint[];
@@ -55,6 +64,60 @@ export const LearningOutcomesBar: React.FC<LearningOutcomesBarProps> = ({
               <Filter className="h-3.5 w-3.5 text-neutral-400" />
               <span>Toon alle sprints ({sprints.length})</span>
             </button>
+          </div>
+        </div>
+
+        {/* Voortgang per leeruitkomst als radargrafiek */}
+        <div
+          id="learning-outcomes-chart"
+          className="mb-8 rounded-3xl border border-neutral-800 bg-neutral-900/40 p-4 sm:p-6"
+        >
+          <div className="mb-3 flex items-center justify-between">
+            <h3 className="text-xs font-bold uppercase tracking-widest text-neutral-400">
+              Voortgang per leeruitkomst
+            </h3>
+            <span className="text-[11px] text-neutral-500">
+              Aantal sprints (van de {sprints.length}) waarin aangetoond
+            </span>
+          </div>
+          <div className="h-64 sm:h-80 w-full">
+            <ResponsiveContainer width="100%" height="100%">
+              <RadarChart
+                data={LEARNING_OUTCOMES.map((outcome) => ({
+                  subject: outcome.code,
+                  fullTitle: outcome.title,
+                  count: getOutcomeCount(outcome.id),
+                }))}
+              >
+                <PolarGrid stroke="#262626" />
+                <PolarAngleAxis dataKey="subject" tick={{ fill: '#a3a3a3', fontSize: 12, fontWeight: 700 }} />
+                <PolarRadiusAxis
+                  angle={90}
+                  domain={[0, sprints.length]}
+                  tick={{ fill: '#525252', fontSize: 10 }}
+                  tickCount={sprints.length + 1}
+                />
+                <Radar
+                  name="Behaald"
+                  dataKey="count"
+                  stroke="#3b82f6"
+                  fill="#3b82f6"
+                  fillOpacity={0.35}
+                  strokeWidth={2}
+                />
+                <Tooltip
+                  contentStyle={{
+                    backgroundColor: '#0a0a0a',
+                    border: '1px solid #262626',
+                    borderRadius: '0.75rem',
+                    fontSize: '12px',
+                  }}
+                  labelStyle={{ color: '#fff', fontWeight: 700 }}
+                  formatter={(value: number) => [`${value}/${sprints.length} sprints`, 'Behaald']}
+                  labelFormatter={(_label, payload) => payload?.[0]?.payload?.fullTitle ?? _label}
+                />
+              </RadarChart>
+            </ResponsiveContainer>
           </div>
         </div>
 

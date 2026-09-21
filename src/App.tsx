@@ -7,6 +7,7 @@ import React, { useState, useEffect } from 'react';
 import { PortfolioData, Sprint, EvidenceLink, AboutMeData, LearningOutcomeId } from './types';
 import { INITIAL_PORTFOLIO_DATA } from './data/initialData';
 import { Navbar } from './components/Navbar';
+import { Scroll3DIntro } from './components/Scroll3DIntro';
 import { HeroSection } from './components/HeroSection';
 import { AboutMeSection } from './components/AboutMeSection';
 import { LearningOutcomesBar } from './components/LearningOutcomesBar';
@@ -156,6 +157,7 @@ export default function App() {
 
       {/* Hero / Homepage Section */}
       <main id="portfolio-main-content">
+        <Scroll3DIntro />
         <HeroSection
           portfolioTitle={portfolioData.portfolioTitle}
           introText={portfolioData.introText}
@@ -169,23 +171,7 @@ export default function App() {
           onEdit={() => setIsAboutMeModalOpen(true)}
         />
 
-        <GeminiChatbot />
-
-        {/* Learning Outcomes Interactive Bar (LU1 - LU5) */}
-        <LearningOutcomesBar
-          sprints={portfolioData.sprints}
-          selectedOutcome={selectedOutcome}
-          onSelectOutcome={(lo) => {
-            setSelectedOutcome(lo);
-            // If user clicked an outcome, smooth scroll down to sprints to see the filtered list
-            if (lo !== 'ALL') {
-              const sprintsEl = document.getElementById('sprints-section');
-              if (sprintsEl) {
-                sprintsEl.scrollIntoView({ behavior: 'smooth', block: 'start' });
-              }
-            }
-          }}
-        />
+        <GeminiChatbot onNavigate={scrollToSection} />
 
         {/* Sprints 1 t/m 8 Chronological Overview */}
         <SprintList
@@ -193,6 +179,22 @@ export default function App() {
           selectedOutcome={selectedOutcome}
           onEditSprint={(sprint) => setEditingSprint(sprint)}
           onAddEvidence={(sprint) => setAddingEvidenceSprint(sprint)}
+        />
+
+        {/* Learning Outcomes Interactive Bar (LU1 - LU5) */}
+        <LearningOutcomesBar
+          sprints={portfolioData.sprints}
+          selectedOutcome={selectedOutcome}
+          onSelectOutcome={(lo) => {
+            setSelectedOutcome(lo);
+            // If user clicked an outcome, smooth scroll up to sprints to see the filtered list
+            if (lo !== 'ALL') {
+              const sprintsEl = document.getElementById('sprints-section');
+              if (sprintsEl) {
+                sprintsEl.scrollIntoView({ behavior: 'smooth', block: 'start' });
+              }
+            }
+          }}
         />
       </main>
 

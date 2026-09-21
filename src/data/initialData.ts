@@ -6,40 +6,40 @@ export const LEARNING_OUTCOMES: LearningOutcome[] = [
     id: 'LU1',
     code: 'LU1',
     title: 'AI-impact',
-    shortDesc: 'Maatschappelijke, ethische en economische impact van AI',
-    fullDesc: 'Inzicht in en analyseren van de invloed van AI-technologieën op individuen, organisaties en de maatschappij.',
+    shortDesc: 'AI-impact op de toekomstige beroepspraktijk analyseren en evalueren',
+    fullDesc: 'Zelfstandig onderzoek doen naar de impact van AI in jouw toekomstig beroep en vaststellen welke nieuwe AI- en digitale vaardigheden daarvoor nodig zijn.',
     color: 'emerald',
   },
   {
     id: 'LU2',
     code: 'LU2',
     title: 'AI Praktijkoplossing',
-    shortDesc: 'Ontwerpen en bouwen van werkende AI-oplossingen',
-    fullDesc: 'Ontwerpen, ontwikkelen en valideren van een tastbare, werkende AI-toepassing die inspeelt op een concreet praktijkprobleem.',
+    shortDesc: 'Praktijkgerichte AI-oplossing ontwerpen, realiseren en presenteren',
+    fullDesc: 'Zelfstandig een AI-oplossing ontwerpen, realiseren en presenteren die een specifieke beroepspraktijk radicaal transformeert.',
     color: 'sky',
   },
   {
     id: 'LU3',
     code: 'LU3',
     title: 'Ethiek',
-    shortDesc: 'Verantwoorde, betrouwbare en ethische inzet van AI',
-    fullDesc: 'Kritisch reflecteren op ethische vraagstukken zoals data-privacy, bias, transparantie, copyright en verantwoord gebruik van AI.',
+    shortDesc: 'Ethiek en verantwoordelijk AI-gebruik beoordelen',
+    fullDesc: 'Zelfstandig de ethische vraagstukken en uitdagingen van AI in je vakgebied identificeren en aanbevelingen formuleren voor verantwoord AI-gebruik, rekening houdend met privacy, bias en transparantie.',
     color: 'violet',
   },
   {
     id: 'LU4',
     code: 'LU4',
     title: 'AI Tools en technieken',
-    shortDesc: 'Selectie en implementatie van moderne AI-tools',
-    fullDesc: 'Doelgericht selecteren, experimenteren met en toepassen van state-of-the-art AI-modellen, tools, frameworks en prompt-technieken.',
+    shortDesc: 'AI-tools en technieken gebruiken',
+    fullDesc: 'Zelfstandig verschillende AI-tools en platforms toepassen (zoals machine learning technieken, chatbots, agents, prompts) en deze gebruiken om specifieke taken binnen je vakgebied op te lossen.',
     color: 'amber',
   },
   {
     id: 'LU5',
     code: 'LU5',
     title: 'Zelfstandig werken',
-    shortDesc: 'Agile sprintaanpak, zelfreflectie en autonomie',
-    fullDesc: 'Zelfsturend werken volgens agile sprintmethodiek, eigen leerdoelen formuleren, voortgang bewaken en kritisch reflecteren op eigen groei.',
+    shortDesc: 'Zelfstandig en zelfsturend werken',
+    fullDesc: 'Een eigen leerroute vaststellen en uitvoeren waarbij je zelfstandig je leervragen stelt, relevante bronnen en tools selecteert, je eigen voortgang monitort en kritisch reflecteert op je leerproces en persoonlijke ontwikkeling in het AI-landschap.',
     color: 'rose',
   },
 ];
@@ -54,22 +54,7 @@ export const INITIAL_PORTFOLIO_DATA: PortfolioData = {
     role: 'Commerciële economie, Justlease',
     subheading: 'Commercieel denken, AI-gedreven bouwen.',
     photoUrl: profilePhoto,
-    bio: 'Ik ben Bjorn, vierdejaars student Commerciële Economie aan de Hogeschool Utrecht. Naast mijn studie werk ik in sales bij Justlease, waar ik dagelijks met klanten in gesprek ben over hun auto en hun keuzes rondom leasen.\n\nMijn interesse ligt bij sales, geld en alles wat daaromheen efficiënter kan. Ik kan niet programmeren en heb geen data-achtergrond, maar dat is precies waarom deze minor mij aanspreekt: ik wil ontdekken wat AI voor mijn vakgebied kan betekenen, zonder dat ik daarvoor eerst software engineer hoef te worden.\n\nMijn motivatie is praktisch. Ik zie in mijn werk dagelijks waar tijd verloren gaat aan dingen die met de juiste tool sneller of slimmer kunnen — van het inwerken van nieuwe collegas tot het bijhouden van klantcontact. Deze minor geeft me de ruimte om daar zelf iets aan te bouwen, te leren wat er wel en niet werkt, en te ontdekken hoe ver ik kan komen zonder technische achtergrond.',
-    talents: [
-      'Commercieel inzicht en klantgerichte communicatie',
-      'Structuur geven aan processen en kansen herkennen',
-      'Pragmatisch denken en snel handelen in een drukke werkomgeving',
-    ],
-    passions: [
-      '[Passie 1: bijv. De wisselwerking tussen menselijke creativiteit en generatieve AI]',
-      '[Passie 2: bijv. Ethische vraagstukken rondom data-transparantie en algoritmes]',
-      '[Passie 3: bijv. Open-source tools en interactieve webtechnologieën]',
-    ],
-    dreams: [
-      '[Droom 1: bijv. Een impactvolle AI-applicatie lanceren die dagelijkse taken vereenvoudigt]',
-      '[Droom 2: bijv. Specialist worden in verantwoorde AI-adoptie binnen organisaties]',
-      '[Droom 3: bijv. Continu blijven innoveren en leren aan het front van technologische ontwikkelingen]',
-    ],
+    bio: 'Ik ben Bjorn, vierdejaars student Commerciële Economie aan de Hogeschool Utrecht. Naast mijn studie werk ik in sales bij Justlease, waar ik klanten help bij het vinden van hun perfecte leaseauto.\n\nMijn interesse ligt bij sales, en alles wat daaromheen efficiënter kan. Ik wil ontdekken wat AI voor mijn vakgebied kan betekenen.\n\nMijn motivatie is praktisch. Ik zie in mijn werk dagelijks waar tijd verloren gaat aan dingen die met de juiste tool sneller of slimmer kunnen, van het inwerken van nieuwe collega\'s tot het bijhouden van klantcontact. Deze minor geeft me de ruimte om daar zelf iets aan te bouwen, te leren wat er wel en niet werkt, en te ontdekken hoe ver ik kan komen zonder technische achtergrond.',
   },
   sprints: [
     {
@@ -79,7 +64,7 @@ export const INITIAL_PORTFOLIO_DATA: PortfolioData = {
       period: 'Week 1 – Week 2',
       theme: 'Kick-off van de minor: nieuwe AI-tools en vibe-coding ontdekken, in plaats van direct een praktijkoplossing bouwen',
       summary:
-        'Deze eerste sprint verliep anders dan gepland: in plaats van meteen aan de onboarding-assistent te werken, ging vrijwel alle tijd op aan het ontdekken en leren gebruiken van nieuwe tools — van Perplexity tot vibe-coding met Google AI Studio, GitHub en Vercel. Dat leverde twee werkende, live gepubliceerde applicaties op en een stevige LU4/LU5-basis, maar LU2 en LU3 zijn eerlijk doorgeschoven naar sprint 2.',
+        'Deze eerste sprint verliep anders dan gepland: in plaats van meteen aan de onboarding-assistent te werken, ging vrijwel alle tijd op aan het ontdekken en leren gebruiken van nieuwe tools: van Perplexity tot vibe-coding met Google AI Studio, GitHub en Vercel. Dat leverde twee werkende, live gepubliceerde applicaties op en een stevige LU4/LU5-basis, maar LU2 en LU3 zijn eerlijk doorgeschoven naar sprint 2.',
       stories: [
         {
           id: 's1-story-1',
@@ -113,25 +98,48 @@ export const INITIAL_PORTFOLIO_DATA: PortfolioData = {
       evidenceLinks: [
         {
           id: 's1-ev-1',
-          title: 'Portfolio-website (live)',
+          title: 'Live dagboekje',
+          url: 'https://dagboek-ten.vercel.app/',
+          type: 'app',
+          description: 'Werkend digitaal dagboekje (dagvragen, AI-spreuk via Gemini, Excel-export), gebouwd als leeroefening in vibe-coding.',
+        },
+        {
+          id: 's1-ev-2',
+          title: 'GitHub: Dagboek',
+          url: 'https://github.com/Bjornmocking/Dagboek.git',
+          type: 'code',
+          description: 'Broncode van het dagboekje.',
+        },
+        {
+          id: 's1-ev-3',
+          title: 'Live portfolio-website',
           url: 'https://portfolio-website-azure-psi-52.vercel.app/',
           type: 'app',
           description: 'De live versie van deze portfoliowebsite zelf, gepubliceerd via Vercel.',
         },
         {
-          id: 's1-ev-2',
-          title: 'Portfolio-website (broncode)',
-          url: 'https://github.com/Bjornmocking/Portfolio-website',
+          id: 's1-ev-4',
+          title: 'GitHub: Portfolio-website',
+          url: 'https://github.com/Bjornmocking/Portfolio-website.git',
           type: 'code',
           description: 'GitHub-repository met de broncode, opgehaald en verder ontwikkeld in VS Code.',
         },
       ],
-      demonstratedOutcomes: ['LU1', 'LU4', 'LU5'],
+      demonstratedOutcomes: ['LU4', 'LU5'],
+      feedback: [
+        {
+          date: '16-09-2026',
+          from: 'Docent (Gert)',
+          comment:
+            'Veel tools en technieken gebruikt. Zelfstandig werken ook voldoende. AI-impact nog niet op niveau want er is nog geen bewijs.',
+          action: 'Ik ga zorgen dat ik bewijsmateriaal krijg voor mijn AI-impact op de beroepspraktijk.',
+        },
+      ],
       outcomeNotes: {
-        LU1: 'Onderzoek gedaan naar AI-impact op B2C-sales (klantcontact en leadopvolging) via Perplexity, vertaald naar mijn eigen rol bij Justlease.',
+        LU1: 'Onderzoek gedaan naar AI-impact op B2C-sales via Perplexity en rondgevraagd bij collega\'s (door Gert gewaardeerd), maar nog geen concreet bewijsstuk of toepassing binnen Justlease. Door Gert beoordeeld als nog niet op niveau. Actie: in sprint 2 een afgerond bewijsstuk maken voor deze leeruitkomst.',
         LU2: 'Nog niet aan toegekomen deze sprint. De praktijkoplossing (onboarding-assistent) staat gepland voor sprint 2.',
         LU3: 'Nog niet aan toegekomen deze sprint.',
-        LU4: 'Meerdere AI-tools en platforms leren gebruiken: Perplexity, Google AI Studio, GitHub, Vercel, Node.js, VS Code, GitHub Copilot. Twee werkende applicaties gebouwd en live gepubliceerd, inclusief het oplossen van een productiefout (API-structuur) en een verkeerd ingestelde API-key. Op 16-09 ook de live chatbot-integratie gedebugd: ontdekt dat een losse Express-server niet draait op Vercel (moest een serverless function worden onder /api), de Gemini API-key correct ingesteld via environment variables in plaats van de gedeelde demo-key uit de collegeslides, en met de browser Network-tab een prestatieprobleem opgespoord waarbij de chatbot 30+ seconden nodig had door een te trage retry-strategie — opgelost door een harde timeout en minder pogingen toe te voegen.',
+        LU4: 'Meerdere AI-tools en platforms leren gebruiken: Perplexity, Google AI Studio, GitHub, Vercel, Node.js, VS Code, GitHub Copilot. Twee werkende applicaties gebouwd en live gepubliceerd, inclusief het oplossen van een productiefout (API-structuur) en een verkeerd ingestelde API-key. Op 16-09 ook de live chatbot-integratie gedebugd: ontdekt dat een losse Express-server niet draait op Vercel (moest een serverless function worden onder /api), de Gemini API-key correct ingesteld via environment variables in plaats van de gedeelde demo-key uit de collegeslides, en met de browser Network-tab een prestatieprobleem opgespoord waarbij de chatbot 30+ seconden nodig had door een te trage retry-strategie. Opgelost door een harde timeout en minder pogingen toe te voegen.',
         LU5: 'Eigen leerroute bijgesteld toen bleek dat sprint 1 vooral tijd vroeg voor tool-verkenning. Zelfstandig technische problemen doorgrond en opgelost (lokale opslag vs. database, preview vs. productieomgeving, environment variables). Logboek en planning zelf bijgehouden.',
       },
       reflection: {
@@ -145,359 +153,79 @@ export const INITIAL_PORTFOLIO_DATA: PortfolioData = {
     {
       id: 2,
       number: 2,
-      title: 'Sprint 2: Probleemanalyse & Doelgroepvalidatie',
+      title: 'Sprint 2: Nog niet gestart',
       period: 'Week 3 – Week 4',
-      theme: 'Diepgaande verkenning van een praktijkvraagstuk en gebruikersbehoeften',
-      summary:
-        'In Sprint 2 lag de focus op het onderzoeken van een concreet praktijkprobleem. Door middel van interviews en desktop research is gevalideerd waar AI echte meerwaarde biedt ten opzichte van traditionele software.',
-      stories: [
-        {
-          id: 's2-story-1',
-          type: 'research',
-          title: 'Research Story: Analyse van gebruikersknelpunten in de praktijkcase',
-          summary:
-            'Onderzoek gedaan naar repetitieve taken van de doelgroep en potentiële AI-oplossingen in kaart gebracht via een desk research analyse.',
-        },
-        {
-          id: 's2-story-2',
-          type: 'user',
-          title: 'User Story: Als gebruiker wil ik contextuele suggesties ontvangen op basis van mijn invoer',
-          summary:
-            'Gebruikersflow ontworpen waarin AI-assistentie realtime feedback geeft op ingevoerde tekst.',
-        },
-        {
-          id: 's2-story-3',
-          type: 'learning',
-          title: 'Learning Story: Leren interviewen en aannames toetsen met stakeholders',
-          summary:
-            'Inzicht gekregen in hoe belangrijk het is om AI-hype te scheiden van daadwerkelijke gebruikersbehoeften.',
-        },
-      ],
-      evidenceLinks: [
-        {
-          id: 's2-ev-1',
-          title: 'Interviewverslagen & Empathy Map (Document)',
-          url: 'https://example.com/sprint2-interviews.pdf',
-          type: 'document',
-          description: 'Gedocumenteerde inzichten uit gesprekken met stakeholders.',
-        },
-      ],
-      demonstratedOutcomes: ['LU1', 'LU2', 'LU5'],
-      outcomeNotes: {
-        LU1: 'AI-impact: In kaart gebracht welke maatschappelijke effecten automatisering heeft op de doelgroep.',
-        LU2: 'AI Praktijkoplossing: Eerste conceptuele architectuur voor het praktijkvraagstuk uitgewerkt.',
-        LU5: 'Zelfstandig werken: Zelfstandig interviews gepland, afgenomen en samengevat.',
-      },
+      theme: 'Wordt ingevuld zodra deze sprint van start gaat.',
+      summary: 'Deze sprint moet nog beginnen. Er is nog niets om te laten zien.',
+      stories: [],
+      evidenceLinks: [],
+      demonstratedOutcomes: [],
     },
     {
       id: 3,
       number: 3,
-      title: 'Sprint 3: Architectuur & Ethisch Kader',
+      title: 'Sprint 3: Nog niet gestart',
       period: 'Week 5 – Week 6',
-      theme: 'Systeemarchitectuur, databescherming en ethische toetsing',
-      summary:
-        'Tijdens deze sprint zijn ethische kaders en privacy-aspecten centraal gesteld. Er is een data-flow opgesteld waarin privacy en bias expliciet worden geadresseerd conform EU AI Act richtlijnen.',
-      stories: [
-        {
-          id: 's3-story-1',
-          type: 'research',
-          title: 'Research Story: Ethische risico-analyse en compliance met de EU AI Act',
-          summary:
-            'Onderzoek gedaan naar privacywaarborgen, data minimalisatie en de verplichtingen rond transparantie bij AI-toepassingen.',
-        },
-        {
-          id: 's3-story-2',
-          type: 'user',
-          title: 'User Story: Als gebruiker wil ik transparantie over hoe AI tot een antwoord is gekomen',
-          summary:
-            'Een bronvermelding- en explainability-component toegevoegd in de gebruikersinterface.',
-        },
-        {
-          id: 's3-story-3',
-          type: 'learning',
-          title: 'Learning Story: Morele verantwoording en ethische dilemma\'s bij AI-adoptie',
-          summary:
-            'Reflectie geschreven over algorithmic bias en de verantwoordelijkheid van ontwikkelaars bij modeloutputs.',
-        },
-      ],
-      evidenceLinks: [
-        {
-          id: 's3-ev-1',
-          title: 'Ethisch Analyseverslag & PIA (Document)',
-          url: 'https://example.com/sprint3-ethiek.pdf',
-          type: 'document',
-          description: 'Privacy Impact Assessment en ethisch afwegingskader.',
-        },
-      ],
-      demonstratedOutcomes: ['LU3', 'LU4'],
-      outcomeNotes: {
-        LU3: 'Ethiek: Grondige risico-analyse uitgevoerd omtrent privacy, transparantie en bias.',
-        LU4: 'AI Tools en technieken: Tools vergeleken op het gebied van data-retentie en privacy policies.',
-      },
+      theme: 'Wordt ingevuld zodra deze sprint van start gaat.',
+      summary: 'Deze sprint moet nog beginnen. Er is nog niets om te laten zien.',
+      stories: [],
+      evidenceLinks: [],
+      demonstratedOutcomes: [],
     },
     {
       id: 4,
       number: 4,
-      title: 'Sprint 4: Prototype v2 & Core Algoritmes',
+      title: 'Sprint 4: Nog niet gestart',
       period: 'Week 7 – Week 8',
-      theme: 'Doorontwikkeling van de AI-kern en integratie van data pipelines',
-      summary:
-        'In Sprint 4 is de kernfunctionaliteit van de AI-oplossing gebouwd. Er is gewerkt met retrieval-augmented generation (RAG) of gestructureerde API-chains voor nauwkeurige output.',
-      stories: [
-        {
-          id: 's4-story-1',
-          type: 'research',
-          title: 'Research Story: Vergelijking van embedding-modellen en vector retrieval methodes',
-          summary:
-            'Kwalitatieve en kwantitatieve evaluatie van chunking-strategieën en semantische zoekalgoritmes.',
-        },
-        {
-          id: 's4-story-2',
-          type: 'user',
-          title: 'User Story: Als gebruiker wil ik eigen documenten uploaden en doorzoeken met AI',
-          summary:
-            'Drag-and-drop document upload geïmplementeerd met directe verwerking en semantische indexering.',
-        },
-        {
-          id: 's4-story-3',
-          type: 'learning',
-          title: 'Learning Story: Debuggen van embedding mismatches en context limits',
-          summary:
-            'Geleerd hoe semantische afstand berekend wordt en hoe je effectief omgaat met tokenbudgetten.',
-        },
-      ],
-      evidenceLinks: [
-        {
-          id: 's4-ev-1',
-          title: 'Gepubliceerde Applicatie: Prototype v2 (Live)',
-          url: 'https://example.com/demo-sprint-4',
-          type: 'app',
-          description: 'Tweede iteratie met werkende semantische zoek- en antwoordfunctionaliteit.',
-        },
-        {
-          id: 's4-ev-2',
-          title: 'Screencast & Code Walkthrough (Video)',
-          url: 'https://example.com/sprint4-video',
-          type: 'video',
-          description: 'Video met uitleg over de geïmplementeerde pipeline en resultaten.',
-        },
-      ],
-      demonstratedOutcomes: ['LU2', 'LU4', 'LU5'],
-      outcomeNotes: {
-        LU2: 'AI Praktijkoplossing: Werkend prototype met reële data geïntegreerd.',
-        LU4: 'AI Tools en technieken: Modellen en embeddings geïntegreerd in de applicatie.',
-        LU5: 'Zelfstandig werken: Complexe technische hobbels zelfstandig opgelost.',
-      },
+      theme: 'Wordt ingevuld zodra deze sprint van start gaat.',
+      summary: 'Deze sprint moet nog beginnen. Er is nog niets om te laten zien.',
+      stories: [],
+      evidenceLinks: [],
+      demonstratedOutcomes: [],
     },
     {
       id: 5,
       number: 5,
-      title: 'Sprint 5: Gebruikerstesten & Evaluatiemetrieken',
+      title: 'Sprint 5: Nog niet gestart',
       period: 'Week 9 – Week 10',
-      theme: 'Validatie met eindgebruikers, kwantitatieve benchmarks en usability tests',
-      summary:
-        'Sprint 5 stond in het teken van testen met testpersonen. Feedback is verzameld over de bruikbaarheid, nauwkeurigheid van de AI-antwoorden en de responstijd.',
-      stories: [
-        {
-          id: 's5-story-1',
-          type: 'research',
-          title: 'Research Story: Benchmark test naar antwoordkwaliteit en responstijden',
-          summary:
-            'Testbatterij opgesteld met 50 representatieve queries om accuraatheid en hallucinaties te meten.',
-        },
-        {
-          id: 's5-story-2',
-          type: 'user',
-          title: 'User Story: Als tester wil ik duidelijke feedbackknoppen (duim omhoog/omlaag) bij AI-antwoorden',
-          summary:
-            'Gebruikersinteractie uitgebreid met directe evaluatiemogelijkheden voor continue verbetering.',
-        },
-        {
-          id: 's5-story-3',
-          type: 'learning',
-          title: 'Learning Story: Leren omgaan met onvoorspelbare gebruikersinput in conversatie-interfaces',
-          summary:
-            'Inzicht gekregen in hoe gebruikers edge cases introduceren en hoe guardrails noodzakelijk zijn.',
-        },
-      ],
-      evidenceLinks: [
-        {
-          id: 's5-ev-1',
-          title: 'Testrapport & Usability Resultaten (Document)',
-          url: 'https://example.com/sprint5-testrapport.pdf',
-          type: 'document',
-          description: 'Uitgebreid verslag van de gebruikersonderzoeken en meetbare resultaten.',
-        },
-      ],
-      demonstratedOutcomes: ['LU2', 'LU3', 'LU5'],
-      outcomeNotes: {
-        LU2: 'AI Praktijkoplossing: Gebruikersvalidatie uitgevoerd op de praktijkoplossing.',
-        LU3: 'Ethiek: Gebruikersperceptie van betrouwbaarheid en privacy getoetst.',
-        LU5: 'Zelfstandig werken: Testopzet ontworpen en testresultaten geanalyseerd.',
-      },
+      theme: 'Wordt ingevuld zodra deze sprint van start gaat.',
+      summary: 'Deze sprint moet nog beginnen. Er is nog niets om te laten zien.',
+      stories: [],
+      evidenceLinks: [],
+      demonstratedOutcomes: [],
     },
     {
       id: 6,
       number: 6,
-      title: 'Sprint 6: Verfijning, UX & Optimalisatie',
+      title: 'Sprint 6: Nog niet gestart',
       period: 'Week 11 – Week 12',
-      theme: 'Optimaliseren van UI/UX, caching, latency en streaming responses',
-      summary:
-        'In Sprint 6 zijn de feedbackpunten uit de testfase verwerkt. De gebruikerservaring is drastisch verbeterd met streaming tekst, duidelijke laadstatussen en caching van frequente vragen.',
-      stories: [
-        {
-          id: 's6-story-1',
-          type: 'research',
-          title: 'Research Story: Onderzoek naar streaming UI patterns en perceived performance',
-          summary:
-            'Onderzocht hoe streaming responses en progressieve rendering de perceptie van snelheid beïnvloeden.',
-        },
-        {
-          id: 's6-story-2',
-          type: 'user',
-          title: 'User Story: Als gebruiker wil ik direct letters zien verschijnen zonder te wachten op het hele antwoord',
-          summary:
-            'Server-sent streaming geïntegreerd in de frontend voor een responsieve chat-ervaring.',
-        },
-        {
-          id: 's6-story-3',
-          type: 'learning',
-          title: 'Learning Story: Beheersen van asynchrone streams en error boundaries in moderne frameworks',
-          summary:
-            'Geleerd hoe robuuste error handling gebouwd moet worden rond netwerkonderbrekingen bij lange AI-generaties.',
-        },
-      ],
-      evidenceLinks: [
-        {
-          id: 's6-ev-1',
-          title: 'Gepubliceerde Applicatie: Release Candidate (Live)',
-          url: 'https://example.com/demo-sprint-6',
-          type: 'app',
-          description: 'Geoptimaliseerde versie met streaming responses en caching.',
-        },
-        {
-          id: 's6-ev-2',
-          title: 'Performance Vergelijkingsrapport (Document)',
-          url: 'https://example.com/sprint6-performance.pdf',
-          type: 'document',
-          description: 'Metingen van latency-reductie voor en na implementatie van caching en streaming.',
-        },
-      ],
-      demonstratedOutcomes: ['LU2', 'LU4'],
-      outcomeNotes: {
-        LU2: 'AI Praktijkoplossing: De oplossing is kwalitatief verfijnd tot een productie-rijp niveau.',
-        LU4: 'AI Tools en technieken: Geavanceerde streaming-API\'s en optimalisatietechnieken toegepast.',
-      },
+      theme: 'Wordt ingevuld zodra deze sprint van start gaat.',
+      summary: 'Deze sprint moet nog beginnen. Er is nog niets om te laten zien.',
+      stories: [],
+      evidenceLinks: [],
+      demonstratedOutcomes: [],
     },
     {
       id: 7,
       number: 7,
-      title: 'Sprint 7: Integratie & Stakeholder Presentatie',
+      title: 'Sprint 7: Nog niet gestart',
       period: 'Week 13 – Week 14',
-      theme: 'Eindintegratie, overdrachtsdocumentatie en presentatie aan opdrachtgevers',
-      summary:
-        'Tijdens deze sprint is het systeem klaargemaakt voor eindoplevering. Een live demonstratie is verzorgd voor stakeholders en feedback is verzameld voor de eindevaluatie.',
-      stories: [
-        {
-          id: 's7-story-1',
-          type: 'research',
-          title: 'Research Story: Onderzoek naar adoptiebarrières en trainingsbehoeften bij eindgebruikers',
-          summary:
-            'In kaart gebracht wat medewerkers nodig hebben om effectief en vertrouwd te werken met de AI-tool.',
-        },
-        {
-          id: 's7-story-2',
-          type: 'user',
-          title: 'User Story: Als stakeholder wil ik een duidelijke handleiding en documentatie ontvangen',
-          summary:
-            'Een beknopte gebruikershandleiding en technische documentatie opgeleverd.',
-        },
-        {
-          id: 's7-story-3',
-          type: 'learning',
-          title: 'Learning Story: Presenteren van AI-techniek aan niet-technische stakeholders',
-          summary:
-            'Geleerd om technische AI-concepten om te zetten in tastbare business-waarde en meetbare voordelen.',
-        },
-      ],
-      evidenceLinks: [
-        {
-          id: 's7-ev-1',
-          title: 'Eindpresentatie Slides (Document)',
-          url: 'https://example.com/sprint7-presentatie.pdf',
-          type: 'document',
-          description: 'Presentatieslides gebruikt tijdens de stakeholder demo.',
-        },
-        {
-          id: 's7-ev-2',
-          title: 'Opname van de Stakeholder Demo (Video)',
-          url: 'https://example.com/sprint7-demo-video',
-          type: 'video',
-          description: 'Video-opname van de live demonstratie en Q&A sessie.',
-        },
-      ],
-      demonstratedOutcomes: ['LU1', 'LU2', 'LU5'],
-      outcomeNotes: {
-        LU1: 'AI-impact: Business case en impact op de werkprocessen helder overgebracht aan stakeholders.',
-        LU2: 'AI Praktijkoplossing: Volledig functionerende oplossing gedemonstreerd in een live praktijkcontext.',
-        LU5: 'Zelfstandig werken: Stakeholdersessie zelfstandig voorbereid, gefaciliteerd en gerapporteerd.',
-      },
+      theme: 'Wordt ingevuld zodra deze sprint van start gaat.',
+      summary: 'Deze sprint moet nog beginnen. Er is nog niets om te laten zien.',
+      stories: [],
+      evidenceLinks: [],
+      demonstratedOutcomes: [],
     },
     {
       id: 8,
       number: 8,
-      title: 'Sprint 8: Eindreflectie, Portfolio Afronding & Assessment',
+      title: 'Sprint 8: Nog niet gestart',
       period: 'Week 15 – Week 16',
-      theme: 'Synthese van het leertraject, portfolio-evaluatie en voorbereiding op het eindassessment',
-      summary:
-        'In de afsluitende sprint van de minor zijn alle bewijsstukken gebundeld, is de eindreflectie geschreven en zijn de 5 leeruitkomsten definitief verantwoord voor het eindoordeel.',
-      stories: [
-        {
-          id: 's8-story-1',
-          type: 'research',
-          title: 'Research Story: Synthese van de minor: Toekomstperspectief op AI in het werkveld',
-          summary:
-            'Een toekomstvisie geformuleerd over de evolutie van agentic workflows en autonome AI-systemen in mijn vakgebied.',
-        },
-        {
-          id: 's8-story-2',
-          type: 'user',
-          title: 'User Story: Als assessor wil ik een overzichtelijk portfolio kunnen inzien met geverifieerde bewijsstukken per leeruitkomst',
-          summary:
-            'Alle 8 sprints van bewijslast voorzien met directe hyperlinks, duidelijke verantwoordingen en meetbare resultaten.',
-        },
-        {
-          id: 's8-story-3',
-          type: 'learning',
-          title: 'Learning Story: Meta-reflectie op mijn persoonlijke groei als AI-professional',
-          summary:
-            'Reflectie geschreven op de gehele minor: van startende verkenner naar zelfstandige bouwer die kritisch en ethisch met AI kan innoveren.',
-        },
-      ],
-      evidenceLinks: [
-        {
-          id: 's8-ev-1',
-          title: 'Definitieve Verantwoording Leeruitkomsten (Document)',
-          url: 'https://example.com/sprint8-eindverantwoording.pdf',
-          type: 'document',
-          description: 'Matrix waarin alle 5 leeruitkomsten gekoppeld zijn aan de bewijslast over de 8 sprints.',
-        },
-        {
-          id: 's8-ev-2',
-          title: 'Eindassessment Pitch Video (Video)',
-          url: 'https://example.com/sprint8-assessment-pitch',
-          type: 'video',
-          description: 'Video-pitch voor de assessoren waarin de belangrijkste mijlpalen worden toegelicht.',
-        },
-      ],
-      demonstratedOutcomes: ['LU1', 'LU2', 'LU3', 'LU4', 'LU5'],
-      outcomeNotes: {
-        LU1: 'AI-impact: Eindvisie geformuleerd op de lange-termijn impact van AI in mijn beroepsprofiel.',
-        LU2: 'AI Praktijkoplossing: Volledig iteratief ontwikkeld product opgeleverd en geëvalueerd.',
-        LU3: 'Ethiek: Ethische lessen samengevat in een richtlijnenkader.',
-        LU4: 'AI Tools en technieken: Beheersing van tools en modellen gedemonstreerd over alle fasen.',
-        LU5: 'Zelfstandig werken: Volledige 16 weken agile zelfsturend doorlopen en verantwoord.',
-      },
+      theme: 'Wordt ingevuld zodra deze sprint van start gaat.',
+      summary: 'Deze sprint moet nog beginnen. Er is nog niets om te laten zien.',
+      stories: [],
+      evidenceLinks: [],
+      demonstratedOutcomes: [],
     },
   ],
 };
