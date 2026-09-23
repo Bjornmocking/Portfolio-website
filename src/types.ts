@@ -16,8 +16,8 @@ export interface Story {
   type: StoryType;
   title: string;
   summary: string;
-  /** 'full' laat de story de volledige breedte innemen, voor langere bewijsstukken. Standaard 'compact'. */
-  layout?: 'compact' | 'full';
+  /** Volledige inhoud voor langere bewijsstukken, getoond via een "Lees meer"-modal. */
+  details?: string;
 }
 
 export type EvidenceType = 'app' | 'document' | 'video' | 'code' | 'other';

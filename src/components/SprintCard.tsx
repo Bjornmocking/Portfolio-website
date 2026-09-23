@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Sprint, Story, EvidenceLink, LearningOutcomeId } from '../types';
 import { LEARNING_OUTCOMES } from '../data/initialData';
+import { StoryDetailModal } from './StoryDetailModal';
 import {
   Calendar,
   Layers,
@@ -37,6 +38,7 @@ export const SprintCard: React.FC<SprintCardProps> = ({
 }) => {
   const [showOutcomeNotes, setShowOutcomeNotes] = useState(false);
   const [activeStoryFilter, setActiveStoryFilter] = useState<'all' | 'research' | 'user' | 'learning'>('all');
+  const [expandedStory, setExpandedStory] = useState<Story | null>(null);
 
   const filteredStories =
     activeStoryFilter === 'all'
@@ -72,6 +74,7 @@ export const SprintCard: React.FC<SprintCardProps> = ({
   };
 
   return (
+    <>
     <article
       id={`sprint-card-${sprint.number}`}
       className={`relative rounded-3xl border bg-neutral-900/40 shadow-inner backdrop-blur-sm transition-all overflow-hidden ${
@@ -289,14 +292,11 @@ export const SprintCard: React.FC<SprintCardProps> = ({
               {filteredStories.map((story) => {
                 const isResearch = story.type === 'research';
                 const isUser = story.type === 'user';
-                const isFull = story.layout === 'full';
 
                 return (
                   <div
                     key={story.id}
-                    className={`rounded-2xl border border-neutral-800 bg-neutral-950/70 p-5 flex flex-col justify-between hover:border-blue-500/40 transition-all shadow-sm ${
-                      isFull ? 'md:col-span-3' : ''
-                    }`}
+                    className="rounded-2xl border border-neutral-800 bg-neutral-950/70 p-5 flex flex-col justify-between hover:border-blue-500/40 transition-all shadow-sm"
                   >
                     <div>
                       {/* Story Type Tag */}
@@ -329,6 +329,17 @@ export const SprintCard: React.FC<SprintCardProps> = ({
                         {story.summary}
                       </p>
                     </div>
+
+                    {story.details && (
+                      <button
+                        type="button"
+                        onClick={() => setExpandedStory(story)}
+                        className="mt-3 inline-flex items-center gap-1 self-start text-xs text-blue-400 hover:text-blue-300 font-semibold cursor-pointer"
+                      >
+                        <span>Lees meer</span>
+                        <ChevronDown className="h-3 w-3" />
+                      </button>
+                    )}
                   </div>
                 );
               })}
@@ -481,5 +492,7 @@ export const SprintCard: React.FC<SprintCardProps> = ({
         )}
       </div>
     </article>
+    <StoryDetailModal story={expandedStory} onClose={() => setExpandedStory(null)} />
+    </>
   );
 };
