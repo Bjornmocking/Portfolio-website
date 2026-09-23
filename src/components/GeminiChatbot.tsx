@@ -10,7 +10,7 @@ interface GeminiChatbotProps {
   onNavigate?: (target: string) => void;
 }
 
-const model = (import.meta.env.VITE_GEMINI_MODEL as string | undefined) || 'gemini-flash-latest';
+const model = (import.meta.env.VITE_GEMINI_MODEL as string | undefined) || 'gemini-flash-lite-latest';
 
 // Vriendelijke labels voor de navigate_to_section functie, gebruikt in het
 // bevestigingsbericht dat de chatbot toont zodra hij de pagina laat scrollen.

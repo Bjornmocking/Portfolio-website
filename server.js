@@ -5,7 +5,7 @@ dotenv.config();
 
 const app = express();
 const PORT = 3001;
-const FETCH_TIMEOUT_MS = 8000;
+const FETCH_TIMEOUT_MS = 12000;
 
 const NAVIGATION_TARGETS = [
   'hero',
@@ -44,7 +44,7 @@ const NAVIGATION_TOOL = {
 };
 
 const getModelCandidates = () => {
-  const preferred = process.env.GEMINI_MODEL || 'gemini-flash-latest';
+  const preferred = process.env.GEMINI_MODEL || 'gemini-flash-lite-latest';
   return Array.from(new Set([preferred, 'gemini-3.5-flash-lite']));
 };
 

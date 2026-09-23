@@ -12,7 +12,7 @@
 // er automatisch naartoe). Dit stuurt geen tekst terug maar een functionCall
 // die de frontend (GeminiChatbot.tsx) uitvoert.
 
-const FETCH_TIMEOUT_MS = 8000;
+const FETCH_TIMEOUT_MS = 12000;
 
 const NAVIGATION_TARGETS = [
   'hero',
@@ -51,7 +51,7 @@ const NAVIGATION_TOOL = {
 };
 
 const getModelCandidates = () => {
-  const preferred = process.env.GEMINI_MODEL || 'gemini-flash-latest';
+  const preferred = process.env.GEMINI_MODEL || 'gemini-flash-lite-latest';
   // Maximaal 2 modellen proberen: het voorkeursmodel + één snel fallback-model.
   return Array.from(new Set([preferred, 'gemini-3.5-flash-lite']));
 };
