@@ -289,11 +289,14 @@ export const SprintCard: React.FC<SprintCardProps> = ({
               {filteredStories.map((story) => {
                 const isResearch = story.type === 'research';
                 const isUser = story.type === 'user';
+                const isFull = story.layout === 'full';
 
                 return (
                   <div
                     key={story.id}
-                    className="rounded-2xl border border-neutral-800 bg-neutral-950/70 p-5 flex flex-col justify-between hover:border-blue-500/40 transition-all shadow-sm"
+                    className={`rounded-2xl border border-neutral-800 bg-neutral-950/70 p-5 flex flex-col justify-between hover:border-blue-500/40 transition-all shadow-sm ${
+                      isFull ? 'md:col-span-3' : ''
+                    }`}
                   >
                     <div>
                       {/* Story Type Tag */}
@@ -322,7 +325,7 @@ export const SprintCard: React.FC<SprintCardProps> = ({
                         {story.title}
                       </h5>
 
-                      <p className="mt-2 text-xs text-neutral-400 leading-relaxed font-light">
+                      <p className="mt-2 text-xs text-neutral-400 leading-relaxed font-light whitespace-pre-line">
                         {story.summary}
                       </p>
                     </div>
