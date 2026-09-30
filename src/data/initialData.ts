@@ -231,7 +231,7 @@ export const INITIAL_PORTFOLIO_DATA: PortfolioData = {
           description: 'Broncode van deze portfoliowebsite.',
         },
       ],
-      demonstratedOutcomes: [],
+      demonstratedOutcomes: ['LU1', 'LU2', 'LU3', 'LU4', 'LU5'],
       feedback: [
         {
           date: '23-09-2026',
@@ -246,13 +246,20 @@ export const INITIAL_PORTFOLIO_DATA: PortfolioData = {
           comment: 'Het wegschrijven naar Google Sheets vóór de Router plaatsen in plaats van in elke route apart.',
           action: 'Overgenomen. Wel geleerd dat ik de Router-filters dan via de History-tab moet controleren.',
         },
+        {
+          date: '30-09-2026',
+          from: 'Docent (Gert), Show & Grow sprint 2',
+          comment:
+            'Alle vijf leeruitkomsten voldoende. LU1: dit is inderdaad impact van AI op je eigen beroep. LU2: wat gaaf dat je al aan een praktijkoplossing hebt gewerkt voor onboarding, met veel functies, inclusief AI. LU3: goed proactief al opgepakt. LU4: tools weer op een dieper niveau toegepast en ook op een bedrijfscase. LU5: wow wat een hoge productiviteit, vanuit goede planning en goed uitgevoerd.',
+          action: 'Deze aanpak vasthouden en de onboarding-assistent verder uitbreiden.',
+        },
       ],
       outcomeNotes: {
-        LU1: 'Ter beoordeling: Onderzoek afgerond tot een concreet eindproduct op deze site, met risico\'s voor mijn eigen rol en een expliciete conclusie over de drie vaardigheden die ik nodig heb.',
-        LU2: 'Ter beoordeling: Onboarding-assistent ontworpen vanuit een probleem uit mijn eigen werk, gebouwd en live gezet, en gepresenteerd tijdens de Show & Grow.',
-        LU3: 'Ter beoordeling: Toestemming gevraagd voordat ik bedrijfsinformatie gebruikte, alleen openbare documenten, bronvermelding, "weet ik niet" in plaats van verzinnen, en een disclaimer. Bias nog niet onderzocht.',
-        LU4: 'Ter beoordeling: Nieuw ingezet: Claude Code, Supabase, Make.com en de Gemini API, met werkende resultaten.',
-        LU5: 'Ter beoordeling: Zelf gepland, bijgestuurd waar nodig (niet wachten op toestemming, los project, SQLite naar Supabase) en eerst uitleg gevraagd in plaats van alles te laten bouwen.',
+        LU1: 'Onderzoek afgerond tot een concreet eindproduct op deze site, met risico\'s voor mijn eigen rol en een expliciete conclusie over de drie vaardigheden die ik nodig heb.',
+        LU2: 'Onboarding-assistent ontworpen vanuit een probleem uit mijn eigen werk, gebouwd en live gezet, en gepresenteerd tijdens de Show & Grow.',
+        LU3: 'Toestemming gevraagd voordat ik bedrijfsinformatie gebruikte, alleen openbare documenten, bronvermelding, "weet ik niet" in plaats van verzinnen, en een disclaimer. Bias nog niet onderzocht.',
+        LU4: 'Nieuw ingezet: Claude Code, Supabase, Make.com en de Gemini API, met werkende resultaten.',
+        LU5: 'Zelf gepland, bijgestuurd waar nodig (niet wachten op toestemming, los project, SQLite naar Supabase) en eerst uitleg gevraagd in plaats van alles te laten bouwen.',
       },
       reflection: {
         learned:
