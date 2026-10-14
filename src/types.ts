@@ -18,6 +18,8 @@ export interface Story {
   summary: string;
   /** Volledige inhoud voor langere bewijsstukken, getoond via een "Lees meer"-modal. */
   details?: string;
+  /** Stappen van een eenvoudige flow, getoond als plaatje bovenaan de "Lees meer"-modal. */
+  flow?: string[];
 }
 
 export type EvidenceType = 'app' | 'document' | 'video' | 'code' | 'other';

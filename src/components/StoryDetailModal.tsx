@@ -1,6 +1,6 @@
 import React from 'react';
 import { Story } from '../types';
-import { X, BookOpen } from 'lucide-react';
+import { X, BookOpen, ArrowRight } from 'lucide-react';
 
 interface StoryDetailModalProps {
   story: Story | null;
@@ -54,6 +54,23 @@ export const StoryDetailModal: React.FC<StoryDetailModalProps> = ({ story, onClo
         </div>
 
         <div className="overflow-y-auto p-6 sm:p-7">
+          {story.flow && story.flow.length > 0 && (
+            <div className="mb-6 flex flex-col sm:flex-row sm:items-stretch gap-2 sm:gap-1" aria-label="Flow van de chatbot">
+              {story.flow.map((step, i) => (
+                <React.Fragment key={step}>
+                  <div className="flex-1 rounded-xl border border-blue-500/30 bg-blue-500/10 px-3 py-3 text-center text-xs font-semibold text-blue-200">
+                    <span className="block text-[10px] text-blue-400/70 mb-0.5">{i + 1}</span>
+                    {step}
+                  </div>
+                  {i < story.flow!.length - 1 && (
+                    <div className="flex items-center justify-center text-blue-400/70" aria-hidden="true">
+                      <ArrowRight className="h-4 w-4 rotate-90 sm:rotate-0" />
+                    </div>
+                  )}
+                </React.Fragment>
+              ))}
+            </div>
+          )}
           <p className="text-sm text-neutral-300 leading-relaxed font-light whitespace-pre-line">
             {story.details || story.summary}
           </p>

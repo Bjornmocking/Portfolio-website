@@ -272,12 +272,62 @@ export const INITIAL_PORTFOLIO_DATA: PortfolioData = {
     {
       id: 3,
       number: 3,
-      title: 'Sprint 3: Nog niet gestart',
+      title: 'Sprint 3: Justlease klantchatbot',
       period: 'Week 5 – Week 6',
-      theme: 'Wordt ingevuld zodra deze sprint van start gaat.',
-      summary: 'Deze sprint moet nog beginnen. Er is nog niets om te laten zien.',
-      stories: [],
-      evidenceLinks: [],
+      theme: 'Een klantchatbot voor Justlease bouwen die vragen over private lease beantwoordt, met bron, en de onboarding-assistent aanvullen.',
+      summary:
+        'In deze sprint heb ik een klantchatbot gebouwd die vragen over private lease beantwoordt op basis van de officiële documenten en websiteteksten van Justlease, met een bron onder elk antwoord. Daarnaast heb ik de onboarding-assistent uit sprint 2 aangevuld.',
+      stories: [
+        {
+          id: 's3-story-1',
+          type: 'user',
+          title: 'Justlease klantchatbot',
+          summary:
+            'Als klant van Justlease wil ik vragen over private lease kunnen stellen aan een chatbot en direct een antwoord met bron krijgen, zodat ik niet hoef te bellen en de klantenservice en sales meer tijd overhouden.',
+          flow: ['Vraag van de klant', 'Zoeken in de bronnen', 'Model (Gemini)', 'Antwoord met bron'],
+          details:
+            'Hoe het werkt: de klant stelt een vraag, de chatbot zoekt de passende stukken in de officiële documenten en websiteteksten (38 bronbestanden), Gemini formuleert daaruit een antwoord en de bron staat eronder. Dit heet RAG (Retrieval-Augmented Generation). De chatbot verzint niets: staat het antwoord er niet in, dan zegt hij dat eerlijk en verwijst hij door naar de klantenservice of de leaseadviseurs. De code staat op GitHub, de chatbot draait via Vercel en Supabase bewaart de vragen die niet beantwoord kunnen worden.\n\nWat ik niet aan het model heb overgelaten:\n- De Aanvullende Voorwaarden (geldig sinds 1 oktober 2026) gaan voor op oude versies.\n- Een vaste regel voor twijfel, met doorverwijzing.\n- Een filter voor vragen buiten het onderwerp.\n- Een privacyfilter: vragen met een BSN, e-mailadres, telefoonnummer, IBAN, postcode, adres of kenteken worden niet in de log bewaard. Genoemde namen worden ook herkend, maar dat is een vangnet en geen garantie.\n- Een limiet van 20 vragen per uur per IP, zodat niemand het Gemini-tegoed kan leegmaken.\n\nVerbeteringen:\n- Streaming: het antwoord verschijnt woord voor woord.\n- Server van Washington naar Frankfurt.\n- Minder nadenktijd voor het model.\n- Vaak gestelde vragen worden onthouden.\n- Loggen op de achtergrond.\n- Een zoekstap die de vraag eerst omzet naar zoektermen.\n- Alle contactgegevens op één plek.\n- 33 geautomatiseerde tests.\n\nSnelheid: eerst ruim een minuut wachten op een antwoord, nu ongeveer 5 tot 10 seconden (eigen waarneming op de live site).\n\nObstakels en oplossing:\n- Bronnen die elkaar tegenspraken door nieuwe voorwaarden: voorrangsregel vastgelegd.\n- Niet gokken: twijfelregel en filter.\n- Privacy: niets bewaren met persoonsgegevens.\n- Misbruik: limiet per IP.\n- Trage antwoorden: de server stond in de VS, nu in Frankfurt.\n- Mijn eigen opstelling op een andere laptop: inloggen bij GitHub en Vercel.\n\nEerlijke grenzen en vervolg:\n- Nog niet gemeten of het aantal telefoontjes echt daalt.\n- Naamherkenning is een vangnet.\n- Vervolgstappen: zoeken op betekenis met embeddings en een vectordatabase, regelmatig testen met echte vragen en een bronnenupdate als de voorwaarden veranderen.',
+        },
+        {
+          id: 's3-story-2',
+          type: 'user',
+          title: 'Aanvullingen op de onboarding-assistent',
+          summary:
+            'Verwerkte feedback, extra informatie over toelatingseisen, medecontractant en kilometerbundels, een kortere quiz en een uitgebreidere kennisbank.',
+          details:
+            'Verwerkte feedback: servicepakketten toegevoegd, het processtuk samengevoegd tot één sectie, quizregels aangepast en afbeeldingen bij Over Justlease. Informatie over toelatingseisen, medecontractant en kilometerbundels toegevoegd. De quiz is ingekort en een gekozen antwoord is te deselecteren. De kennisbank is uitgebreid met meer bronbestanden uit de publieke website. De testset van de chatbot draait nu langzamer en hervatbaar zodat het Gemini-quotum niet opraakt. In de voettekst staat een disclaimer dat dit een studentenproject is.\n\nObstakels: het Gemini-quotum raakte op bij het testen (aangepaste runner); feedback van gebruikers leidde tot meerdere aanpassingen na elkaar; wat een nieuwe medewerker nodig heeft stond deels alleen op de website en niet in de officiële documenten (kennisbank daarmee aangevuld).',
+        },
+      ],
+      evidenceLinks: [
+        {
+          id: 's3-ev-1',
+          title: 'Live: Justlease klantchatbot',
+          url: 'https://justlease-klantchatbot.vercel.app',
+          type: 'app',
+          description: 'De klantchatbot voor vragen over private lease.',
+        },
+        {
+          id: 's3-ev-2',
+          title: 'GitHub: Justlease klantchatbot',
+          url: 'https://github.com/Bjornmocking/justlease-klantchatbot',
+          type: 'code',
+          description: 'Broncode van de klantchatbot.',
+        },
+        {
+          id: 's3-ev-3',
+          title: 'Live: Justlease onboarding-assistent',
+          url: 'https://justlease-onboarding-assistent.vercel.app/',
+          type: 'app',
+          description: 'De onboarding-assistent, met de aanvullingen uit deze sprint.',
+        },
+        {
+          id: 's3-ev-4',
+          title: 'GitHub: Onboarding-assistent',
+          url: 'https://github.com/Bjornmocking/justlease-onboarding-assistent',
+          type: 'code',
+          description: 'Broncode van de onboarding-assistent.',
+        },
+      ],
       demonstratedOutcomes: [],
     },
     {
