@@ -20,7 +20,11 @@ export const SprintList: React.FC<SprintListProps> = ({
   const displayedSprints =
     selectedOutcome === 'ALL'
       ? sprints
-      : sprints.filter((s) => s.demonstratedOutcomes.includes(selectedOutcome));
+      : sprints.filter(
+          (s) =>
+            s.demonstratedOutcomes.includes(selectedOutcome) ||
+            (s.submittedOutcomes ?? []).includes(selectedOutcome)
+        );
 
   const scrollToSprint = (sprintNumber: number) => {
     const el = document.getElementById(`sprint-card-${sprintNumber}`);

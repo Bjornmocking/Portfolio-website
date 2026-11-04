@@ -28,6 +28,15 @@ export const LearningOutcomesBar: React.FC<LearningOutcomesBarProps> = ({
     return sprints.filter((s) => s.demonstratedOutcomes.includes(outcomeId)).length;
   };
 
+  // Ingediend maar nog niet beoordeeld: telt nergens mee als behaald
+  const getSubmittedCount = (outcomeId: LearningOutcomeId) => {
+    return sprints.filter(
+      (s) =>
+        !s.demonstratedOutcomes.includes(outcomeId) &&
+        (s.submittedOutcomes ?? []).includes(outcomeId)
+    ).length;
+  };
+
   return (
     <section
       id="learning-outcomes-section"
@@ -77,7 +86,7 @@ export const LearningOutcomesBar: React.FC<LearningOutcomesBarProps> = ({
               Voortgang per leeruitkomst
             </h3>
             <span className="text-[11px] text-neutral-500">
-              Aantal sprints (van de {sprints.length}) waarin aangetoond
+              Aantal sprints (van de {sprints.length}): behaald en ingediend
             </span>
           </div>
           <div className="h-64 sm:h-80 w-full">
@@ -87,6 +96,8 @@ export const LearningOutcomesBar: React.FC<LearningOutcomesBarProps> = ({
                   subject: outcome.code,
                   fullTitle: outcome.title,
                   count: getOutcomeCount(outcome.id),
+                  submitted: getSubmittedCount(outcome.id),
+                  withSubmitted: getOutcomeCount(outcome.id) + getSubmittedCount(outcome.id),
                 }))}
               >
                 <PolarGrid stroke="#262626" />
@@ -96,6 +107,15 @@ export const LearningOutcomesBar: React.FC<LearningOutcomesBarProps> = ({
                   domain={[0, sprints.length]}
                   tick={{ fill: '#525252', fontSize: 10 }}
                   tickCount={sprints.length + 1}
+                />
+                <Radar
+                  name="Ingediend"
+                  dataKey="withSubmitted"
+                  stroke="#f59e0b"
+                  fill="#f59e0b"
+                  fillOpacity={0.12}
+                  strokeWidth={2}
+                  strokeDasharray="4 3"
                 />
                 <Radar
                   name="Behaald"
@@ -113,7 +133,11 @@ export const LearningOutcomesBar: React.FC<LearningOutcomesBarProps> = ({
                     fontSize: '12px',
                   }}
                   labelStyle={{ color: '#fff', fontWeight: 700 }}
-                  formatter={(value: number) => [`${value}/${sprints.length} sprints`, 'Behaald']}
+                  formatter={(value: number, name: string, item: { payload?: { submitted?: number } }) =>
+                    name === 'Ingediend'
+                      ? [`${item.payload?.submitted ?? 0} sprint(s), nog niet beoordeeld`, 'Ingediend']
+                      : [`${value}/${sprints.length} sprints`, 'Behaald']
+                  }
                   labelFormatter={(_label, payload) => payload?.[0]?.payload?.fullTitle ?? _label}
                 />
               </RadarChart>
@@ -153,10 +177,13 @@ export const LearningOutcomesBar: React.FC<LearningOutcomesBarProps> = ({
 
                     <span
                       className="inline-flex items-center gap-1.5 text-[11px] font-medium text-neutral-400 bg-neutral-950 px-2.5 py-0.5 rounded-full border border-neutral-800"
-                      title={`${count} van de 8 sprints tonen deze leeruitkomst aan`}
+                      title={`${count} van de 8 sprints behaald, ${getSubmittedCount(outcome.id)} ingediend`}
                     >
                       <CheckCircle2 className="h-3 w-3 text-blue-400" />
-                      <span>{count}/8</span>
+                      <span>{count}/8 behaald</span>
+                      {getSubmittedCount(outcome.id) > 0 && (
+                        <span className="text-amber-400">, {getSubmittedCount(outcome.id)} ingediend</span>
+                      )}
                     </span>
                   </div>
 
@@ -190,7 +217,7 @@ export const LearningOutcomesBar: React.FC<LearningOutcomesBarProps> = ({
               <span className="font-bold">{selectedOutcome}:</span>
               <span>
                 Gefilterd op {LEARNING_OUTCOMES.find((o) => o.id === selectedOutcome)?.title} (
-                {getOutcomeCount(selectedOutcome)} sprints gevonden)
+                {getOutcomeCount(selectedOutcome)} behaald, {getSubmittedCount(selectedOutcome)} ingediend)
               </span>
             </div>
             <button

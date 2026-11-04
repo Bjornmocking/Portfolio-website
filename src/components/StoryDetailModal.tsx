@@ -54,6 +54,19 @@ export const StoryDetailModal: React.FC<StoryDetailModalProps> = ({ story, onClo
         </div>
 
         <div className="overflow-y-auto p-6 sm:p-7">
+          {story.outcomes && story.outcomes.length > 0 && (
+            <div className="mb-4 flex flex-wrap items-center gap-1.5">
+              <span className="text-xs text-neutral-500">Leeruitkomsten:</span>
+              {story.outcomes.map((id) => (
+                <span
+                  key={id}
+                  className="rounded-md border border-neutral-700 bg-neutral-950 px-1.5 py-0.5 text-[10px] font-mono font-bold text-neutral-300"
+                >
+                  {id}
+                </span>
+              ))}
+            </div>
+          )}
           {story.flow && story.flow.length > 0 && (
             <div className="mb-6 flex flex-col sm:flex-row sm:items-stretch gap-2 sm:gap-1" aria-label="Flow van de chatbot">
               {story.flow.map((step, i) => (

@@ -20,6 +20,8 @@ export interface Story {
   details?: string;
   /** Stappen van een eenvoudige flow, getoond als plaatje bovenaan de "Lees meer"-modal. */
   flow?: string[];
+  /** Leeruitkomsten waar deze story bij hoort, getoond als labels. */
+  outcomes?: LearningOutcomeId[];
 }
 
 export type EvidenceType = 'app' | 'document' | 'video' | 'code' | 'other';
@@ -55,6 +57,10 @@ export interface Sprint {
   stories: Story[];
   evidenceLinks: EvidenceLink[];
   demonstratedOutcomes: LearningOutcomeId[];
+  /** Ingediend voor beoordeling, maar nog niet beoordeeld. Telt nergens als behaald. */
+  submittedOutcomes?: LearningOutcomeId[];
+  /** Korte feitelijke toelichting bij de beoordeling van deze sprint. */
+  assessmentNote?: string;
   outcomeNotes?: Partial<Record<LearningOutcomeId, string>>;
   feedback?: SprintFeedback[];
   reflection?: SprintReflection;

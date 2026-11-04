@@ -328,18 +328,114 @@ export const INITIAL_PORTFOLIO_DATA: PortfolioData = {
           description: 'Broncode van de onboarding-assistent.',
         },
       ],
-      demonstratedOutcomes: [],
+      demonstratedOutcomes: ['LU2', 'LU3', 'LU4'],
+      assessmentNote:
+        'Beoordeeld door Gert op 14 oktober: LU2, LU3 en LU4 voldoende. LU1 en LU5 zijn in deze sprint niet beoordeeld.',
     },
     {
       id: 4,
       number: 4,
-      title: 'Sprint 4: Nog niet gestart',
-      period: 'Week 7 – Week 8',
-      theme: 'Wordt ingevuld zodra deze sprint van start gaat.',
-      summary: 'Deze sprint moet nog beginnen. Er is nog niets om te laten zien.',
-      stories: [],
-      evidenceLinks: [],
+      title: 'Sprint 4: Onderzoek naar chatbots en eigen projecten',
+      period: '15 oktober t/m 4 november 2026',
+      theme: 'Onderzoek naar AI-chatbots bij leasebedrijven, twee eigen apps (een persoonlijk dashboard en Potje Padel) en een RAG-chatbot als oefening.',
+      summary:
+        'In de herfstvakantie heb ik meer gedaan dan gepland, met eigen ideeën die ik belangrijker vond. De Make.com-opdracht en de dekkingstest van mijn klantchatbot heb ik daarom doorgeschoven naar een latere sprint.',
+      stories: [
+        {
+          id: 's4-story-1',
+          type: 'research',
+          title: 'AI-chatbots in klantcontact bij leasebedrijven',
+          outcomes: ['LU1', 'LU3'],
+          summary:
+            'Onderzoek naar hoe Nederlandse leasebedrijven AI-chatbots inzetten, welke risico\'s dat heeft en wat dat betekent voor mijn werk in sales bij Justlease.',
+          details:
+            'Onderzoek naar hoe Nederlandse leasebedrijven AI-chatbots inzetten in klantcontact, de risico\'s en wat dat betekent voor mijn werk in sales bij Justlease.\n\nUitkomsten:\n• Justlease, Ayvens, Athlon en ANWB hebben geen chatbot op de private-leasepagina.\n• Arval Spanje, het moederbedrijf van Justlease, heeft wel een voicebot.\n\nRisico\'s:\n• Privacy rond de kredietcheck.\n• De meldplicht uit artikel 50 van de AI Act, sinds 2 augustus 2026.\n• Aansprakelijkheid, zoals in de zaak Moffatt tegen Air Canada.\n\nHet onderzoek levert drie vaardigheden op die ik voor mijn beroep nodig heb en drie verbeteringen voor mijn klantchatbot.\n\nHoe betrouwbaar is het? Het onderzoek gebruikt 15 bronnen. Twee van de vijf belangrijkste claims heb ik zelf nagelopen.',
+        },
+        {
+          id: 's4-story-2',
+          type: 'learning',
+          title: 'Persoonlijk dashboard (bjorn-dashboard)',
+          outcomes: ['LU3', 'LU4', 'LU5'],
+          summary:
+            'Een persoonlijke app die mijn eigen data van Whoop, Google Agenda, Gmail en Trading 212 combineert, met een ochtendkrant met AI-redactie.',
+          details:
+            'Een persoonlijke app die mijn eigen data van Whoop, Google Agenda, Gmail en Trading 212 combineert in één overzicht.\n\nOnderdelen:\n• Een ochtendkrant met AI-redactie.\n• Een trainingscockpit.\n• Voeding loggen met AI.\n• Agenda, mail en een weekoverzicht.\n\nHoe het is gebouwd: met Claude Code (49 commits, van 20 oktober tot en met 2 november), Next.js, Supabase en Vercel. Claude Code bouwde, ik was opdrachtgever, product owner en tester.\n\nWat ik leerde: OAuth2 met refresh tokens, webhooks, paginering, cron en de Claude API.\n\nBewuste keuzes over data:\n• Alleen nieuwskoppen en maaltijden gaan naar de AI. Geen gezondheidsdata en geen mail.\n• Trading 212 is alleen lezen.\n\nDe app staat online achter een login en de repository is privé.',
+        },
+        {
+          id: 's4-story-3',
+          type: 'user',
+          title: 'Potje Padel',
+          outcomes: ['LU3', 'LU4', 'LU5'],
+          summary:
+            'Een web-app die in één overzicht laat zien welke padelbanen in de regio Utrecht nog vrij zijn, over vijf boekingssystemen heen. De app boekt zelf niets.',
+          details:
+            'Een web-app die in één overzicht laat zien welke padelbanen in de regio Utrecht nog vrij zijn, over vijf boekingssystemen heen: Playtomic, KNLTB Meet & Play, FOYS, Bookaball en BaanReserveren.\n\nFuncties: filters en delen via WhatsApp met een peiling. De app boekt zelf niets.\n\nHoe het is gebouwd: met Claude Code (56 commits, van 15 tot en met 20 oktober). Claude Code bouwde, ik was opdrachtgever, product owner en tester.\n\nEthiek:\n• Er zijn geen officiële API\'s en geen toestemming van de platforms.\n• Ik heb de voorwaarden gelezen en haal zuinig op, met cache en onder de rate limit.\n• Ik heb Sportclub Houten om toestemming gevraagd en nog geen antwoord gekregen.\n• Daarom blijft de app besloten achter een toegangscode.\n\nGebruik: 8 unieke apparaten in de week van 19 oktober en 100 zoekopdrachten.',
+        },
+        {
+          id: 's4-story-4',
+          type: 'learning',
+          title: 'Kloon: een RAG-chatbot bouwen in de les',
+          outcomes: ['LU4'],
+          summary:
+            'Lesopdracht "Bouw je eigen kloon" (26 oktober): een RAG-chatbot met embeddings en een vectordatabase, om te leren hoe zoeken op betekenis werkt.',
+          details:
+            'In de les "Bouw je eigen kloon" (26 oktober) heb ik een RAG-chatbot gebouwd met embeddings en een vectordatabase (pgvector in Supabase), twee Edge Functions met Gemini en een interface uit Google Stitch, met MCP via Claude Code.\n\nHet is een oefenopdracht om te leren hoe zoeken op betekenis werkt, voor mijn klantchatbot later. De kloon staat niet online, daarom is er geen link.',
+        },
+      ],
+      evidenceLinks: [
+        {
+          id: 's4-ev-1',
+          title: 'Onderzoek: AI-chatbots bij leasebedrijven',
+          url: 'https://claude.ai/artifact/CBnr9rZrAfTboH4YuNTiGa',
+          type: 'document',
+          description: 'Het onderzoeksrapport bij story 1.',
+        },
+        {
+          id: 's4-ev-2',
+          title: 'Live: bjorn-dashboard',
+          url: 'https://bjorn-dashboard.vercel.app',
+          type: 'app',
+          description: 'Persoonlijk dashboard. Achter login, dus alleen voor mij te openen.',
+        },
+        {
+          id: 's4-ev-3',
+          title: 'GitHub: bjorn-dashboard',
+          url: 'https://github.com/Bjornmocking/bjorn-dashboard',
+          type: 'code',
+          description: 'Broncode van het dashboard. Privé repository.',
+        },
+        {
+          id: 's4-ev-4',
+          title: 'Live: Potje Padel',
+          url: 'https://potjepadel.vercel.app',
+          type: 'app',
+          description: 'Overzicht van vrije padelbanen. Achter een toegangscode.',
+        },
+        {
+          id: 's4-ev-5',
+          title: 'Potje Padel: statuspagina',
+          url: 'https://potjepadel.vercel.app/status',
+          type: 'app',
+          description: 'Statuspagina van de app.',
+        },
+        {
+          id: 's4-ev-6',
+          title: 'GitHub: Potje Padel',
+          url: 'https://github.com/Bjornmocking/potje-padel',
+          type: 'code',
+          description: 'Broncode van Potje Padel. Privé repository.',
+        },
+      ],
       demonstratedOutcomes: [],
+      submittedOutcomes: ['LU1', 'LU3', 'LU4', 'LU5'],
+      assessmentNote:
+        'Ingediend voor de Show & Grow van 4 november. De niveaus van deze sprint zijn nog niet beoordeeld.',
+      reflection: {
+        learned:
+          'De AI meldde meerdere keren dat iets klaar was terwijl het op mijn iPhone niet werkte. Data die online staat betekent bovendien niet dat je hem mag gebruiken.',
+        keep: 'Zelf testen en om bewijs vragen, en bewust kiezen welke data naar een AI-model gaat.',
+        change: 'Volgende sprint plan ik eerst een story voor LU2.',
+      },
     },
     {
       id: 5,

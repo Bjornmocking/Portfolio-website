@@ -21,6 +21,7 @@ import {
   Info,
   Lightbulb,
   MessageSquare,
+  Clock,
 } from 'lucide-react';
 
 interface SprintCardProps {
@@ -154,10 +155,11 @@ export const SprintCard: React.FC<SprintCardProps> = ({
           <div className="flex flex-wrap items-center justify-between gap-2 mb-4">
             <div className="flex items-center gap-2">
               <span className="text-neutral-500 text-[10px] font-bold uppercase tracking-[0.2em]">
-                Behaalde Leeruitkomsten
+                Leeruitkomsten
               </span>
               <span className="text-xs text-neutral-500 font-mono">
-                ({sprint.demonstratedOutcomes.length} / 5)
+                ({sprint.demonstratedOutcomes.length} behaald
+                {(sprint.submittedOutcomes?.length ?? 0) > 0 && `, ${sprint.submittedOutcomes!.length} ingediend`})
               </span>
             </div>
 
@@ -178,6 +180,7 @@ export const SprintCard: React.FC<SprintCardProps> = ({
           <div className="flex flex-wrap gap-2">
             {LEARNING_OUTCOMES.map((lo) => {
               const isDemonstrated = sprint.demonstratedOutcomes.includes(lo.id);
+              const isSubmitted = !isDemonstrated && (sprint.submittedOutcomes ?? []).includes(lo.id);
               return (
                 <div
                   key={lo.id}
@@ -185,22 +188,30 @@ export const SprintCard: React.FC<SprintCardProps> = ({
                   className={`flex items-center gap-2 px-3 py-1.5 rounded-lg transition-all ${
                     isDemonstrated
                       ? 'bg-neutral-950 border border-blue-500/40 text-white shadow-sm'
+                      : isSubmitted
+                      ? 'bg-neutral-950 border border-dashed border-amber-500/50 text-white'
                       : 'bg-neutral-900/30 border border-neutral-800 text-neutral-400 line-through decoration-neutral-600'
                   }`}
                 >
-                  <div
-                    className={`w-2 h-2 rounded-full ${
-                      isDemonstrated
-                        ? 'bg-blue-500 shadow-[0_0_8px_rgba(59,130,246,0.6)]'
-                        : 'bg-neutral-700'
-                    }`}
-                  />
+                  {isDemonstrated ? (
+                    <CheckCircle2 className="h-3.5 w-3.5 text-blue-500" />
+                  ) : isSubmitted ? (
+                    <Clock className="h-3.5 w-3.5 text-amber-400" />
+                  ) : (
+                    <div className="w-2 h-2 rounded-full bg-neutral-700" />
+                  )}
                   <span className="font-mono text-[10px] font-bold uppercase">{lo.code}:</span>
                   <span className="text-[10px] uppercase font-medium">{lo.title}</span>
+                  {isDemonstrated && <span className="text-[10px] font-bold text-blue-400">Behaald</span>}
+                  {isSubmitted && <span className="text-[10px] font-bold text-amber-400">Ingediend</span>}
                 </div>
               );
             })}
           </div>
+
+          {sprint.assessmentNote && (
+            <p className="mt-3 text-xs text-neutral-400 leading-relaxed">{sprint.assessmentNote}</p>
+          )}
 
           {/* Expanded Outcome Notes/Justifications */}
           {showOutcomeNotes && sprint.outcomeNotes && (
@@ -329,6 +340,19 @@ export const SprintCard: React.FC<SprintCardProps> = ({
                         {story.summary}
                       </p>
                     </div>
+
+                    {story.outcomes && story.outcomes.length > 0 && (
+                      <div className="mt-3 flex flex-wrap gap-1.5">
+                        {story.outcomes.map((id) => (
+                          <span
+                            key={id}
+                            className="rounded-md border border-neutral-700 bg-neutral-900 px-1.5 py-0.5 text-[10px] font-mono font-bold text-neutral-300"
+                          >
+                            {id}
+                          </span>
+                        ))}
+                      </div>
+                    )}
 
                     {story.details && (
                       <button
