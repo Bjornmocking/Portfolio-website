@@ -124,38 +124,38 @@ export const SprintEditModal: React.FC<SprintEditModalProps> = ({
   return (
     <div
       id="sprint-edit-modal-overlay"
-      className="fixed inset-0 z-50 flex items-center justify-center bg-neutral-950/85 p-3 sm:p-4 backdrop-blur-md overflow-y-auto"
+      className="fixed inset-0 z-50 flex items-center justify-center bg-stone-900/50 p-3 sm:p-4 backdrop-blur-md overflow-y-auto"
     >
       <div
         id="sprint-edit-modal-content"
-        className="w-full max-w-3xl my-8 rounded-3xl border border-neutral-800 bg-neutral-900 shadow-2xl flex flex-col max-h-[90vh]"
+        className="w-full max-w-3xl my-8 rounded-3xl border border-stone-200 bg-white shadow-2xl flex flex-col max-h-[90vh]"
       >
         {/* Modal Header */}
-        <div className="flex items-center justify-between border-b border-neutral-800 px-6 py-5">
+        <div className="flex items-center justify-between border-b border-stone-200 px-6 py-5">
           <div>
-            <span className="text-xs font-bold text-blue-500 uppercase tracking-widest">
+            <span className="text-sm font-bold text-teal-700">
               Sprint Inhoud Aanpassen
             </span>
-            <h3 className="text-xl font-black text-white tracking-tight mt-0.5">{sprint.title}</h3>
+            <h3 className="text-xl font-bold text-stone-900 tracking-tight mt-0.5">{sprint.title}</h3>
           </div>
           <button
             type="button"
             onClick={onClose}
-            className="rounded-xl p-1.5 text-neutral-400 hover:text-white hover:bg-neutral-800 transition-colors cursor-pointer"
+            className="rounded-xl p-1.5 text-stone-600 hover:text-stone-900 hover:bg-stone-100 transition-colors cursor-pointer"
           >
             <X className="h-5 w-5" />
           </button>
         </div>
 
         {/* Navigation Tabs inside modal */}
-        <div className="flex border-b border-neutral-800 px-6 bg-neutral-950/50 text-xs sm:text-sm font-medium overflow-x-auto">
+        <div className="flex border-b border-stone-200 px-6 bg-stone-50 text-sm sm:text-base font-medium overflow-x-auto">
           <button
             type="button"
             onClick={() => setActiveTab('info')}
             className={`py-3 px-3 border-b-2 transition-colors cursor-pointer whitespace-nowrap ${
               activeTab === 'info'
-                ? 'border-blue-500 text-blue-400 font-bold'
-                : 'border-transparent text-neutral-400 hover:text-neutral-200'
+                ? 'border-teal-600 text-teal-700 font-bold'
+                : 'border-transparent text-stone-600 hover:text-stone-800'
             }`}
           >
             1. Algemeen & Thema
@@ -165,8 +165,8 @@ export const SprintEditModal: React.FC<SprintEditModalProps> = ({
             onClick={() => setActiveTab('stories')}
             className={`py-3 px-3 border-b-2 transition-colors cursor-pointer whitespace-nowrap ${
               activeTab === 'stories'
-                ? 'border-blue-500 text-blue-400 font-bold'
-                : 'border-transparent text-neutral-400 hover:text-neutral-200'
+                ? 'border-teal-600 text-teal-700 font-bold'
+                : 'border-transparent text-stone-600 hover:text-stone-800'
             }`}
           >
             2. Stories ({formData.stories.length})
@@ -176,8 +176,8 @@ export const SprintEditModal: React.FC<SprintEditModalProps> = ({
             onClick={() => setActiveTab('evidence')}
             className={`py-3 px-3 border-b-2 transition-colors cursor-pointer whitespace-nowrap ${
               activeTab === 'evidence'
-                ? 'border-blue-500 text-blue-400 font-bold'
-                : 'border-transparent text-neutral-400 hover:text-neutral-200'
+                ? 'border-teal-600 text-teal-700 font-bold'
+                : 'border-transparent text-stone-600 hover:text-stone-800'
             }`}
           >
             3. Bewijsstukken ({formData.evidenceLinks.length})
@@ -187,8 +187,8 @@ export const SprintEditModal: React.FC<SprintEditModalProps> = ({
             onClick={() => setActiveTab('outcomes')}
             className={`py-3 px-3 border-b-2 transition-colors cursor-pointer whitespace-nowrap ${
               activeTab === 'outcomes'
-                ? 'border-blue-500 text-blue-400 font-bold'
-                : 'border-transparent text-neutral-400 hover:text-neutral-200'
+                ? 'border-teal-600 text-teal-700 font-bold'
+                : 'border-transparent text-stone-600 hover:text-stone-800'
             }`}
           >
             4. Leeruitkomsten ({formData.demonstratedOutcomes.length}/5)
@@ -202,18 +202,18 @@ export const SprintEditModal: React.FC<SprintEditModalProps> = ({
             <div className="space-y-4">
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <div>
-                  <label className="block text-xs font-semibold text-neutral-300 mb-1.5">
+                  <label className="block text-sm font-semibold text-stone-700 mb-1.5">
                     Sprint Titel
                   </label>
                   <input
                     type="text"
                     value={formData.title}
                     onChange={(e) => setFormData({ ...formData, title: e.target.value })}
-                    className="w-full rounded-xl border border-neutral-800 bg-neutral-950 px-3.5 py-2.5 text-sm text-neutral-100 focus:border-blue-500 focus:outline-none placeholder-neutral-600"
+                    className="w-full rounded-xl border border-stone-200 bg-stone-50 px-3.5 py-2.5 text-sm text-stone-900 focus:border-teal-600 focus:outline-none placeholder-stone-400"
                   />
                 </div>
                 <div>
-                  <label className="block text-xs font-semibold text-neutral-300 mb-1.5">
+                  <label className="block text-sm font-semibold text-stone-700 mb-1.5">
                     Periode (2 weken)
                   </label>
                   <input
@@ -221,13 +221,13 @@ export const SprintEditModal: React.FC<SprintEditModalProps> = ({
                     value={formData.period}
                     onChange={(e) => setFormData({ ...formData, period: e.target.value })}
                     placeholder="Bijv. Week 1 – Week 2"
-                    className="w-full rounded-xl border border-neutral-800 bg-neutral-950 px-3.5 py-2.5 text-sm text-neutral-100 focus:border-blue-500 focus:outline-none placeholder-neutral-600"
+                    className="w-full rounded-xl border border-stone-200 bg-stone-50 px-3.5 py-2.5 text-sm text-stone-900 focus:border-teal-600 focus:outline-none placeholder-stone-400"
                   />
                 </div>
               </div>
 
               <div>
-                <label className="block text-xs font-semibold text-neutral-300 mb-1.5">
+                <label className="block text-sm font-semibold text-stone-700 mb-1.5">
                   Sprint Thema / Focus
                 </label>
                 <input
@@ -235,12 +235,12 @@ export const SprintEditModal: React.FC<SprintEditModalProps> = ({
                   value={formData.theme}
                   onChange={(e) => setFormData({ ...formData, theme: e.target.value })}
                   placeholder="Bijv. Verkenning van generatieve AI en eerste proof of concept"
-                  className="w-full rounded-xl border border-neutral-800 bg-neutral-950 px-3.5 py-2.5 text-sm text-neutral-100 focus:border-blue-500 focus:outline-none placeholder-neutral-600"
+                  className="w-full rounded-xl border border-stone-200 bg-stone-50 px-3.5 py-2.5 text-sm text-stone-900 focus:border-teal-600 focus:outline-none placeholder-stone-400"
                 />
               </div>
 
               <div>
-                <label className="block text-xs font-semibold text-neutral-300 mb-1.5">
+                <label className="block text-sm font-semibold text-stone-700 mb-1.5">
                   Sprint Samenvatting (wat is er onderzocht, gemaakt en geleerd?)
                 </label>
                 <textarea
@@ -248,7 +248,7 @@ export const SprintEditModal: React.FC<SprintEditModalProps> = ({
                   value={formData.summary}
                   onChange={(e) => setFormData({ ...formData, summary: e.target.value })}
                   placeholder="Korte samenvatting van de sprintresultaten en doelen..."
-                  className="w-full rounded-xl border border-neutral-800 bg-neutral-950 px-3.5 py-2.5 text-sm text-neutral-100 focus:border-blue-500 focus:outline-none placeholder-neutral-600"
+                  className="w-full rounded-xl border border-stone-200 bg-stone-50 px-3.5 py-2.5 text-sm text-stone-900 focus:border-teal-600 focus:outline-none placeholder-stone-400"
                 />
               </div>
             </div>
@@ -259,26 +259,26 @@ export const SprintEditModal: React.FC<SprintEditModalProps> = ({
             <div className="space-y-6">
               {/* Existing Stories List */}
               <div className="space-y-3">
-                <h4 className="text-xs font-bold uppercase tracking-wider text-neutral-400">
+                <h4 className="text-sm font-bold text-stone-600">
                   Huidige Stories in deze sprint
                 </h4>
                 {formData.stories.length === 0 ? (
-                  <p className="text-xs text-neutral-500 italic">Nog geen stories toegevoegd.</p>
+                  <p className="text-base text-stone-600 italic">Nog geen stories toegevoegd.</p>
                 ) : (
                   formData.stories.map((story) => (
                     <div
                       key={story.id}
-                      className="flex items-start justify-between gap-3 rounded-2xl border border-neutral-800 bg-neutral-950/70 p-4"
+                      className="flex items-start justify-between gap-3 rounded-2xl border border-stone-200 bg-stone-50 p-4"
                     >
                       <div className="flex-1">
                         <div className="flex items-center gap-2 mb-1.5">
                           <span
-                            className={`rounded-md px-2 py-0.5 text-[10px] font-bold uppercase tracking-wider ${
+                            className={`rounded-md px-2 py-0.5 text-sm font-bold ${
                               story.type === 'research'
-                                ? 'bg-blue-500/10 text-blue-300 border border-blue-500/30'
+                                ? 'bg-teal-50 text-teal-700 border border-teal-300'
                                 : story.type === 'user'
-                                ? 'bg-sky-500/10 text-sky-300 border border-sky-500/30'
-                                : 'bg-indigo-500/10 text-indigo-300 border border-indigo-500/30'
+                                ? 'bg-sky-50 text-sky-800 border border-sky-200'
+                                : 'bg-indigo-50 text-indigo-800 border border-sky-200'
                             }`}
                           >
                             {story.type === 'research'
@@ -287,14 +287,14 @@ export const SprintEditModal: React.FC<SprintEditModalProps> = ({
                               ? 'User Story'
                               : 'Learning Story'}
                           </span>
-                          <span className="text-sm font-bold text-white">{story.title}</span>
+                          <span className="text-sm font-bold text-stone-900">{story.title}</span>
                         </div>
-                        <p className="text-xs text-neutral-400 mt-1 leading-relaxed font-light">{story.summary}</p>
+                        <p className="text-base text-stone-600 mt-1 leading-relaxed font-normal">{story.summary}</p>
                       </div>
                       <button
                         type="button"
                         onClick={() => handleRemoveStory(story.id)}
-                        className="p-1 text-neutral-500 hover:text-rose-400 transition-colors cursor-pointer"
+                        className="p-1 text-stone-600 hover:text-rose-800 transition-colors cursor-pointer"
                         title="Verwijder story"
                       >
                         <Trash2 className="h-4 w-4" />
@@ -305,23 +305,23 @@ export const SprintEditModal: React.FC<SprintEditModalProps> = ({
               </div>
 
               {/* Add New Story Sub-Form */}
-              <div className="rounded-2xl border border-neutral-800 bg-neutral-950/80 p-4 sm:p-5 space-y-3.5">
-                <h4 className="text-xs font-bold uppercase tracking-wider text-blue-400 flex items-center gap-1.5">
+              <div className="rounded-2xl border border-stone-200 bg-stone-50 p-4 sm:p-5 space-y-3.5">
+                <h4 className="text-sm font-bold text-teal-700 flex items-center gap-1.5">
                   <Plus className="h-3.5 w-3.5" />
                   Nieuwe Story Toevoegen
                 </h4>
                 <div>
-                  <label className="block text-xs font-semibold text-neutral-300 mb-1.5">
+                  <label className="block text-sm font-semibold text-stone-700 mb-1.5">
                     Type Story
                   </label>
                   <div className="grid grid-cols-3 gap-2">
                     <button
                       type="button"
                       onClick={() => setNewStoryType('research')}
-                      className={`p-2.5 rounded-xl border text-xs font-medium cursor-pointer transition-colors ${
+                      className={`p-2.5 rounded-xl border text-sm font-medium cursor-pointer transition-colors ${
                         newStoryType === 'research'
-                          ? 'border-blue-500/80 bg-blue-600/10 text-blue-400 font-bold'
-                          : 'border-neutral-800 bg-neutral-900 text-neutral-400 hover:text-neutral-200'
+                          ? 'border-teal-600 bg-teal-50 text-teal-700 font-bold'
+                          : 'border-stone-200 bg-white text-stone-600 hover:text-stone-800'
                       }`}
                     >
                       Research Story
@@ -329,10 +329,10 @@ export const SprintEditModal: React.FC<SprintEditModalProps> = ({
                     <button
                       type="button"
                       onClick={() => setNewStoryType('user')}
-                      className={`p-2.5 rounded-xl border text-xs font-medium cursor-pointer transition-colors ${
+                      className={`p-2.5 rounded-xl border text-sm font-medium cursor-pointer transition-colors ${
                         newStoryType === 'user'
-                          ? 'border-blue-500/80 bg-blue-600/10 text-blue-400 font-bold'
-                          : 'border-neutral-800 bg-neutral-900 text-neutral-400 hover:text-neutral-200'
+                          ? 'border-teal-600 bg-teal-50 text-teal-700 font-bold'
+                          : 'border-stone-200 bg-white text-stone-600 hover:text-stone-800'
                       }`}
                     >
                       User Story
@@ -340,10 +340,10 @@ export const SprintEditModal: React.FC<SprintEditModalProps> = ({
                     <button
                       type="button"
                       onClick={() => setNewStoryType('learning')}
-                      className={`p-2.5 rounded-xl border text-xs font-medium cursor-pointer transition-colors ${
+                      className={`p-2.5 rounded-xl border text-sm font-medium cursor-pointer transition-colors ${
                         newStoryType === 'learning'
-                          ? 'border-blue-500/80 bg-blue-600/10 text-blue-400 font-bold'
-                          : 'border-neutral-800 bg-neutral-900 text-neutral-400 hover:text-neutral-200'
+                          ? 'border-teal-600 bg-teal-50 text-teal-700 font-bold'
+                          : 'border-stone-200 bg-white text-stone-600 hover:text-stone-800'
                       }`}
                     >
                       Learning Story
@@ -352,7 +352,7 @@ export const SprintEditModal: React.FC<SprintEditModalProps> = ({
                 </div>
 
                 <div>
-                  <label className="block text-xs font-semibold text-neutral-300 mb-1.5">
+                  <label className="block text-sm font-semibold text-stone-700 mb-1.5">
                     Titel van de story
                   </label>
                   <input
@@ -360,12 +360,12 @@ export const SprintEditModal: React.FC<SprintEditModalProps> = ({
                     value={newStoryTitle}
                     onChange={(e) => setNewStoryTitle(e.target.value)}
                     placeholder="Bijv. Onderzoek naar latency van LLM streaming responses"
-                    className="w-full rounded-xl border border-neutral-800 bg-neutral-900 px-3.5 py-2.5 text-sm text-neutral-100 focus:border-blue-500 focus:outline-none placeholder-neutral-600"
+                    className="w-full rounded-xl border border-stone-200 bg-white px-3.5 py-2.5 text-sm text-stone-900 focus:border-teal-600 focus:outline-none placeholder-stone-400"
                   />
                 </div>
 
                 <div>
-                  <label className="block text-xs font-semibold text-neutral-300 mb-1.5">
+                  <label className="block text-sm font-semibold text-stone-700 mb-1.5">
                     Korte samenvatting (bevindingen / resultaat / reflectie)
                   </label>
                   <textarea
@@ -373,7 +373,7 @@ export const SprintEditModal: React.FC<SprintEditModalProps> = ({
                     value={newStorySummary}
                     onChange={(e) => setNewStorySummary(e.target.value)}
                     placeholder="Korte toelichting van wat er onderzocht, gemaakt of geleerd is..."
-                    className="w-full rounded-xl border border-neutral-800 bg-neutral-900 px-3.5 py-2.5 text-sm text-neutral-100 focus:border-blue-500 focus:outline-none placeholder-neutral-600"
+                    className="w-full rounded-xl border border-stone-200 bg-white px-3.5 py-2.5 text-sm text-stone-900 focus:border-teal-600 focus:outline-none placeholder-stone-400"
                   />
                 </div>
 
@@ -382,7 +382,7 @@ export const SprintEditModal: React.FC<SprintEditModalProps> = ({
                     type="button"
                     onClick={handleAddStory}
                     disabled={!newStoryTitle.trim()}
-                    className="inline-flex items-center gap-1.5 rounded-xl bg-blue-600 px-4 py-2 text-xs font-bold uppercase tracking-wider text-white hover:bg-blue-500 disabled:opacity-50 transition-colors cursor-pointer shadow-md shadow-blue-900/30"
+                    className="inline-flex items-center gap-1.5 rounded-xl bg-teal-700 px-4 py-2 text-sm font-bold text-white hover:bg-teal-800 disabled:opacity-50 transition-colors cursor-pointer shadow-md shadow-stone-900/5"
                   >
                     <Plus className="h-3.5 w-3.5" />
                     Story toevoegen aan sprint
@@ -397,19 +397,19 @@ export const SprintEditModal: React.FC<SprintEditModalProps> = ({
             <div className="space-y-6">
               {/* Existing Evidence */}
               <div className="space-y-3">
-                <h4 className="text-xs font-bold uppercase tracking-wider text-neutral-400">
+                <h4 className="text-sm font-bold text-stone-600">
                   Huidige Bewijsstukken ({formData.evidenceLinks.length})
                 </h4>
                 {formData.evidenceLinks.length === 0 ? (
-                  <p className="text-xs text-neutral-500 italic">Nog geen bewijsstukken toegevoegd.</p>
+                  <p className="text-base text-stone-600 italic">Nog geen bewijsstukken toegevoegd.</p>
                 ) : (
                   formData.evidenceLinks.map((link) => (
                     <div
                       key={link.id}
-                      className="flex items-center justify-between gap-3 rounded-2xl border border-neutral-800 bg-neutral-950/70 p-3.5"
+                      className="flex items-center justify-between gap-3 rounded-2xl border border-stone-200 bg-stone-50 p-3.5"
                     >
                       <div className="flex items-center gap-2.5 overflow-hidden">
-                        <div className="p-2 rounded-xl bg-neutral-900 border border-neutral-800 text-blue-400 shrink-0">
+                        <div className="p-2 rounded-xl bg-white border border-stone-200 text-teal-700 shrink-0">
                           {link.type === 'app' ? (
                             <Globe className="h-4 w-4" />
                           ) : link.type === 'video' ? (
@@ -421,14 +421,14 @@ export const SprintEditModal: React.FC<SprintEditModalProps> = ({
                           )}
                         </div>
                         <div className="min-w-0">
-                          <div className="text-sm font-bold text-white truncate">
+                          <div className="text-sm font-bold text-stone-900 truncate">
                             {link.title}
                           </div>
                           <a
                             href={link.url}
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="text-xs text-blue-400/90 hover:underline truncate block font-mono"
+                            className="text-sm text-teal-700 hover:underline truncate block font-mono"
                           >
                             {link.url}
                           </a>
@@ -437,7 +437,7 @@ export const SprintEditModal: React.FC<SprintEditModalProps> = ({
                       <button
                         type="button"
                         onClick={() => handleRemoveEvidence(link.id)}
-                        className="p-1 text-neutral-500 hover:text-rose-400 transition-colors cursor-pointer shrink-0"
+                        className="p-1 text-stone-600 hover:text-rose-800 transition-colors cursor-pointer shrink-0"
                         title="Verwijder link"
                       >
                         <Trash2 className="h-4 w-4" />
@@ -448,8 +448,8 @@ export const SprintEditModal: React.FC<SprintEditModalProps> = ({
               </div>
 
               {/* Add New Evidence Link */}
-              <div className="rounded-2xl border border-neutral-800 bg-neutral-950/80 p-4 sm:p-5 space-y-3.5">
-                <h4 className="text-xs font-bold uppercase tracking-wider text-blue-400 flex items-center gap-1.5">
+              <div className="rounded-2xl border border-stone-200 bg-stone-50 p-4 sm:p-5 space-y-3.5">
+                <h4 className="text-sm font-bold text-teal-700 flex items-center gap-1.5">
                   <Plus className="h-3.5 w-3.5" />
                   Nieuw Bewijsstuk Toevoegen (applicatie, document, video)
                 </h4>
@@ -458,10 +458,10 @@ export const SprintEditModal: React.FC<SprintEditModalProps> = ({
                   <button
                     type="button"
                     onClick={() => setNewEvType('app')}
-                    className={`p-2.5 rounded-xl border text-xs font-medium cursor-pointer transition-colors ${
+                    className={`p-2.5 rounded-xl border text-sm font-medium cursor-pointer transition-colors ${
                       newEvType === 'app'
-                        ? 'border-blue-500/80 bg-blue-600/10 text-blue-400 font-bold'
-                        : 'border-neutral-800 bg-neutral-900 text-neutral-400 hover:text-neutral-200'
+                        ? 'border-teal-600 bg-teal-50 text-teal-700 font-bold'
+                        : 'border-stone-200 bg-white text-stone-600 hover:text-stone-800'
                     }`}
                   >
                     Applicatie
@@ -469,10 +469,10 @@ export const SprintEditModal: React.FC<SprintEditModalProps> = ({
                   <button
                     type="button"
                     onClick={() => setNewEvType('document')}
-                    className={`p-2.5 rounded-xl border text-xs font-medium cursor-pointer transition-colors ${
+                    className={`p-2.5 rounded-xl border text-sm font-medium cursor-pointer transition-colors ${
                       newEvType === 'document'
-                        ? 'border-blue-500/80 bg-blue-600/10 text-blue-400 font-bold'
-                        : 'border-neutral-800 bg-neutral-900 text-neutral-400 hover:text-neutral-200'
+                        ? 'border-teal-600 bg-teal-50 text-teal-700 font-bold'
+                        : 'border-stone-200 bg-white text-stone-600 hover:text-stone-800'
                     }`}
                   >
                     Document
@@ -480,10 +480,10 @@ export const SprintEditModal: React.FC<SprintEditModalProps> = ({
                   <button
                     type="button"
                     onClick={() => setNewEvType('video')}
-                    className={`p-2.5 rounded-xl border text-xs font-medium cursor-pointer transition-colors ${
+                    className={`p-2.5 rounded-xl border text-sm font-medium cursor-pointer transition-colors ${
                       newEvType === 'video'
-                        ? 'border-blue-500/80 bg-blue-600/10 text-blue-400 font-bold'
-                        : 'border-neutral-800 bg-neutral-900 text-neutral-400 hover:text-neutral-200'
+                        ? 'border-teal-600 bg-teal-50 text-teal-700 font-bold'
+                        : 'border-stone-200 bg-white text-stone-600 hover:text-stone-800'
                     }`}
                   >
                     Video
@@ -491,10 +491,10 @@ export const SprintEditModal: React.FC<SprintEditModalProps> = ({
                   <button
                     type="button"
                     onClick={() => setNewEvType('code')}
-                    className={`p-2.5 rounded-xl border text-xs font-medium cursor-pointer transition-colors ${
+                    className={`p-2.5 rounded-xl border text-sm font-medium cursor-pointer transition-colors ${
                       newEvType === 'code'
-                        ? 'border-blue-500/80 bg-blue-600/10 text-blue-400 font-bold'
-                        : 'border-neutral-800 bg-neutral-900 text-neutral-400 hover:text-neutral-200'
+                        ? 'border-teal-600 bg-teal-50 text-teal-700 font-bold'
+                        : 'border-stone-200 bg-white text-stone-600 hover:text-stone-800'
                     }`}
                   >
                     Code
@@ -503,7 +503,7 @@ export const SprintEditModal: React.FC<SprintEditModalProps> = ({
 
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                   <div>
-                    <label className="block text-xs font-semibold text-neutral-300 mb-1.5">
+                    <label className="block text-sm font-semibold text-stone-700 mb-1.5">
                       Titel bewijsstuk
                     </label>
                     <input
@@ -511,11 +511,11 @@ export const SprintEditModal: React.FC<SprintEditModalProps> = ({
                       value={newEvTitle}
                       onChange={(e) => setNewEvTitle(e.target.value)}
                       placeholder="Bijv. Gepubliceerde Webapp v1"
-                      className="w-full rounded-xl border border-neutral-800 bg-neutral-900 px-3.5 py-2.5 text-sm text-neutral-100 focus:border-blue-500 focus:outline-none placeholder-neutral-600"
+                      className="w-full rounded-xl border border-stone-200 bg-white px-3.5 py-2.5 text-sm text-stone-900 focus:border-teal-600 focus:outline-none placeholder-stone-400"
                     />
                   </div>
                   <div>
-                    <label className="block text-xs font-semibold text-neutral-300 mb-1.5">
+                    <label className="block text-sm font-semibold text-stone-700 mb-1.5">
                       URL Link
                     </label>
                     <input
@@ -523,13 +523,13 @@ export const SprintEditModal: React.FC<SprintEditModalProps> = ({
                       value={newEvUrl}
                       onChange={(e) => setNewEvUrl(e.target.value)}
                       placeholder="https://..."
-                      className="w-full rounded-xl border border-neutral-800 bg-neutral-900 px-3.5 py-2.5 text-sm text-neutral-100 focus:border-blue-500 focus:outline-none placeholder-neutral-600"
+                      className="w-full rounded-xl border border-stone-200 bg-white px-3.5 py-2.5 text-sm text-stone-900 focus:border-teal-600 focus:outline-none placeholder-stone-400"
                     />
                   </div>
                 </div>
 
                 <div>
-                  <label className="block text-xs font-semibold text-neutral-300 mb-1.5">
+                  <label className="block text-sm font-semibold text-stone-700 mb-1.5">
                     Korte toelichting (optioneel)
                   </label>
                   <input
@@ -537,7 +537,7 @@ export const SprintEditModal: React.FC<SprintEditModalProps> = ({
                     value={newEvDesc}
                     onChange={(e) => setNewEvDesc(e.target.value)}
                     placeholder="Bijv. Prototype getest met stakeholders op 12 maart"
-                    className="w-full rounded-xl border border-neutral-800 bg-neutral-900 px-3.5 py-2.5 text-sm text-neutral-100 focus:border-blue-500 focus:outline-none placeholder-neutral-600"
+                    className="w-full rounded-xl border border-stone-200 bg-white px-3.5 py-2.5 text-sm text-stone-900 focus:border-teal-600 focus:outline-none placeholder-stone-400"
                   />
                 </div>
 
@@ -546,7 +546,7 @@ export const SprintEditModal: React.FC<SprintEditModalProps> = ({
                     type="button"
                     onClick={handleAddEvidence}
                     disabled={!newEvTitle.trim() || !newEvUrl.trim()}
-                    className="inline-flex items-center gap-1.5 rounded-xl bg-blue-600 px-4 py-2 text-xs font-bold uppercase tracking-wider text-white hover:bg-blue-500 disabled:opacity-50 transition-colors cursor-pointer shadow-md shadow-blue-900/30"
+                    className="inline-flex items-center gap-1.5 rounded-xl bg-teal-700 px-4 py-2 text-sm font-bold text-white hover:bg-teal-800 disabled:opacity-50 transition-colors cursor-pointer shadow-md shadow-stone-900/5"
                   >
                     <Plus className="h-3.5 w-3.5" />
                     Bewijsstuk toevoegen
@@ -559,7 +559,7 @@ export const SprintEditModal: React.FC<SprintEditModalProps> = ({
           {/* TAB 4: LEARNING OUTCOMES */}
           {activeTab === 'outcomes' && (
             <div className="space-y-4">
-              <p className="text-xs text-neutral-400 leading-relaxed font-light">
+              <p className="text-base text-stone-600 leading-relaxed font-normal">
                 Vink de leeruitkomsten aan die in deze sprint zijn aangetoond en vul eventueel een toelichting in.
               </p>
 
@@ -573,8 +573,8 @@ export const SprintEditModal: React.FC<SprintEditModalProps> = ({
                       key={outcome.id}
                       className={`rounded-2xl border p-4 transition-colors ${
                         isChecked
-                          ? 'border-blue-500/60 bg-blue-600/10'
-                          : 'border-neutral-800 bg-neutral-950/60'
+                          ? 'border-teal-600 bg-teal-50'
+                          : 'border-stone-200 bg-stone-50'
                       }`}
                     >
                       <div className="flex items-start justify-between gap-3">
@@ -583,25 +583,25 @@ export const SprintEditModal: React.FC<SprintEditModalProps> = ({
                             type="checkbox"
                             checked={isChecked}
                             onChange={() => handleOutcomeToggle(outcome.id)}
-                            className="mt-1 h-4 w-4 rounded border-neutral-700 bg-neutral-900 text-blue-600 focus:ring-blue-500"
+                            className="mt-1 h-4 w-4 rounded border-stone-300 bg-white text-teal-700 focus:ring-teal-500"
                           />
                           <div>
                             <div className="flex items-center gap-2">
-                              <span className="font-mono font-bold text-xs bg-neutral-900 border border-neutral-800 text-blue-400 px-2 py-0.5 rounded-lg">
+                              <span className="font-mono font-bold text-sm bg-white border border-stone-200 text-teal-700 px-2 py-0.5 rounded-lg">
                                 {outcome.code}
                               </span>
-                              <span className="text-sm font-bold text-white tracking-tight">
+                              <span className="text-sm font-bold text-stone-900 tracking-tight">
                                 {outcome.title}
                               </span>
                             </div>
-                            <p className="text-xs text-neutral-400 mt-1 font-light leading-relaxed">{outcome.shortDesc}</p>
+                            <p className="text-base text-stone-600 mt-1 font-normal leading-relaxed">{outcome.shortDesc}</p>
                           </div>
                         </label>
                       </div>
 
                       {isChecked && (
                         <div className="mt-3 pl-7">
-                          <label className="block text-[11px] font-medium text-neutral-400 mb-1">
+                          <label className="block text-sm font-medium text-stone-600 mb-1">
                             Toelichting / Verantwoording voor {outcome.code} in deze sprint:
                           </label>
                           <textarea
@@ -609,7 +609,7 @@ export const SprintEditModal: React.FC<SprintEditModalProps> = ({
                             value={currentNote}
                             onChange={(e) => handleOutcomeNoteChange(outcome.id, e.target.value)}
                             placeholder={`Hoe heb je ${outcome.title} aangetoond in deze sprint?`}
-                            className="w-full rounded-xl border border-neutral-800 bg-neutral-950 p-2.5 text-xs text-neutral-100 focus:border-blue-500 focus:outline-none placeholder-neutral-600"
+                            className="w-full rounded-xl border border-stone-200 bg-stone-50 p-2.5 text-sm text-stone-900 focus:border-teal-600 focus:outline-none placeholder-stone-400"
                           />
                         </div>
                       )}
@@ -622,22 +622,22 @@ export const SprintEditModal: React.FC<SprintEditModalProps> = ({
         </div>
 
         {/* Modal Footer */}
-        <div className="flex items-center justify-between border-t border-neutral-800 px-6 py-4 bg-neutral-950/60">
-          <div className="text-xs text-neutral-500">
+        <div className="flex items-center justify-between border-t border-stone-200 px-6 py-4 bg-stone-50">
+          <div className="text-sm text-stone-600">
             Wijzigingen worden direct lokaal opgeslagen.
           </div>
           <div className="flex items-center gap-2.5">
             <button
               type="button"
               onClick={onClose}
-              className="rounded-xl px-4 py-2 text-xs sm:text-sm font-medium text-neutral-400 hover:text-neutral-200 transition-colors cursor-pointer"
+              className="rounded-xl px-4 py-2 text-sm sm:text-base font-medium text-stone-600 hover:text-stone-800 transition-colors cursor-pointer"
             >
               Annuleren
             </button>
             <button
               type="submit"
               onClick={handleSubmit}
-              className="inline-flex items-center gap-1.5 rounded-xl bg-blue-600 px-5 py-2.5 text-xs sm:text-sm font-bold text-white hover:bg-blue-500 transition-colors cursor-pointer shadow-lg shadow-blue-900/30"
+              className="inline-flex items-center gap-1.5 rounded-xl bg-teal-700 px-5 py-2.5 text-sm sm:text-base font-bold text-white hover:bg-teal-800 transition-colors cursor-pointer shadow-lg shadow-stone-900/5"
             >
               <Save className="h-4 w-4" />
               Opslaan

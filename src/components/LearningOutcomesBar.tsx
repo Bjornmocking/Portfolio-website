@@ -1,7 +1,7 @@
 import React from 'react';
 import { LearningOutcome, LearningOutcomeId, Sprint } from '../types';
 import { LEARNING_OUTCOMES } from '../data/initialData';
-import { Award, Filter, CheckCircle2 } from 'lucide-react';
+import { Award, Filter, CheckCircle2, Clock } from 'lucide-react';
 import {
   Radar,
   RadarChart,
@@ -40,20 +40,20 @@ export const LearningOutcomesBar: React.FC<LearningOutcomesBarProps> = ({
   return (
     <section
       id="learning-outcomes-section"
-      className="border-b border-neutral-800 bg-neutral-950 py-12 sm:py-16"
+      className="border-b border-stone-200 bg-stone-50 py-12 sm:py-16"
     >
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
         <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 mb-8">
           <div>
-            <div className="inline-flex items-center gap-1.5 text-xs font-bold uppercase tracking-widest text-blue-500 mb-1">
+            <div className="inline-flex items-center gap-1.5 text-sm font-semibold text-teal-800 mb-1">
               <Award className="h-3.5 w-3.5" />
               Eindkwalificaties & Toetsing
             </div>
-            <h2 id="learning-outcomes-heading" className="text-2xl sm:text-3xl font-black tracking-tight text-white">
+            <h2 id="learning-outcomes-heading" className="text-3xl sm:text-4xl font-bold tracking-tight text-stone-900">
               Leeruitkomsten (LU1 t/m LU5)
             </h2>
-            <p className="text-sm text-neutral-400 mt-1 max-w-2xl font-light">
+            <p className="text-base text-stone-600 mt-1 max-w-2xl font-normal">
               De minor toetst op 5 integrale leeruitkomsten. Klik op een leeruitkomst om de sprints te filteren waarin deze wordt aangetoond.
             </p>
           </div>
@@ -64,13 +64,13 @@ export const LearningOutcomesBar: React.FC<LearningOutcomesBarProps> = ({
               id="filter-all-outcomes-btn"
               type="button"
               onClick={() => onSelectOutcome('ALL')}
-              className={`inline-flex items-center gap-1.5 rounded-xl px-3.5 py-2 text-xs sm:text-sm font-medium transition-all cursor-pointer ${
+              className={`inline-flex items-center gap-1.5 rounded-xl px-4 py-2.5 text-sm font-medium transition-all cursor-pointer ${
                 selectedOutcome === 'ALL'
-                  ? 'bg-neutral-900 text-white border border-neutral-700 shadow-sm'
-                  : 'bg-neutral-900/50 text-neutral-400 hover:text-neutral-200 border border-neutral-800'
+                  ? 'bg-white text-stone-900 border border-stone-300 shadow-sm'
+                  : 'bg-white text-stone-600 hover:text-stone-800 border border-stone-200'
               }`}
             >
-              <Filter className="h-3.5 w-3.5 text-neutral-400" />
+              <Filter className="h-3.5 w-3.5 text-stone-600" />
               <span>Toon alle sprints ({sprints.length})</span>
             </button>
           </div>
@@ -79,15 +79,22 @@ export const LearningOutcomesBar: React.FC<LearningOutcomesBarProps> = ({
         {/* Voortgang per leeruitkomst als radargrafiek */}
         <div
           id="learning-outcomes-chart"
-          className="mb-8 rounded-3xl border border-neutral-800 bg-neutral-900/40 p-4 sm:p-6"
+          className="mb-8 rounded-3xl border border-stone-200 bg-white p-4 sm:p-6"
         >
-          <div className="mb-3 flex items-center justify-between">
-            <h3 className="text-xs font-bold uppercase tracking-widest text-neutral-400">
+          <div className="mb-3 flex flex-col sm:flex-row sm:items-center justify-between gap-2">
+            <h3 className="text-xl font-bold text-stone-900">
               Voortgang per leeruitkomst
             </h3>
-            <span className="text-[11px] text-neutral-500">
-              Aantal sprints (van de {sprints.length}): behaald en ingediend
-            </span>
+            <ul className="flex flex-wrap items-center gap-x-5 gap-y-1 text-sm text-stone-700" aria-label="Legenda">
+              <li className="inline-flex items-center gap-2">
+                <span className="h-3 w-3 rounded-sm bg-emerald-500 border border-emerald-700" aria-hidden="true" />
+                Behaald (beoordeeld)
+              </li>
+              <li className="inline-flex items-center gap-2">
+                <span className="h-3 w-3 rounded-sm bg-amber-200 border border-dashed border-amber-700" aria-hidden="true" />
+                Ingediend (nog niet beoordeeld)
+              </li>
+            </ul>
           </div>
           <div className="h-64 sm:h-80 w-full">
             <ResponsiveContainer width="100%" height="100%">
@@ -100,18 +107,18 @@ export const LearningOutcomesBar: React.FC<LearningOutcomesBarProps> = ({
                   withSubmitted: getOutcomeCount(outcome.id) + getSubmittedCount(outcome.id),
                 }))}
               >
-                <PolarGrid stroke="#262626" />
-                <PolarAngleAxis dataKey="subject" tick={{ fill: '#a3a3a3', fontSize: 12, fontWeight: 700 }} />
+                <PolarGrid stroke="#d6d3d1" />
+                <PolarAngleAxis dataKey="subject" tick={{ fill: '#44403c', fontSize: 14, fontWeight: 700 }} />
                 <PolarRadiusAxis
                   angle={90}
                   domain={[0, sprints.length]}
-                  tick={{ fill: '#525252', fontSize: 10 }}
+                  tick={{ fill: '#78716c', fontSize: 12 }}
                   tickCount={sprints.length + 1}
                 />
                 <Radar
                   name="Ingediend"
                   dataKey="withSubmitted"
-                  stroke="#f59e0b"
+                  stroke="#b45309"
                   fill="#f59e0b"
                   fillOpacity={0.12}
                   strokeWidth={2}
@@ -120,19 +127,19 @@ export const LearningOutcomesBar: React.FC<LearningOutcomesBarProps> = ({
                 <Radar
                   name="Behaald"
                   dataKey="count"
-                  stroke="#3b82f6"
-                  fill="#3b82f6"
+                  stroke="#047857"
+                  fill="#10b981"
                   fillOpacity={0.35}
                   strokeWidth={2}
                 />
                 <Tooltip
                   contentStyle={{
-                    backgroundColor: '#0a0a0a',
-                    border: '1px solid #262626',
+                    backgroundColor: '#ffffff',
+                    border: '1px solid #d6d3d1',
                     borderRadius: '0.75rem',
-                    fontSize: '12px',
+                    fontSize: '14px',
                   }}
-                  labelStyle={{ color: '#fff', fontWeight: 700 }}
+                  labelStyle={{ color: '#1c1917', fontWeight: 700 }}
                   formatter={(value: number, name: string, item: { payload?: { submitted?: number } }) =>
                     name === 'Ingediend'
                       ? [`${item.payload?.submitted ?? 0} sprint(s), nog niet beoordeeld`, 'Ingediend']
@@ -158,8 +165,8 @@ export const LearningOutcomesBar: React.FC<LearningOutcomesBarProps> = ({
                 onClick={() => onSelectOutcome(isSelected ? 'ALL' : outcome.id)}
                 className={`relative flex flex-col justify-between rounded-3xl border p-5 sm:p-6 transition-all cursor-pointer group select-none shadow-sm ${
                   isSelected
-                    ? 'border-blue-500/80 bg-neutral-900 shadow-lg shadow-blue-900/15 ring-1 ring-blue-500/40'
-                    : 'border-neutral-800 bg-neutral-900/40 hover:border-neutral-700 hover:bg-neutral-900/80'
+                    ? 'border-teal-600 bg-white shadow-lg shadow-stone-900/5 ring-1 ring-teal-500/40'
+                    : 'border-stone-200 bg-white hover:border-stone-300 hover:bg-white'
                 }`}
               >
                 <div>
@@ -168,38 +175,48 @@ export const LearningOutcomesBar: React.FC<LearningOutcomesBarProps> = ({
                     <span
                       className={`inline-flex items-center gap-1 rounded-lg px-2.5 py-1 text-xs font-bold font-mono ${
                         isSelected
-                          ? 'bg-blue-500 text-neutral-950'
-                          : 'bg-neutral-950 text-blue-400 border border-blue-500/30 group-hover:border-blue-500/50'
+                          ? 'bg-teal-700 text-white'
+                          : 'bg-stone-50 text-teal-700 border border-teal-300 group-hover:border-teal-300'
                       }`}
                     >
                       {outcome.code}
                     </span>
 
-                    <span
-                      className="inline-flex items-center gap-1.5 text-[11px] font-medium text-neutral-400 bg-neutral-950 px-2.5 py-0.5 rounded-full border border-neutral-800"
-                      title={`${count} van de 8 sprints behaald, ${getSubmittedCount(outcome.id)} ingediend`}
-                    >
-                      <CheckCircle2 className="h-3 w-3 text-blue-400" />
-                      <span>{count}/8 behaald</span>
-                      {getSubmittedCount(outcome.id) > 0 && (
-                        <span className="text-amber-400">, {getSubmittedCount(outcome.id)} ingediend</span>
-                      )}
-                    </span>
                   </div>
 
                   {/* Title */}
-                  <h3 className="text-base font-bold text-white group-hover:text-blue-400 transition-colors tracking-tight">
+                  <h3 className="text-base font-bold text-stone-900 group-hover:text-teal-700 transition-colors tracking-tight">
                     {outcome.title}
                   </h3>
 
+                  {/* Voortgang: behaald en ingediend apart */}
+                  <div className="mt-3 flex flex-wrap gap-1.5 text-sm">
+                    <span
+                      className="inline-flex items-center gap-1 rounded-full bg-emerald-50 border border-emerald-300 px-2.5 py-0.5 font-semibold text-emerald-900"
+                      title={`${count} van de 8 sprints behaald`}
+                    >
+                      <CheckCircle2 className="h-3.5 w-3.5" aria-hidden="true" />
+                      {count}/8 behaald
+                    </span>
+                    {getSubmittedCount(outcome.id) > 0 && (
+                      <span
+                        className="inline-flex items-center gap-1 rounded-full bg-amber-50 border border-dashed border-amber-500 px-2.5 py-0.5 font-semibold text-amber-900"
+                        title="Ingediend, nog niet beoordeeld"
+                      >
+                        <Clock className="h-3.5 w-3.5" aria-hidden="true" />
+                        {getSubmittedCount(outcome.id)} ingediend
+                      </span>
+                    )}
+                  </div>
+
                   {/* Short Description */}
-                  <p className="mt-2 text-xs text-neutral-400 leading-relaxed font-light">
+                  <p className="mt-2 text-base text-stone-600 leading-relaxed font-normal">
                     {outcome.shortDesc}
                   </p>
                 </div>
 
                 {/* Bottom hint */}
-                <div className="mt-5 pt-3 border-t border-neutral-800/80 text-[11px] font-medium flex items-center justify-between text-neutral-500 group-hover:text-neutral-300 transition-colors">
+                <div className="mt-5 pt-3 border-t border-stone-200 text-xs font-medium flex items-center justify-between text-stone-600 group-hover:text-stone-700 transition-colors">
                   <span>{isSelected ? 'Filter actief' : 'Klik om te filteren'}</span>
                   <span className="text-xs">{isSelected ? '✕' : '→'}</span>
                 </div>
@@ -211,7 +228,7 @@ export const LearningOutcomesBar: React.FC<LearningOutcomesBarProps> = ({
         {selectedOutcome !== 'ALL' && (
           <div
             id="active-outcome-filter-banner"
-            className="mt-4 rounded-xl border border-blue-500/30 bg-blue-600/10 px-4 py-2.5 flex items-center justify-between text-xs sm:text-sm text-blue-300"
+            className="mt-4 rounded-xl border border-teal-300 bg-teal-50 px-4 py-2.5 flex items-center justify-between text-xs sm:text-sm text-teal-700"
           >
             <div className="flex items-center gap-2">
               <span className="font-bold">{selectedOutcome}:</span>
@@ -223,7 +240,7 @@ export const LearningOutcomesBar: React.FC<LearningOutcomesBarProps> = ({
             <button
               type="button"
               onClick={() => onSelectOutcome('ALL')}
-              className="text-xs font-semibold underline hover:text-white cursor-pointer ml-3 shrink-0"
+              className="text-xs font-semibold underline hover:text-stone-900 cursor-pointer ml-3 shrink-0"
             >
               Wis filter
             </button>

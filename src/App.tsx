@@ -7,7 +7,6 @@ import React, { useState, useEffect } from 'react';
 import { PortfolioData, Sprint, EvidenceLink, AboutMeData, LearningOutcomeId } from './types';
 import { INITIAL_PORTFOLIO_DATA } from './data/initialData';
 import { Navbar } from './components/Navbar';
-import { Scroll3DIntro } from './components/Scroll3DIntro';
 import { HeroSection } from './components/HeroSection';
 import { AboutMeSection } from './components/AboutMeSection';
 import { LearningOutcomesBar } from './components/LearningOutcomesBar';
@@ -147,7 +146,7 @@ export default function App() {
   };
 
   return (
-    <div className="min-h-screen bg-neutral-950 text-neutral-300 selection:bg-blue-600 selection:text-white font-sans antialiased">
+    <div className="min-h-screen bg-stone-50 text-stone-800 selection:bg-teal-200 selection:text-stone-900 font-sans antialiased">
       {/* Navigation Header */}
       <Navbar
         onResetData={handleResetData}
@@ -157,7 +156,6 @@ export default function App() {
 
       {/* Hero / Homepage Section */}
       <main id="portfolio-main-content">
-        <Scroll3DIntro />
         <HeroSection
           portfolioTitle={portfolioData.portfolioTitle}
           introText={portfolioData.introText}

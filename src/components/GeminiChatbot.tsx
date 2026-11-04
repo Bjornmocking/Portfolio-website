@@ -137,23 +137,23 @@ export const GeminiChatbot: React.FC<GeminiChatbotProps> = ({ onNavigate }) => {
   return (
     <section
       id="gemini-chatbot-section"
-      className="border-b border-neutral-800 bg-neutral-950/60 py-14 sm:py-18"
+      className="border-b border-stone-200 bg-stone-50 py-14 sm:py-18"
     >
       <div className="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8">
         <div className="mb-8 flex items-center gap-3">
-          <div className="flex h-10 w-10 items-center justify-center rounded-2xl border border-blue-500/40 bg-blue-500/10 text-blue-400">
+          <div className="flex h-10 w-10 items-center justify-center rounded-2xl border border-teal-300 bg-teal-50 text-teal-700">
             <MessageSquareText className="h-5 w-5" />
           </div>
           <div>
-            <div className="text-[11px] font-bold uppercase tracking-[0.2em] text-blue-400">
+            <div className="text-sm font-bold text-teal-700">
               Gemini AI Chatbot
             </div>
-            <h2 className="text-2xl font-black tracking-tight text-white">Mini chatbot</h2>
+            <h2 className="text-2xl font-bold tracking-tight text-stone-900">Mini chatbot</h2>
           </div>
         </div>
 
-        <div className="rounded-3xl border border-neutral-800 bg-neutral-900/60 p-4 sm:p-6 shadow-xl">
-          <div className="mb-4 rounded-xl border border-blue-500/30 bg-blue-500/10 px-3 py-2 text-xs text-blue-200">
+        <div className="rounded-3xl border border-stone-200 bg-white p-4 sm:p-6 shadow-xl">
+          <div className="mb-4 rounded-xl border border-teal-300 bg-teal-50 px-3 py-2 text-sm text-teal-700">
             Veilig verbonden via je eigen backend.
             {model && (
               <span className="ml-2">Model: {model}</span>
@@ -161,7 +161,7 @@ export const GeminiChatbot: React.FC<GeminiChatbotProps> = ({ onNavigate }) => {
           </div>
 
           {error && (
-            <div className="mb-4 flex items-center gap-2 rounded-xl border border-red-500/40 bg-red-500/10 px-3 py-2 text-sm text-red-200">
+            <div className="mb-4 flex items-center gap-2 rounded-xl border border-red-300 bg-red-50 px-3 py-2 text-sm text-red-800">
               <AlertCircle className="h-4 w-4" />
               <span>{error}</span>
             </div>
@@ -169,7 +169,7 @@ export const GeminiChatbot: React.FC<GeminiChatbotProps> = ({ onNavigate }) => {
 
           <div
             ref={messagesContainerRef}
-            className="mb-4 max-h-80 space-y-3 overflow-y-auto rounded-2xl border border-neutral-800 bg-neutral-950/60 p-4"
+            className="mb-4 max-h-80 space-y-3 overflow-y-auto rounded-2xl border border-stone-200 bg-stone-50 p-4"
           >
             {messages.map((message, index) => (
               <div
@@ -179,8 +179,8 @@ export const GeminiChatbot: React.FC<GeminiChatbotProps> = ({ onNavigate }) => {
                 <div
                   className={`max-w-[85%] rounded-2xl px-3 py-2 text-sm leading-relaxed ${
                     message.role === 'user'
-                      ? 'bg-blue-600 text-white'
-                      : 'border border-neutral-700 bg-neutral-900 text-neutral-200'
+                      ? 'bg-teal-700 text-white'
+                      : 'border border-stone-300 bg-white text-stone-800'
                   }`}
                 >
                   {message.text}
@@ -195,12 +195,12 @@ export const GeminiChatbot: React.FC<GeminiChatbotProps> = ({ onNavigate }) => {
               value={prompt}
               onChange={(e) => setPrompt(e.target.value)}
               placeholder="Vraag iets over Bjorns portfolio..."
-              className="flex-1 rounded-xl border border-neutral-800 bg-neutral-950 px-3.5 py-2.5 text-sm text-neutral-100 placeholder-neutral-600 focus:border-blue-500 focus:outline-none"
+              className="flex-1 rounded-xl border border-stone-200 bg-stone-50 px-3.5 py-2.5 text-sm text-stone-900 placeholder-stone-400 focus:border-teal-600 focus:outline-none"
             />
             <button
               type="submit"
               disabled={loading}
-              className="inline-flex items-center justify-center gap-2 rounded-xl bg-white px-4 py-2.5 text-xs font-bold uppercase tracking-wider text-neutral-950 transition hover:bg-neutral-200 disabled:cursor-not-allowed disabled:opacity-60"
+              className="inline-flex items-center justify-center gap-2 rounded-xl bg-teal-700 px-4 py-2.5 text-sm font-bold text-white transition hover:bg-teal-800 disabled:cursor-not-allowed disabled:opacity-60"
             >
               {loading ? (
                 <>

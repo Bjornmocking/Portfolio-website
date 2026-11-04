@@ -34,26 +34,26 @@ export const SprintList: React.FC<SprintListProps> = ({
   };
 
   return (
-    <section id="sprints-section" className="py-14 sm:py-20 relative bg-neutral-950">
+    <section id="sprints-section" className="py-14 sm:py-20 relative bg-stone-50">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
         <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 mb-8">
           <div>
-            <div className="inline-flex items-center gap-1.5 text-xs font-bold uppercase tracking-widest text-blue-500 mb-1">
+            <div className="inline-flex items-center gap-1.5 text-sm font-semibold text-teal-800 mb-1">
               <Calendar className="h-3.5 w-3.5" />
               Chronologisch Traject
             </div>
-            <h2 id="sprints-heading" className="text-2xl sm:text-3xl font-black tracking-tight text-white">
+            <h2 id="sprints-heading" className="text-3xl sm:text-4xl font-bold tracking-tight text-stone-900">
               Sprints 1 t/m 8
             </h2>
-            <p className="text-sm text-neutral-400 mt-1 max-w-2xl font-light">
+            <p className="text-base text-stone-600 mt-1 max-w-2xl font-normal">
               Chronologisch overzicht van alle 8 sprints van elk twee weken. Per sprint vind je de verrichte onderzoeken, gebouwde features, reflecties en bewijsstukken.
             </p>
           </div>
 
           {/* Quick Sprint Jump Navigation */}
           <div className="flex flex-wrap items-center gap-1.5">
-            <span className="text-[10px] uppercase font-bold tracking-widest text-neutral-500 mr-2 hidden sm:inline">
+            <span className="text-sm font-semibold text-stone-600 mr-2 hidden sm:inline">
               Spring naar:
             </span>
             {sprints.map((s) => (
@@ -61,7 +61,7 @@ export const SprintList: React.FC<SprintListProps> = ({
                 key={s.number}
                 type="button"
                 onClick={() => scrollToSprint(s.number)}
-                className="flex h-8 w-8 items-center justify-center rounded-xl border border-neutral-800 bg-neutral-900/60 text-xs font-bold text-neutral-400 hover:border-blue-500/40 hover:bg-blue-600/10 hover:text-blue-400 transition-all cursor-pointer"
+                className="flex h-11 w-11 items-center justify-center rounded-xl border border-stone-300 bg-white text-base font-bold text-stone-600 hover:border-teal-600 hover:bg-teal-50 hover:text-teal-800 transition-all cursor-pointer"
                 title={`Spring naar Sprint ${s.number}`}
               >
                 {s.number}
@@ -72,10 +72,10 @@ export const SprintList: React.FC<SprintListProps> = ({
 
         {/* Chronological List of Sprints */}
         {displayedSprints.length === 0 ? (
-          <div className="rounded-3xl border border-neutral-800 bg-neutral-900/40 p-12 text-center">
-            <Filter className="mx-auto h-8 w-8 text-neutral-600 mb-3" />
-            <h3 className="text-base font-bold text-white">Geen sprints gevonden voor dit filter</h3>
-            <p className="text-sm text-neutral-400 mt-1">
+          <div className="rounded-3xl border border-stone-200 bg-white p-12 text-center">
+            <Filter className="mx-auto h-8 w-8 text-stone-500 mb-3" />
+            <h3 className="text-base font-bold text-stone-900">Geen sprints gevonden voor dit filter</h3>
+            <p className="text-base text-stone-600 mt-1">
               Er zijn momenteel geen sprints gekoppeld aan de geselecteerde leeruitkomst.
             </p>
           </div>
