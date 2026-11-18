@@ -11,8 +11,19 @@ export interface LearningOutcome {
 
 export type StoryType = 'research' | 'user' | 'learning';
 
+/** Grouped bar chart (before and after) shown in the "Lees meer" modal. */
+export interface ShareChart {
+  title: string;
+  caption: string;
+  beforeLabel: string;
+  afterLabel: string;
+  rows: { label: string; before: number; after: number }[];
+}
+
 export interface Story {
   id: string;
+  /** Fixed anchor so the story can be linked as /#anchor. */
+  anchor?: string;
   type: StoryType;
   title: string;
   summary: string;
@@ -22,6 +33,11 @@ export interface Story {
   flow?: string[];
   /** Leeruitkomsten waar deze story bij hoort, getoond als labels. */
   outcomes?: LearningOutcomeId[];
+  /** Label before the outcomes, for stories that only "fit" outcomes (not submitted, not assessed). */
+  outcomesPrefix?: string;
+  /** Short text for a placeholder where screenshots will come. */
+  screenshotPlaceholder?: string;
+  chart?: ShareChart;
 }
 
 export type EvidenceType = 'app' | 'document' | 'video' | 'code' | 'other';
@@ -59,6 +75,10 @@ export interface Sprint {
   demonstratedOutcomes: LearningOutcomeId[];
   /** Ingediend voor beoordeling, maar nog niet beoordeeld. Telt nergens als behaald. */
   submittedOutcomes?: LearningOutcomeId[];
+  /** Past bij deze leeruitkomsten, maar nog niet ingediend en niet beoordeeld. */
+  fittingOutcomes?: LearningOutcomeId[];
+  /** Gepland maar niet gedaan en verplaatst. */
+  adjustment?: { title: string; text: string; outcomes?: LearningOutcomeId[] };
   /** Korte feitelijke toelichting bij de beoordeling van deze sprint. */
   assessmentNote?: string;
   outcomeNotes?: Partial<Record<LearningOutcomeId, string>>;

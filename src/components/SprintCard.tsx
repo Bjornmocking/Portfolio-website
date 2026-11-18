@@ -22,6 +22,8 @@ import {
   Lightbulb,
   MessageSquare,
   Clock,
+  Image as ImageIcon,
+  Compass,
 } from 'lucide-react';
 
 interface SprintCardProps {
@@ -156,7 +158,8 @@ export const SprintCard: React.FC<SprintCardProps> = ({
               </span>
               <span className="text-sm text-stone-600">
                 ({sprint.demonstratedOutcomes.length} behaald
-                {(sprint.submittedOutcomes?.length ?? 0) > 0 && `, ${sprint.submittedOutcomes!.length} ingediend`})
+                {(sprint.submittedOutcomes?.length ?? 0) > 0 && `, ${sprint.submittedOutcomes!.length} ingediend`}
+                {(sprint.fittingOutcomes?.length ?? 0) > 0 && `, past bij ${sprint.fittingOutcomes!.join(', ')}`})
               </span>
             </div>
 
@@ -178,6 +181,8 @@ export const SprintCard: React.FC<SprintCardProps> = ({
             {LEARNING_OUTCOMES.map((lo) => {
               const isDemonstrated = sprint.demonstratedOutcomes.includes(lo.id);
               const isSubmitted = !isDemonstrated && (sprint.submittedOutcomes ?? []).includes(lo.id);
+              const isFitting =
+                !isDemonstrated && !isSubmitted && (sprint.fittingOutcomes ?? []).includes(lo.id);
               return (
                 <div
                   key={lo.id}
@@ -187,6 +192,8 @@ export const SprintCard: React.FC<SprintCardProps> = ({
                       ? 'bg-emerald-50 border border-emerald-300 text-emerald-900'
                       : isSubmitted
                       ? 'bg-amber-50 border border-dashed border-amber-500 text-amber-900'
+                      : isFitting
+                      ? 'bg-sky-50 border border-sky-300 text-sky-900'
                       : 'bg-white border border-stone-200 text-stone-500'
                   }`}
                 >
@@ -194,6 +201,8 @@ export const SprintCard: React.FC<SprintCardProps> = ({
                     <CheckCircle2 className="h-4 w-4 shrink-0 text-emerald-700" />
                   ) : isSubmitted ? (
                     <Clock className="h-4 w-4 shrink-0 text-amber-800" />
+                  ) : isFitting ? (
+                    <Compass className="h-4 w-4 shrink-0 text-sky-800" />
                   ) : (
                     <div className="w-2 h-2 shrink-0 rounded-full bg-stone-300" aria-hidden="true" />
                   )}
@@ -201,6 +210,7 @@ export const SprintCard: React.FC<SprintCardProps> = ({
                     <span className="font-bold">{lo.code}</span> <span className="font-medium">{lo.title}</span>
                     {isDemonstrated && <span className="font-bold"> (Behaald)</span>}
                     {isSubmitted && <span className="font-bold"> (Ingediend)</span>}
+                    {isFitting && <span className="font-bold"> (Past bij)</span>}
                   </span>
                 </div>
               );
@@ -305,7 +315,8 @@ export const SprintCard: React.FC<SprintCardProps> = ({
                 return (
                   <div
                     key={story.id}
-                    className="rounded-2xl border border-stone-200 bg-white p-5 sm:p-6 flex flex-col justify-between hover:border-teal-400 transition-colors shadow-sm"
+                    id={story.anchor}
+                    className="scroll-mt-24 rounded-2xl border border-stone-200 bg-white p-5 sm:p-6 flex flex-col justify-between hover:border-teal-400 transition-colors shadow-sm"
                   >
                     <div>
                       {/* Story Type Tag */}
@@ -337,11 +348,21 @@ export const SprintCard: React.FC<SprintCardProps> = ({
                       <p className="mt-3 text-lg text-stone-700 leading-relaxed whitespace-pre-line">
                         {story.summary}
                       </p>
+
+                      {story.screenshotPlaceholder && (
+                        <div className="mt-4 flex items-center gap-3 rounded-xl border border-dashed border-stone-300 bg-stone-50 px-4 py-6 text-stone-600">
+                          <ImageIcon className="h-5 w-5 shrink-0" aria-hidden="true" />
+                          <span className="text-base">{story.screenshotPlaceholder}</span>
+                        </div>
+                      )}
                     </div>
 
                     <div className="mt-auto">
                     {story.outcomes && story.outcomes.length > 0 && (
-                      <div className="mt-4 flex flex-wrap gap-1.5">
+                      <div className="mt-4 flex flex-wrap items-center gap-1.5">
+                        {story.outcomesPrefix && (
+                          <span className="text-sm text-stone-600">{story.outcomesPrefix}</span>
+                        )}
                         {story.outcomes.map((id) => (
                           <span
                             key={id}
@@ -370,6 +391,26 @@ export const SprintCard: React.FC<SprintCardProps> = ({
             </div>
           )}
         </div>
+
+        {/* 2b. Bijgestuurd: gepland maar niet gedaan */}
+        {sprint.adjustment && (
+          <div id={`sprint-${sprint.number}-adjustment`} className="rounded-2xl border border-stone-200 bg-stone-50 p-5 sm:p-6">
+            <div className="flex flex-wrap items-center gap-2 mb-2">
+              <h4 className="text-stone-900 text-xl font-bold">{sprint.adjustment.title}</h4>
+              {sprint.adjustment.outcomes && sprint.adjustment.outcomes.length > 0 && (
+                <span className="flex items-center gap-1.5">
+                  <span className="text-sm text-stone-600">Past bij</span>
+                  {sprint.adjustment.outcomes.map((id) => (
+                    <span key={id} className="rounded-md bg-stone-100 px-2 py-0.5 text-sm font-semibold text-stone-700">
+                      {id}
+                    </span>
+                  ))}
+                </span>
+              )}
+            </div>
+            <p className="text-base text-stone-700 leading-relaxed">{sprint.adjustment.text}</p>
+          </div>
+        )}
 
         {/* 3. Evidence Links (Bewijsstukken) */}
         <div id={`sprint-${sprint.number}-evidence`} className="space-y-4 pt-2">

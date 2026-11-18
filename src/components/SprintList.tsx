@@ -23,7 +23,8 @@ export const SprintList: React.FC<SprintListProps> = ({
       : sprints.filter(
           (s) =>
             s.demonstratedOutcomes.includes(selectedOutcome) ||
-            (s.submittedOutcomes ?? []).includes(selectedOutcome)
+            (s.submittedOutcomes ?? []).includes(selectedOutcome) ||
+            (s.fittingOutcomes ?? []).includes(selectedOutcome)
         );
 
   const scrollToSprint = (sprintNumber: number) => {

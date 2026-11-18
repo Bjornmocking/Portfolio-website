@@ -1,7 +1,7 @@
 import React from 'react';
 import { LearningOutcome, LearningOutcomeId, Sprint } from '../types';
 import { LEARNING_OUTCOMES } from '../data/initialData';
-import { Award, Filter, CheckCircle2, Clock } from 'lucide-react';
+import { Award, Filter, CheckCircle2, Clock, Compass } from 'lucide-react';
 import {
   Radar,
   RadarChart,
@@ -34,6 +34,16 @@ export const LearningOutcomesBar: React.FC<LearningOutcomesBarProps> = ({
       (s) =>
         !s.demonstratedOutcomes.includes(outcomeId) &&
         (s.submittedOutcomes ?? []).includes(outcomeId)
+    ).length;
+  };
+
+  // Past bij: nog niet ingediend en niet beoordeeld. Telt nergens als behaald.
+  const getFittingCount = (outcomeId: LearningOutcomeId) => {
+    return sprints.filter(
+      (s) =>
+        !s.demonstratedOutcomes.includes(outcomeId) &&
+        !(s.submittedOutcomes ?? []).includes(outcomeId) &&
+        (s.fittingOutcomes ?? []).includes(outcomeId)
     ).length;
   };
 
@@ -207,6 +217,15 @@ export const LearningOutcomesBar: React.FC<LearningOutcomesBarProps> = ({
                         {getSubmittedCount(outcome.id)} ingediend
                       </span>
                     )}
+                    {getFittingCount(outcome.id) > 0 && (
+                      <span
+                        className="inline-flex items-center gap-1 rounded-full bg-sky-50 border border-sky-300 px-2.5 py-0.5 font-semibold text-sky-900"
+                        title="Past bij een story, nog niet ingediend en niet beoordeeld"
+                      >
+                        <Compass className="h-3.5 w-3.5" aria-hidden="true" />
+                        past bij {getFittingCount(outcome.id)} sprint
+                      </span>
+                    )}
                   </div>
 
                   {/* Short Description */}
@@ -234,7 +253,7 @@ export const LearningOutcomesBar: React.FC<LearningOutcomesBarProps> = ({
               <span className="font-bold">{selectedOutcome}:</span>
               <span>
                 Gefilterd op {LEARNING_OUTCOMES.find((o) => o.id === selectedOutcome)?.title} (
-                {getOutcomeCount(selectedOutcome)} behaald, {getSubmittedCount(selectedOutcome)} ingediend)
+                {getOutcomeCount(selectedOutcome)} behaald, {getSubmittedCount(selectedOutcome)} ingediend, past bij {getFittingCount(selectedOutcome)})
               </span>
             </div>
             <button

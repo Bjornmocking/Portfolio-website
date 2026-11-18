@@ -1,6 +1,7 @@
 import React from 'react';
 import { Story } from '../types';
-import { X, BookOpen, ArrowRight } from 'lucide-react';
+import { X, BookOpen, ArrowRight, Image as ImageIcon } from 'lucide-react';
+import { ShareBarChart } from './ShareBarChart';
 
 interface StoryDetailModalProps {
   story: Story | null;
@@ -56,7 +57,7 @@ export const StoryDetailModal: React.FC<StoryDetailModalProps> = ({ story, onClo
         <div className="overflow-y-auto p-6 sm:p-7">
           {story.outcomes && story.outcomes.length > 0 && (
             <div className="mb-4 flex flex-wrap items-center gap-1.5">
-              <span className="text-sm text-stone-600">Leeruitkomsten:</span>
+              <span className="text-sm text-stone-600">{story.outcomesPrefix ?? 'Leeruitkomsten:'}</span>
               {story.outcomes.map((id) => (
                 <span
                   key={id}
@@ -84,9 +85,16 @@ export const StoryDetailModal: React.FC<StoryDetailModalProps> = ({ story, onClo
               ))}
             </div>
           )}
+          {story.screenshotPlaceholder && (
+            <div className="mb-5 flex items-center gap-3 rounded-xl border border-dashed border-stone-300 bg-stone-50 px-4 py-6 text-stone-600">
+              <ImageIcon className="h-5 w-5 shrink-0" aria-hidden="true" />
+              <span className="text-base">{story.screenshotPlaceholder}</span>
+            </div>
+          )}
           <p className="text-base text-stone-700 leading-relaxed font-normal whitespace-pre-line">
             {story.details || story.summary}
           </p>
+          {story.chart && <ShareBarChart chart={story.chart} />}
         </div>
 
         <div className="flex items-center justify-end border-t border-stone-200 p-4 sm:p-5">

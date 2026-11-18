@@ -18,7 +18,7 @@ import { QuickAddLinkModal } from './components/QuickAddLinkModal';
 import { GeminiChatbot } from './components/GeminiChatbot';
 import { createClient } from '@supabase/supabase-js';
 
-const STORAGE_KEY = 'futureproof_ai_portfolio_data_v5';
+const STORAGE_KEY = 'futureproof_ai_portfolio_data_v6';
 const supabaseUrl = import.meta.env.VITE_SUPABASE_URL as string | undefined;
 const supabaseAnonKey = import.meta.env.VITE_SUPABASE_ANON_KEY as string | undefined;
 
@@ -66,6 +66,21 @@ export default function App() {
     };
 
     checkConnection();
+  }, []);
+
+  // Scroll to a story anchor such as /#tokens, also after the data has rendered.
+  useEffect(() => {
+    const scrollToHash = () => {
+      const id = decodeURIComponent(window.location.hash.slice(1));
+      if (!id) return;
+      document.getElementById(id)?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    };
+    const timer = window.setTimeout(scrollToHash, 300);
+    window.addEventListener('hashchange', scrollToHash);
+    return () => {
+      window.clearTimeout(timer);
+      window.removeEventListener('hashchange', scrollToHash);
+    };
   }, []);
 
   // UI state

@@ -440,13 +440,69 @@ export const INITIAL_PORTFOLIO_DATA: PortfolioData = {
     {
       id: 5,
       number: 5,
-      title: 'Sprint 5: Nog niet gestart',
-      period: 'Week 9 – Week 10',
-      theme: 'Wordt ingevuld zodra deze sprint van start gaat.',
-      summary: 'Deze sprint moet nog beginnen. Er is nog niets om te laten zien.',
-      stories: [],
-      evidenceLinks: [],
+      title: 'Sprint 5: Zoeklijst-app voor een bedrijfsmakelaar en slimmer omgaan met tokens',
+      period: '4 t/m 18 november 2026',
+      theme: 'Een zoeklijst-app voor een bedrijfsmakelaar in Utrecht, en onderzoek naar hoe ik tokens bespaar zonder dat de kwaliteit omlaag gaat.',
+      summary:
+        'Deze sprint kreeg de zoeklijst-app voorrang. Daarnaast heb ik onderzocht en uitgeprobeerd hoe ik minder tokens gebruik. Een paar geplande onderdelen heb ik verplaatst, zie het blok Bijgestuurd.',
+      stories: [
+        {
+          id: 's5-story-1',
+          anchor: 'zoeklijst-app',
+          type: 'user',
+          title: 'Zoeklijst-app voor een bedrijfsmakelaar',
+          outcomes: ['LU2', 'LU4'],
+          outcomesPrefix: 'Past bij',
+          summary:
+            'Als makelaar bij een bedrijfsmakelaar in Utrecht, wil ik bij een vrijgekomen pand direct zien welke zoekende bedrijven erbij passen, met een matchscore, zodat ik sneller de juiste klant bel en geen kansen op de zoeklijst mis.\n\nStatus: testfase. De makelaar en zijn collega testen deze week, hun feedback verwerk ik in sprint 6.',
+          screenshotPlaceholder: 'Screenshots volgen. Ik lever ze later aan, met verzonnen data.',
+          details:
+            'Probleem: de zoeklijst in Excel, het CRM en Mailchimp liepen door elkaar.\n\nWat er staat:\n• Een app met zoekers en panden en een matchscore van 0 tot 100.\n• Bestemming is een harde eis. Daarna telt oppervlakte 35 punten, budget 35 en gebied 30, met een marge per kenmerk.\n• De lijst staat op kansscore: de matchscore keer een factor voor hoe recent er contact was.\n• Een zoekformulier waarin klanten zelf hun wensen invullen. De makelaar beoordeelt het eerst.\n• Een overzicht van nieuwe zoekers die nog in Mailchimp moeten.\n• Een klantkaart met status en contactmomenten.\n• Inloggen per gebruiker.\n\nTechniek, in één zin:\n• Next.js: het framework waarmee de app als website is gebouwd.\n• Vercel: de dienst die de app online zet.\n• Supabase (Postgres) in een EU-regio (Frankfurt): de database en het inloggen, met de gegevens in Frankfurt.\n• Row Level Security (RLS): een regel in de database waardoor een gebruiker alleen de gegevens van het eigen kantoor ziet, aan op alle tabellen.\n• Database-functies (RPC): kleine functies in de database die het openbare formulier aanroept, zodat dat formulier niet zelf in de tabellen schrijft.\n• PLAN.md: het plan waarop Claude Code de app in fases bouwde.\n\nHoe: ik deed de intake met de makelaar via een vriend die er werkt. De matchregels hebben we samen afgestemd, daarna is de app gebouwd. Claude Code schreef de code, ik was opdrachtgever, product owner en tester.\n\nEerlijk erbij:\n• De controle op gelekte wachtwoorden staat nog uit.\n• De AVG afwegingen staan gepland voor sprint 6: verwerkersovereenkomst, bewaartermijn, Mailchimp en welke data met AI in aanraking komt.\n\nDe klant blijft anoniem en er staan geen echte klantgegevens en geen link naar de live app op deze site.',
+        },
+        {
+          id: 's5-story-2',
+          anchor: 'tokens',
+          type: 'learning',
+          title: 'Slimmer omgaan met tokens',
+          outcomes: ['LU5', 'LU4'],
+          outcomesPrefix: 'Past bij',
+          summary:
+            'Als student die dagelijks met Claude en Claude Code bouwt, wil ik onderzoeken en uitproberen hoe ik tokens bespaar zonder dat de kwaliteit omlaag gaat, zodat ik binnen mijn limieten meer kan bouwen en per taak bewust kies welk model en welke werkwijze past.\n\nEerste resultaat: Opus ging van 96% naar 57% van mijn tokens. Het is nog maar een eerste resultaat, zie de beperkingen bij Lees meer.',
+          details:
+            'Wat ik deed: eerst uitgezocht wat technisch echt kan.\n\nIn Claude chat:\n• Een vaste voorkeur dat Claude waarschuwt bij een lange chat en meteen een overdracht schrijft.\n• Claude meldt wanneer Sonnet of Haiku volstaat.\n• Simpele deeltaken laat Claude doen door lichtere modellen.\n\nIn Claude Code:\n• Een globale CLAUDE.md met mijn voorkeuren.\n• Een /handoff commando voor een overdracht.\n• De modelinstelling opusplan: Opus plant, Sonnet voert uit.\n\nIk heb gemeten met ccusage.\n\nResultaat (ccusage, geschat tegen API-prijzen), 20 oktober tot 10 november (15 dagen) tegenover 11 tot 16 november (4 actieve dagen):\n• Opus: 96% naar 57% van mijn tokens (op 16 november 21%).\n• Sonnet: 4% naar 38%.\n• Haiku: 0% naar 2%.\n• Fable: 0% naar 4%.\n• Tokens per actieve dag: 97 naar 70 miljoen.\n• Geschatte kosten per actieve dag: $33,47 naar $23,68.\n• Kosten per miljoen tokens: gelijk ($0,34), doordat op 16 november een dag met het duurdere Fable model bijkwam. Zonder die dag ongeveer 6% lager, ruim 5 dollar over vier dagen.\n\nBeperkingen:\n• Maar vier actieve dagen.\n• Geen schone nulmeting: Sonnet en Haiku kwamen al eerder voor.\n• Alleen schattingen.\n• De waarschuwing in Claude chat is niet te meten.\n\nConclusie: de winst zit vooral in gedrag. Het is een eerste resultaat.',
+          chart: {
+            title: 'Aandeel per model in mijn tokens',
+            caption:
+              'Bron: ccusage, geschat tegen API-prijzen. Voor: 20 oktober tot 10 november (15 dagen). Na: 11 tot 16 november (4 actieve dagen). Percentages zijn afgerond, daarom telt Na op tot 101%.',
+            beforeLabel: 'Voor (20 okt tot 10 nov)',
+            afterLabel: 'Na (11 tot 16 nov)',
+            rows: [
+              { label: 'Opus', before: 96, after: 57 },
+              { label: 'Sonnet', before: 4, after: 38 },
+              { label: 'Haiku', before: 0, after: 2 },
+              { label: 'Fable', before: 0, after: 4 },
+            ],
+          },
+        },
+      ],
+      evidenceLinks: [
+        {
+          id: 's5-ev-1',
+          title: 'Slimmer omgaan met tokens: wat ik deed en wat het opleverde',
+          url: 'https://claude.ai/artifact/XL6Auz9c9yPhv1Fx7bfR14',
+          type: 'document',
+          description: 'Het verslag bij de learning story over tokens.',
+        },
+      ],
       demonstratedOutcomes: [],
+      fittingOutcomes: ['LU2', 'LU4', 'LU5'],
+      adjustment: {
+        title: 'Bijgestuurd',
+        text: 'Gepland maar niet gedaan en verplaatst: onderzoek met echte belvragen voor de klantchatbot, een biastest en een MCP-server voor Trading 212. Reden: de zoeklijst-app kreeg voorrang. De onboarding-assistent voor Justlease is bewust geparkeerd en staat stil.',
+        outcomes: ['LU5'],
+      },
+      assessmentNote:
+        'Deze sprint is nog niet ingediend of beoordeeld. Bij de stories staat bij welke leeruitkomsten ze passen.',
     },
     {
       id: 6,

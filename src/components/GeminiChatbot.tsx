@@ -27,6 +27,8 @@ const NAVIGATION_LABELS: Record<string, string> = {
   'sprint-card-6': 'Sprint 6',
   'sprint-card-7': 'Sprint 7',
   'sprint-card-8': 'Sprint 8',
+  'zoeklijst-app': 'de zoeklijst-app',
+  tokens: 'de story over tokens',
 };
 
 export const GeminiChatbot: React.FC<GeminiChatbotProps> = ({ onNavigate }) => {
