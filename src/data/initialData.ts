@@ -484,8 +484,32 @@ export const INITIAL_PORTFOLIO_DATA: PortfolioData = {
             ],
           },
         },
+        {
+          id: 's5-story-3',
+          anchor: 'dashboard',
+          type: 'user',
+          title: 'Persoonlijk dashboard uitgebreid',
+          summary:
+            'Als gebruiker van mijn eigen dashboard, wil ik mijn geld, training, school en taken op één plek zien en elke dag een briefing met een dagbedrag krijgen, zodat ik snel weet wat ik vandaag kan uitgeven en moet doen en minder losse apps nodig heb.',
+          details:
+            'Acceptatiecriteria:\n1. Tab Geld uitgebreid met een maandoverzicht (Kas en Budget), vaste lasten, uitschieters, een stortadvies met opbouw en een aparte categorie voor contant geld.\n2. Gym en planning verbeterd: kaarten en volgorde slepen, verhoging in verhouding, totaalgewicht met het gewicht per kant, en niet afgevinkte sets blijven bewaard na herladen, ook offline.\n3. Nieuwe tabs voor school, taken en een zondagroutine, naast de bestaande tabs.\n4. Tab Vandaag met een briefingkaart met dagbedrag: als het salaris nog niet binnen is geldt de mediaan van de laatste vier salarissen, de reservering voor beleggen gaat eraf en een uitklap toont hoe het bedrag is berekend.\n5. Bewust opgeschoond: de Agenda-tab en de Whoop-pagina staan niet meer in de navigatie.\n\nKwaliteitscriteria:\n1. Elk bedrag is uitlegbaar: stortadvies en dagbedrag hebben een uitklapbare berekening, zodat ik zie waarom een getal zo is.\n2. Per onderdeel een eigen testset, onder andere geld, bank, chat, taken, school, training en zondag.\n3. Elke wijziging eerst op een eigen branch met een preview, daarna pas naar main.\n4. Eerlijk: ik ben zelf opdrachtgever en gebruiker, de app is niet door anderen getest en staat achter login.\n\nDe app staat achter login en de repository is privé. Er staan daarom geen schermafbeeldingen op deze site.',
+        },
       ],
       evidenceLinks: [
+        {
+          id: 's5-ev-4',
+          title: 'Live: bjorn-dashboard',
+          url: 'https://bjorn-dashboard.vercel.app',
+          type: 'app',
+          description: 'Persoonlijk dashboard. Achter login, dus alleen voor mij te openen.',
+        },
+        {
+          id: 's5-ev-5',
+          title: 'GitHub: bjorn-dashboard',
+          url: 'https://github.com/Bjornmocking/bjorn-dashboard',
+          type: 'code',
+          description: 'Broncode van het dashboard. Privé repository.',
+        },
         {
           id: 's5-ev-2',
           title: 'Zoeklijst-app: zoekformulier voor klanten',
