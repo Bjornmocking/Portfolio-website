@@ -18,7 +18,7 @@ import { QuickAddLinkModal } from './components/QuickAddLinkModal';
 import { GeminiChatbot } from './components/GeminiChatbot';
 import { createClient } from '@supabase/supabase-js';
 
-const STORAGE_KEY = 'futureproof_ai_portfolio_data_v6';
+const STORAGE_KEY = 'futureproof_ai_portfolio_data_v7';
 const supabaseUrl = import.meta.env.VITE_SUPABASE_URL as string | undefined;
 const supabaseAnonKey = import.meta.env.VITE_SUPABASE_ANON_KEY as string | undefined;
 
