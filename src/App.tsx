@@ -70,16 +70,18 @@ export default function App() {
 
   // Scroll to a story anchor such as /#tokens, also after the data has rendered.
   useEffect(() => {
-    const scrollToHash = () => {
+    const scrollToHash = (behavior: ScrollBehavior) => {
       const id = decodeURIComponent(window.location.hash.slice(1));
       if (!id) return;
-      document.getElementById(id)?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      document.getElementById(id)?.scrollIntoView({ behavior, block: 'start' });
     };
-    const timer = window.setTimeout(scrollToHash, 300);
-    window.addEventListener('hashchange', scrollToHash);
+    // On load jump straight to the anchor (a long smooth scroll can get interrupted).
+    const timer = window.setTimeout(() => scrollToHash('instant'), 300);
+    const onHashChange = () => scrollToHash('smooth');
+    window.addEventListener('hashchange', onHashChange);
     return () => {
       window.clearTimeout(timer);
-      window.removeEventListener('hashchange', scrollToHash);
+      window.removeEventListener('hashchange', onHashChange);
     };
   }, []);
 

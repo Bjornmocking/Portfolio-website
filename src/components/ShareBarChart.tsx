@@ -8,11 +8,7 @@ interface ShareBarChartProps {
 
 // Simple grouped bar chart: share per model before and after.
 export const ShareBarChart: React.FC<ShareBarChartProps> = ({ chart }) => {
-  const data = chart.rows.map((row) => ({
-    label: row.label,
-    [chart.beforeLabel]: row.before,
-    [chart.afterLabel]: row.after,
-  }));
+  const data = chart.rows;
 
   return (
     <figure className="mt-6 rounded-2xl border border-stone-200 bg-stone-50 p-4">
@@ -31,8 +27,8 @@ export const ShareBarChart: React.FC<ShareBarChartProps> = ({ chart }) => {
             />
             <Tooltip formatter={(value: number) => `${value}%`} />
             <Legend wrapperStyle={{ fontSize: 13 }} />
-            <Bar dataKey={chart.beforeLabel} fill="#a8a29e" radius={[4, 4, 0, 0]} />
-            <Bar dataKey={chart.afterLabel} fill="#0f766e" radius={[4, 4, 0, 0]} />
+            <Bar dataKey="before" name={chart.beforeLabel} fill="#a8a29e" radius={[4, 4, 0, 0]} isAnimationActive={false} />
+            <Bar dataKey="after" name={chart.afterLabel} fill="#0f766e" radius={[4, 4, 0, 0]} isAnimationActive={false} />
           </BarChart>
         </ResponsiveContainer>
       </div>
