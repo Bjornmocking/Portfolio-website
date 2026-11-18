@@ -457,7 +457,7 @@ export const INITIAL_PORTFOLIO_DATA: PortfolioData = {
             'Als makelaar bij een bedrijfsmakelaar in Utrecht, wil ik bij een vrijgekomen pand direct zien welke zoekende bedrijven erbij passen, met een matchscore, zodat ik sneller de juiste klant bel en geen kansen op de zoeklijst mis.\n\nStatus: testfase. De makelaar en zijn collega testen deze week, hun feedback verwerk ik in sprint 6.',
           screenshotPlaceholder: 'Screenshots volgen. Ik lever ze later aan, met verzonnen data.',
           details:
-            'Probleem: de zoeklijst in Excel, het CRM en Mailchimp liepen door elkaar.\n\nWat er staat:\n• Een app met zoekers en panden en een matchscore van 0 tot 100.\n• Bestemming is een harde eis. Daarna telt oppervlakte 35 punten, budget 35 en gebied 30, met een marge per kenmerk.\n• De lijst staat op kansscore: de matchscore keer een factor voor hoe recent er contact was.\n• Een zoekformulier waarin klanten zelf hun wensen invullen. De makelaar beoordeelt het eerst.\n• Een overzicht van nieuwe zoekers die nog in Mailchimp moeten.\n• Een klantkaart met status en contactmomenten.\n• Inloggen per gebruiker.\n\nTechniek, in één zin:\n• Next.js: het framework waarmee de app als website is gebouwd.\n• Vercel: de dienst die de app online zet.\n• Supabase (Postgres) in een EU-regio (Frankfurt): de database en het inloggen, met de gegevens in Frankfurt.\n• Row Level Security (RLS): een regel in de database waardoor een gebruiker alleen de gegevens van het eigen kantoor ziet, aan op alle tabellen.\n• Database-functies (RPC): kleine functies in de database die het openbare formulier aanroept, zodat dat formulier niet zelf in de tabellen schrijft.\n• PLAN.md: het plan waarop Claude Code de app in fases bouwde.\n\nHoe: ik deed de intake met de makelaar via een vriend die er werkt. De matchregels hebben we samen afgestemd, daarna is de app gebouwd. Claude Code schreef de code, ik was opdrachtgever, product owner en tester.\n\nEerlijk erbij:\n• De controle op gelekte wachtwoorden staat nog uit.\n• De AVG afwegingen staan gepland voor sprint 6: verwerkersovereenkomst, bewaartermijn, Mailchimp en welke data met AI in aanraking komt.\n\nDe klant blijft anoniem en er staan geen echte klantgegevens en geen link naar de live app op deze site.',
+            'Probleem: de zoeklijst in Excel, het CRM en Mailchimp liepen door elkaar.\n\nWat er staat:\n• Een app met zoekers en panden en een matchscore van 0 tot 100.\n• Bestemming is een harde eis. Daarna telt oppervlakte 35 punten, budget 35 en gebied 30, met een marge per kenmerk.\n• De lijst staat op kansscore: de matchscore keer een factor voor hoe recent er contact was.\n• Een zoekformulier waarin klanten zelf hun wensen invullen. De makelaar beoordeelt het eerst.\n• Een overzicht van nieuwe zoekers die nog in Mailchimp moeten.\n• Een klantkaart met status en contactmomenten.\n• Inloggen per gebruiker.\n\nTechniek, in één zin:\n• Next.js: het framework waarmee de app als website is gebouwd.\n• Vercel: de dienst die de app online zet.\n• Supabase (Postgres) in een EU-regio (Frankfurt): de database en het inloggen, met de gegevens in Frankfurt.\n• Row Level Security (RLS): een regel in de database waardoor een gebruiker alleen de gegevens van het eigen kantoor ziet, aan op alle tabellen.\n• Database-functies (RPC): kleine functies in de database die het openbare formulier aanroept, zodat dat formulier niet zelf in de tabellen schrijft.\n• PLAN.md: het plan waarop Claude Code de app in fases bouwde.\n\nHoe: ik deed de intake met de makelaar via een vriend die er werkt. De matchregels hebben we samen afgestemd, daarna is de app gebouwd. Claude Code schreef de code, ik was opdrachtgever, product owner en tester.\n\nEerlijk erbij:\n• De controle op gelekte wachtwoorden staat nog uit.\n• De AVG afwegingen staan gepland voor sprint 6: verwerkersovereenkomst, bewaartermijn, Mailchimp en welke data met AI in aanraking komt.\n\nDe klant blijft anoniem en er staan geen echte klantgegevens op deze site. Onder bewijsstukken staan links naar het zoekformulier en de zoeklijst van de app.',
         },
         {
           id: 's5-story-2',
@@ -486,6 +486,20 @@ export const INITIAL_PORTFOLIO_DATA: PortfolioData = {
         },
       ],
       evidenceLinks: [
+        {
+          id: 's5-ev-2',
+          title: 'Zoeklijst-app: zoekformulier voor klanten',
+          url: 'https://zoeklijst-app.vercel.app/zoekformulier/jb-retail',
+          type: 'app',
+          description: 'Het openbare formulier waarin klanten zelf hun wensen invullen.',
+        },
+        {
+          id: 's5-ev-3',
+          title: 'Zoeklijst-app: de zoeklijst van vandaag',
+          url: 'https://zoeklijst-app.vercel.app/vandaag',
+          type: 'app',
+          description: 'De zoeklijst in de app, voor de makelaar.',
+        },
         {
           id: 's5-ev-1',
           title: 'Slimmer omgaan met tokens: wat ik deed en wat het opleverde',
