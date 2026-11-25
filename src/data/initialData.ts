@@ -1,5 +1,18 @@
 import profilePhoto from '../assets/linkedin-profielfoto.jpg';
-import { LearningOutcome, PortfolioData } from '../types';
+import { LearningOutcome, PortfolioData, LearningOutcomeId } from '../types';
+
+// Stand after sprint 5 (Show & Grow, 18 November 2026).
+// After each sprint only update these numbers; totals are calculated from them.
+export const OUTCOME_PROGRESS: Record<LearningOutcomeId, { achieved: number; required: number }> = {
+  LU1: { achieved: 1, required: 2 },
+  LU2: { achieved: 4, required: 4 },
+  LU3: { achieved: 2, required: 2 },
+  LU4: { achieved: 5, required: 4 },
+  LU5: { achieved: 4, required: 6 },
+};
+
+/** Minimum total of "voldoende" assessments for "Boven niveau". */
+export const ABOVE_LEVEL_MINIMUM = 24;
 
 export const LEARNING_OUTCOMES: LearningOutcome[] = [
   {

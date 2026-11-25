@@ -1,16 +1,7 @@
 import React from 'react';
 import { LearningOutcome, LearningOutcomeId, Sprint } from '../types';
-import { LEARNING_OUTCOMES } from '../data/initialData';
-import { Award, Filter, CheckCircle2, Clock, Compass } from 'lucide-react';
-import {
-  Radar,
-  RadarChart,
-  PolarGrid,
-  PolarAngleAxis,
-  PolarRadiusAxis,
-  ResponsiveContainer,
-  Tooltip,
-} from 'recharts';
+import { LEARNING_OUTCOMES, OUTCOME_PROGRESS, ABOVE_LEVEL_MINIMUM } from '../data/initialData';
+import { Award, Filter, CheckCircle2 } from 'lucide-react';
 
 interface LearningOutcomesBarProps {
   sprints: Sprint[];
@@ -23,28 +14,12 @@ export const LearningOutcomesBar: React.FC<LearningOutcomesBarProps> = ({
   selectedOutcome,
   onSelectOutcome,
 }) => {
-  // Count how many sprints demonstrate each outcome
-  const getOutcomeCount = (outcomeId: LearningOutcomeId) => {
-    return sprints.filter((s) => s.demonstratedOutcomes.includes(outcomeId)).length;
-  };
+  const totalAchieved = Object.values(OUTCOME_PROGRESS).reduce((sum, p) => sum + p.achieved, 0);
 
-  // Ingediend maar nog niet beoordeeld: telt nergens mee als behaald
-  const getSubmittedCount = (outcomeId: LearningOutcomeId) => {
-    return sprints.filter(
-      (s) =>
-        !s.demonstratedOutcomes.includes(outcomeId) &&
-        (s.submittedOutcomes ?? []).includes(outcomeId)
-    ).length;
-  };
-
-  // Past bij: nog niet ingediend en niet beoordeeld. Telt nergens als behaald.
-  const getFittingCount = (outcomeId: LearningOutcomeId) => {
-    return sprints.filter(
-      (s) =>
-        !s.demonstratedOutcomes.includes(outcomeId) &&
-        !(s.submittedOutcomes ?? []).includes(outcomeId) &&
-        (s.fittingOutcomes ?? []).includes(outcomeId)
-    ).length;
+  // "5 (doel 4)" when above the goal, otherwise "1 van 2"
+  const progressLabel = (outcomeId: LearningOutcomeId) => {
+    const { achieved, required } = OUTCOME_PROGRESS[outcomeId];
+    return achieved > required ? `${achieved} (doel ${required})` : `${achieved} van ${required}`;
   };
 
   return (
@@ -86,86 +61,57 @@ export const LearningOutcomesBar: React.FC<LearningOutcomesBarProps> = ({
           </div>
         </div>
 
-        {/* Voortgang per leeruitkomst als radargrafiek */}
+        {/* Voortgang per leeruitkomst als balken */}
         <div
           id="learning-outcomes-chart"
           className="mb-8 rounded-3xl border border-stone-200 bg-white p-4 sm:p-6"
         >
-          <div className="mb-3 flex flex-col sm:flex-row sm:items-center justify-between gap-2">
-            <h3 className="text-xl font-bold text-stone-900">
-              Voortgang per leeruitkomst
-            </h3>
-            <ul className="flex flex-wrap items-center gap-x-5 gap-y-1 text-sm text-stone-700" aria-label="Legenda">
-              <li className="inline-flex items-center gap-2">
-                <span className="h-3 w-3 rounded-sm bg-emerald-500 border border-emerald-700" aria-hidden="true" />
-                Behaald (beoordeeld)
-              </li>
-              <li className="inline-flex items-center gap-2">
-                <span className="h-3 w-3 rounded-sm bg-amber-200 border border-dashed border-amber-700" aria-hidden="true" />
-                Ingediend (nog niet beoordeeld)
-              </li>
-            </ul>
+          <div className="mb-4 flex flex-col sm:flex-row sm:items-center justify-between gap-2">
+            <h3 className="text-xl font-bold text-stone-900">Voortgang per leeruitkomst</h3>
+            <p className="text-sm text-stone-700">Stand na sprint 5, aantal keer voldoende beoordeeld</p>
           </div>
-          <div className="h-64 sm:h-80 w-full">
-            <ResponsiveContainer width="100%" height="100%">
-              <RadarChart
-                data={LEARNING_OUTCOMES.map((outcome) => ({
-                  subject: outcome.code,
-                  fullTitle: outcome.title,
-                  count: getOutcomeCount(outcome.id),
-                  submitted: getSubmittedCount(outcome.id),
-                  withSubmitted: getOutcomeCount(outcome.id) + getSubmittedCount(outcome.id),
-                }))}
-              >
-                <PolarGrid stroke="#d6d3d1" />
-                <PolarAngleAxis dataKey="subject" tick={{ fill: '#44403c', fontSize: 14, fontWeight: 700 }} />
-                <PolarRadiusAxis
-                  angle={90}
-                  domain={[0, sprints.length]}
-                  tick={{ fill: '#78716c', fontSize: 12 }}
-                  tickCount={sprints.length + 1}
-                />
-                <Radar
-                  name="Ingediend"
-                  dataKey="withSubmitted"
-                  stroke="#b45309"
-                  fill="#f59e0b"
-                  fillOpacity={0.12}
-                  strokeWidth={2}
-                  strokeDasharray="4 3"
-                />
-                <Radar
-                  name="Behaald"
-                  dataKey="count"
-                  stroke="#047857"
-                  fill="#10b981"
-                  fillOpacity={0.35}
-                  strokeWidth={2}
-                />
-                <Tooltip
-                  contentStyle={{
-                    backgroundColor: '#ffffff',
-                    border: '1px solid #d6d3d1',
-                    borderRadius: '0.75rem',
-                    fontSize: '14px',
-                  }}
-                  labelStyle={{ color: '#1c1917', fontWeight: 700 }}
-                  formatter={(value: number, name: string, item: { payload?: { submitted?: number } }) =>
-                    name === 'Ingediend'
-                      ? [`${item.payload?.submitted ?? 0} sprint(s), nog niet beoordeeld`, 'Ingediend']
-                      : [`${value}/${sprints.length} sprints`, 'Behaald']
-                  }
-                  labelFormatter={(_label, payload) => payload?.[0]?.payload?.fullTitle ?? _label}
-                />
-              </RadarChart>
-            </ResponsiveContainer>
-          </div>
+
+          <ul className="space-y-3">
+            {LEARNING_OUTCOMES.map((outcome) => {
+              const { achieved, required } = OUTCOME_PROGRESS[outcome.id];
+              const done = achieved >= required;
+              return (
+                <li key={outcome.id}>
+                  <div className="mb-1 flex items-center justify-between gap-2 text-sm">
+                    <span className="font-bold text-stone-900">{outcome.code}</span>
+                    <span className="font-semibold text-stone-700">
+                      {progressLabel(outcome.id)}
+                      {done && ', klaar'}
+                    </span>
+                  </div>
+                  <div
+                    className="h-3 w-full overflow-hidden rounded-full bg-stone-200"
+                    role="progressbar"
+                    aria-label={`${outcome.code} ${outcome.title}`}
+                    aria-valuemin={0}
+                    aria-valuemax={required}
+                    aria-valuenow={Math.min(achieved, required)}
+                    aria-valuetext={progressLabel(outcome.id)}
+                  >
+                    <div
+                      className={`h-full rounded-full ${done ? 'bg-emerald-600' : 'bg-teal-500'}`}
+                      style={{ width: `${Math.min(100, (achieved / required) * 100)}%` }}
+                    />
+                  </div>
+                </li>
+              );
+            })}
+          </ul>
+
+          <p className="mt-5 border-t border-stone-200 pt-4 text-base text-stone-700">
+            <span className="font-bold text-stone-900">Totaal: {totalAchieved} voldoendes.</span> Voor Boven
+            niveau zijn er minimaal {ABOVE_LEVEL_MINIMUM} nodig.
+          </p>
         </div>
 
         {/* 5 Outcomes Cards Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-4">
           {LEARNING_OUTCOMES.map((outcome) => {
-            const count = getOutcomeCount(outcome.id);
             const isSelected = selectedOutcome === outcome.id;
 
             return (
@@ -199,33 +145,14 @@ export const LearningOutcomesBar: React.FC<LearningOutcomesBarProps> = ({
                     {outcome.title}
                   </h3>
 
-                  {/* Voortgang: behaald en ingediend apart */}
                   <div className="mt-3 flex flex-wrap gap-1.5 text-sm">
                     <span
                       className="inline-flex items-center gap-1 rounded-full bg-emerald-50 border border-emerald-300 px-2.5 py-0.5 font-semibold text-emerald-900"
-                      title={`${count} van de 8 sprints behaald`}
+                      title="Aantal keer voldoende beoordeeld"
                     >
                       <CheckCircle2 className="h-3.5 w-3.5" aria-hidden="true" />
-                      {count}/8 behaald
+                      {progressLabel(outcome.id)}
                     </span>
-                    {getSubmittedCount(outcome.id) > 0 && (
-                      <span
-                        className="inline-flex items-center gap-1 rounded-full bg-amber-50 border border-dashed border-amber-500 px-2.5 py-0.5 font-semibold text-amber-900"
-                        title="Ingediend, nog niet beoordeeld"
-                      >
-                        <Clock className="h-3.5 w-3.5" aria-hidden="true" />
-                        {getSubmittedCount(outcome.id)} ingediend
-                      </span>
-                    )}
-                    {getFittingCount(outcome.id) > 0 && (
-                      <span
-                        className="inline-flex items-center gap-1 rounded-full bg-sky-50 border border-sky-300 px-2.5 py-0.5 font-semibold text-sky-900"
-                        title="Past bij een story, nog niet ingediend en niet beoordeeld"
-                      >
-                        <Compass className="h-3.5 w-3.5" aria-hidden="true" />
-                        past bij {getFittingCount(outcome.id)} sprint
-                      </span>
-                    )}
                   </div>
 
                   {/* Short Description */}
@@ -253,7 +180,7 @@ export const LearningOutcomesBar: React.FC<LearningOutcomesBarProps> = ({
               <span className="font-bold">{selectedOutcome}:</span>
               <span>
                 Gefilterd op {LEARNING_OUTCOMES.find((o) => o.id === selectedOutcome)?.title} (
-                {getOutcomeCount(selectedOutcome)} behaald, {getSubmittedCount(selectedOutcome)} ingediend, past bij {getFittingCount(selectedOutcome)})
+                {progressLabel(selectedOutcome)} voldoende)
               </span>
             </div>
             <button
